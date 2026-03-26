@@ -106,10 +106,17 @@ interface PitcherStats {
 
 interface TodaysGame {
   gamePk: number;
-  gameTime: string; // ISO
+  gameTime: string;
   gameState: string;
   awayTeam: string;
   homeTeam: string;
+  awayAbbrev: string;
+  homeAbbrev: string;
+  awayTeamId: number;
+  homeTeamId: number;
+  awayScore: number | null;
+  homeScore: number | null;
+  currentInning: string | null;
   venue: string;
   roofType: "dome" | "retractable" | "open";
   weather: { condition: string; temp: string; wind: string } | null;
@@ -155,6 +162,10 @@ function roofLabel(type: "dome" | "retractable" | "open"): string {
   return "Open Air";
 }
 
+function teamLogoUrl(teamId: number): string {
+  return `https://www.mlbstatic.com/team-logos/team-cap-on-dark/${teamId}.svg`;
+}
+
 // ── Data fetching ────────────────────────────────────────────────────
 
 async function fetchJSON<T>(path: string): Promise<T | null> {
@@ -169,7 +180,7 @@ async function fetchJSON<T>(path: string): Promise<T | null> {
 
 async function fetchMLBSchedule(date: string): Promise<TodaysGame[]> {
   try {
-    const url = `${MLB_API}/schedule?date=${date}&sportId=1&hydrate=weather,venue,probablePitchers,officials`;
+    const url = `${MLB_API}/schedule?date=${date}&sportId=1&hydrate=team,weather,venue,probablePitchers,officials,linescore`;
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return [];
     const data = await res.json();
@@ -215,12 +226,33 @@ async function fetchMLBSchedule(date: string): Promise<TodaysGame[]> {
           }
         : null;
 
+      // Determine game state and inning
+      const detailedState = g.status?.detailedState || "Scheduled";
+      const isLive = detailedState === "In Progress" || detailedState === "Manager Challenge" || detailedState === "Delayed";
+      const isFinal = detailedState === "Final" || detailedState === "Game Over" || detailedState === "Completed Early";
+      let currentInning: string | null = null;
+      if (isLive && g.linescore) {
+        const half = g.linescore.inningHalf === "Top" ? "Top" : "Bot";
+        const ord = g.linescore.currentInningOrdinal || g.linescore.currentInning;
+        currentInning = `${half} ${ord}`;
+      }
+
+      const awayScore = (isLive || isFinal) ? (g.teams?.away?.score ?? null) : null;
+      const homeScore = (isLive || isFinal) ? (g.teams?.home?.score ?? null) : null;
+
       games.push({
         gamePk: g.gamePk,
         gameTime: g.gameDate,
-        gameState: g.status?.detailedState || "Scheduled",
+        gameState: detailedState,
         awayTeam: g.teams?.away?.team?.name || "TBD",
         homeTeam: g.teams?.home?.team?.name || "TBD",
+        awayAbbrev: g.teams?.away?.team?.abbreviation || "???",
+        homeAbbrev: g.teams?.home?.team?.abbreviation || "???",
+        awayTeamId: g.teams?.away?.team?.id || 0,
+        homeTeamId: g.teams?.home?.team?.id || 0,
+        awayScore,
+        homeScore,
+        currentInning,
         venue,
         roofType,
         weather,
@@ -247,6 +279,11 @@ async function fetchGameDetails(
   homeLineup: LineupPlayer[];
   awayStarterThrows: string;
   homeStarterThrows: string;
+  awayStarterName: string | null;
+  homeStarterName: string | null;
+  awayScore: number | null;
+  homeScore: number | null;
+  currentInning: string | null;
 } | null> {
   try {
     const res = await fetch(
@@ -282,11 +319,25 @@ async function fetchGameDetails(
     const awayPitcherGd = awayPitcherId ? gdPlayers[`ID${awayPitcherId}`] : null;
     const homePitcherGd = homePitcherId ? gdPlayers[`ID${homePitcherId}`] : null;
 
+    // Get inning info from linescore
+    const linescore = data.liveData?.linescore;
+    let currentInning: string | null = null;
+    if (linescore?.currentInning) {
+      const half = linescore.inningHalf === "Top" ? "Top" : "Bot";
+      const ord = linescore.currentInningOrdinal || linescore.currentInning;
+      currentInning = `${half} ${ord}`;
+    }
+
     return {
       awayLineup: extractLineup("away"),
       homeLineup: extractLineup("home"),
       awayStarterThrows: awayPitcherGd?.pitchHand?.code || "",
       homeStarterThrows: homePitcherGd?.pitchHand?.code || "",
+      awayStarterName: awayPitcherGd?.fullName || null,
+      homeStarterName: homePitcherGd?.fullName || null,
+      awayScore: linescore?.teams?.away?.runs ?? null,
+      homeScore: linescore?.teams?.home?.runs ?? null,
+      currentInning,
     };
   } catch {
     return null;
@@ -298,8 +349,6 @@ function enrichWithLookups(
   lookups: Lookups | null
 ): TodaysGame[] {
   if (!lookups) return games;
-  // Lookups are keyed by player ID but we only have names from the schedule API.
-  // The game feed provides pitcher IDs, so we match via those.
   const pitchers = lookups.pitchers || {};
 
   return games.map((g) => {
@@ -308,10 +357,6 @@ function enrichWithLookups(
       lineup: LineupPlayer[]
     ): TodaysGame["awayStarter"] => {
       if (!starter) return null;
-      // Try to find pitcher stats by checking game feed data
-      // The probable pitcher ID isn't directly in lineup, but we can try ID lookup
-      // For now, return starter as-is — stats enrichment can be added when
-      // game feed provides pitcher IDs that map to lookups keys
       void pitchers;
       void lineup;
       return starter;
@@ -448,45 +493,111 @@ function BetCard({ bet }: { bet: Bet }) {
   );
 }
 
+function AccordionSection({
+  title,
+  defaultOpen,
+  children,
+}: {
+  title: string;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(defaultOpen ?? false);
+
+  return (
+    <div className="border-t border-[var(--card-border)]">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between px-4 py-2 text-xs font-medium uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+      >
+        <span>{title}</span>
+        <span className="text-[10px]">{open ? "▼" : "▶"}</span>
+      </button>
+      {open && <div className="px-4 pb-3">{children}</div>}
+    </div>
+  );
+}
+
+
 function GameCard({ game }: { game: TodaysGame }) {
   const hasAwayLineup = game.awayLineup.length > 0;
   const hasHomeLineup = game.homeLineup.length > 0;
   const hasLineups = hasAwayLineup && hasHomeLineup;
 
-  const stateColor =
-    game.gameState === "Final"
-      ? "bg-zinc-700 text-zinc-300"
-      : game.gameState === "In Progress"
-        ? "bg-green-900/60 text-green-300"
-        : "bg-blue-900/50 text-blue-300";
+  const isFinal = game.gameState === "Final" || game.gameState === "Game Over" || game.gameState === "Completed Early";
+  const isLive = game.gameState === "In Progress" || game.gameState === "Manager Challenge";
+  const isPreGame = !isFinal && !isLive;
+
+  const awayWins = isFinal && game.awayScore !== null && game.homeScore !== null && game.awayScore > game.homeScore;
+  const homeWins = isFinal && game.awayScore !== null && game.homeScore !== null && game.homeScore > game.awayScore;
 
   return (
     <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] overflow-hidden">
-      {/* Header: time + teams + status */}
-      <div className="flex items-center justify-between px-4 pt-4 pb-2">
-        <div>
-          <div className="text-xs text-[var(--text-muted)]">
-            {formatGameTime(game.gameTime)}
-          </div>
-          <div className="mt-0.5 text-base font-semibold">
-            {game.awayTeam} <span className="text-[var(--text-muted)]">@</span>{" "}
-            {game.homeTeam}
-          </div>
+      {/* Teams row with status centered above @ */}
+      <div className="flex items-center px-4 pt-3 pb-3">
+        {/* Away side */}
+        <div className="flex items-center gap-2 flex-1">
+          <img
+            src={teamLogoUrl(game.awayTeamId)}
+            alt={game.awayAbbrev}
+            className="h-7 w-7"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+          />
+          <span className={`text-sm font-semibold ${awayWins ? "text-[var(--text)]" : game.awayScore !== null ? "text-[var(--text-muted)]" : "text-[var(--text)]"}`}>
+            {game.awayAbbrev}
+          </span>
+          {game.awayScore !== null && (
+            <span className={`text-lg font-bold tabular-nums ${awayWins ? "text-[var(--text)]" : "text-[var(--text-muted)]"}`}>
+              {game.awayScore}
+            </span>
+          )}
         </div>
-        <span className={`rounded px-2 py-0.5 text-xs font-medium ${stateColor}`}>
-          {game.gameState}
-        </span>
+
+        {/* Center: status */}
+        <div className="flex flex-col items-center mx-3">
+          {isPreGame && (
+            <span className="text-xs text-[var(--text-muted)]">
+              {formatGameTime(game.gameTime)}
+            </span>
+          )}
+          {isLive && (
+            <span className="rounded bg-green-900/60 px-2 py-0.5 text-xs font-bold text-green-300 animate-pulse">
+              {game.currentInning || "LIVE"}
+            </span>
+          )}
+          {isFinal && (
+            <span className="text-xs font-medium text-[var(--text-muted)]">
+              Final
+            </span>
+          )}
+        </div>
+
+        {/* Home side */}
+        <div className="flex items-center gap-2 flex-1 justify-end">
+          {game.homeScore !== null && (
+            <span className={`text-lg font-bold tabular-nums ${homeWins ? "text-[var(--text)]" : "text-[var(--text-muted)]"}`}>
+              {game.homeScore}
+            </span>
+          )}
+          <span className={`text-sm font-semibold ${homeWins ? "text-[var(--text)]" : game.homeScore !== null ? "text-[var(--text-muted)]" : "text-[var(--text)]"}`}>
+            {game.homeAbbrev}
+          </span>
+          <img
+            src={teamLogoUrl(game.homeTeamId)}
+            alt={game.homeAbbrev}
+            className="h-7 w-7"
+            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+          />
+        </div>
       </div>
 
       {/* Venue + Umpire */}
       <div className="border-t border-[var(--card-border)] px-4 py-2 text-xs text-[var(--text-muted)]">
-        <div>
-          {game.venue} · {roofLabel(game.roofType)}
-        </div>
-        {game.umpire && <div>HP: {game.umpire}</div>}
+        {game.venue} · {roofLabel(game.roofType)}
+        {game.umpire && ` · HP: ${game.umpire}`}
       </div>
 
-      {/* Weather */}
+      {/* Weather - always visible */}
       {game.roofType === "dome" ? (
         <div className="border-t border-[var(--card-border)] px-4 py-2 text-xs text-[var(--text-muted)]">
           Indoor — no weather impact
@@ -498,24 +609,20 @@ function GameCard({ game }: { game: TodaysGame }) {
           </span>
           {game.weather.wind && (
             <span className="text-[var(--text-muted)]">
-              {" "}
-              · {game.weather.wind}
+              {" "}· {game.weather.wind}
             </span>
           )}
           {game.roofType === "retractable" && (
             <span className="text-[var(--text-muted)]">
-              {" "}
-              (retractable roof)
+              {" "}(retractable roof)
             </span>
           )}
         </div>
       ) : null}
 
-      {/* Pitching Matchup */}
-      <div className="border-t border-[var(--card-border)] px-4 py-2">
-        <div className="mb-1 text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
-          Pitching Matchup
-        </div>
+      {/* Pitching Matchup & Lineups - combined accordion */}
+      <AccordionSection title="Pitching & Lineups">
+        {/* Pitching Matchup */}
         <div className="flex items-center gap-2 text-sm">
           <div className="flex-1">
             {game.awayStarter ? (
@@ -538,8 +645,7 @@ function GameCard({ game }: { game: TodaysGame }) {
                 <span className="font-medium">{game.homeStarter.name}</span>
                 {game.homeStarter.throws && (
                   <span className="text-[var(--text-muted)]">
-                    {" "}
-                    {game.homeStarter.throws}HP
+                    {" "}{game.homeStarter.throws}HP
                   </span>
                 )}
               </span>
@@ -548,16 +654,12 @@ function GameCard({ game }: { game: TodaysGame }) {
             )}
           </div>
         </div>
-      </div>
 
-      {/* Lineups */}
-      <div className="border-t border-[var(--card-border)] px-4 py-2 pb-4">
-        <div className="mb-1 text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
-          Lineups
-        </div>
+        {/* Lineups */}
         {hasLineups ? (
-          <div className="grid grid-cols-2 gap-4 text-xs">
+          <div className="mt-3 grid grid-cols-2 gap-4 text-xs border-t border-[var(--card-border)] pt-3">
             <div>
+              <div className="mb-1 font-medium text-[var(--text-muted)]">{game.awayAbbrev}</div>
               {game.awayLineup.map((p, i) => (
                 <div key={p.id} className="flex justify-between py-0.5">
                   <span>
@@ -573,6 +675,7 @@ function GameCard({ game }: { game: TodaysGame }) {
               ))}
             </div>
             <div>
+              <div className="mb-1 font-medium text-[var(--text-muted)]">{game.homeAbbrev}</div>
               {game.homeLineup.map((p, i) => (
                 <div key={p.id} className="flex justify-between py-0.5">
                   <span>
@@ -589,12 +692,12 @@ function GameCard({ game }: { game: TodaysGame }) {
             </div>
           </div>
         ) : (
-          <div className="py-2 text-center text-xs text-[var(--text-muted)]">
+          <div className="mt-3 pt-3 border-t border-[var(--card-border)] text-center text-xs text-[var(--text-muted)]">
             Lineups not yet announced — typically available ~2hrs before first
             pitch
           </div>
         )}
-      </div>
+      </AccordionSection>
     </div>
   );
 }
@@ -707,7 +810,7 @@ function todayET(): string {
   });
 }
 
-type TabId = "games" | "predictions";
+type TabId = "games" | "predictions" | "results";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabId>("games");
@@ -717,6 +820,10 @@ export default function Home() {
   const [results, setResults] = useState<Results | null>(null);
   const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(todayET());
+
+  // Results tab state
+  const [resultsLimit, setResultsLimit] = useState(10);
+  const [resultsLoading, setResultsLoading] = useState(false);
 
   // Today's Games tab state
   const [games, setGames] = useState<TodaysGame[]>([]);
@@ -739,6 +846,19 @@ export default function Home() {
     }
     load();
   }, [selectedDate, activeTab]);
+
+  // Load results when results tab is active
+  useEffect(() => {
+    if (activeTab !== "results") return;
+    if (results) return; // already loaded
+    async function load() {
+      setResultsLoading(true);
+      const res = await fetchJSON<Results>("results/results.json");
+      setResults(res);
+      setResultsLoading(false);
+    }
+    load();
+  }, [activeTab, results]);
 
   // Load today's games
   const loadGames = useCallback(async () => {
@@ -767,16 +887,29 @@ export default function Home() {
             : null;
         if (!detail) return g;
 
+        // Use game feed pitcher names as fallback when schedule API didn't have them
+        const awayStarter = g.awayStarter
+          ? { ...g.awayStarter, throws: detail.awayStarterThrows }
+          : detail.awayStarterName
+            ? { name: detail.awayStarterName, throws: detail.awayStarterThrows, stats: { velocity: null, kRate: null } as PitcherStats }
+            : null;
+
+        const homeStarter = g.homeStarter
+          ? { ...g.homeStarter, throws: detail.homeStarterThrows }
+          : detail.homeStarterName
+            ? { name: detail.homeStarterName, throws: detail.homeStarterThrows, stats: { velocity: null, kRate: null } as PitcherStats }
+            : null;
+
         return {
           ...g,
           awayLineup: detail.awayLineup,
           homeLineup: detail.homeLineup,
-          awayStarter: g.awayStarter
-            ? { ...g.awayStarter, throws: detail.awayStarterThrows }
-            : null,
-          homeStarter: g.homeStarter
-            ? { ...g.homeStarter, throws: detail.homeStarterThrows }
-            : null,
+          awayStarter,
+          homeStarter,
+          // Only use game feed scores for live/final games (pregame linescore returns 0)
+          awayScore: g.awayScore !== null ? (detail.awayScore ?? g.awayScore) : null,
+          homeScore: g.homeScore !== null ? (detail.homeScore ?? g.homeScore) : null,
+          currentInning: detail.currentInning ?? g.currentInning,
         };
       });
 
@@ -836,10 +969,7 @@ export default function Home() {
     <main className="mx-auto max-w-4xl px-4 py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold">MLB YRFI/NRFI</h1>
-        <p className="text-sm text-[var(--text-muted)]">
-          v4 LightGBM Two-Model · Market-Anchored Calibration · Quarter-Kelly
-        </p>
+        <h1 className="text-3xl font-bold">MLB Model</h1>
       </div>
 
       {/* Tab Bar */}
@@ -852,6 +982,12 @@ export default function Home() {
           onClick={() => setActiveTab("predictions")}
         >
           Predictions
+        </button>
+        <button
+          className={tabClass("results")}
+          onClick={() => setActiveTab("results")}
+        >
+          Results
         </button>
       </div>
 
@@ -932,45 +1068,6 @@ export default function Home() {
       {/* ── PREDICTIONS TAB ────────────────────────────────────────── */}
       {activeTab === "predictions" && (
         <div>
-          {/* Cumulative Stats */}
-          {cum && cum.total_bets > 0 && (
-            <div className="mb-6">
-              <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-                <StatCard
-                  label="Record"
-                  value={`${cum.wins}W-${cum.losses}L`}
-                  sub={`${cum.win_rate_pct}% win rate`}
-                />
-                <StatCard
-                  label="Profit"
-                  value={`$${cum.profit >= 0 ? "+" : ""}${cum.profit.toFixed(0)}`}
-                  sub={`$${cum.wagered.toFixed(0)} wagered`}
-                  color={
-                    cum.profit >= 0
-                      ? "text-[var(--green)]"
-                      : "text-[var(--red)]"
-                  }
-                />
-                <StatCard
-                  label="ROI"
-                  value={`${cum.roi_pct >= 0 ? "+" : ""}${cum.roi_pct.toFixed(1)}%`}
-                  sub={`${cum.total_bets} total bets`}
-                  color={
-                    cum.roi_pct >= 0
-                      ? "text-[var(--green)]"
-                      : "text-[var(--red)]"
-                  }
-                />
-                <StatCard
-                  label="Max Drawdown"
-                  value={`$${cum.max_drawdown.toFixed(0)}`}
-                  sub={`Peak: $+${cum.peak_profit.toFixed(0)}`}
-                />
-              </div>
-              {results && <PnlChart daily={results.daily} />}
-            </div>
-          )}
-
           {/* Date Picker */}
           <div className="mb-6 flex items-center gap-3">
             <input
@@ -1060,15 +1157,156 @@ export default function Home() {
         </div>
       )}
 
+      {/* ── RESULTS TAB ───────────────────────────────────────────── */}
+      {activeTab === "results" && (
+        <div>
+          {/* Loading */}
+          {resultsLoading && (
+            <div className="py-12 text-center text-[var(--text-muted)]">
+              Loading results...
+            </div>
+          )}
+
+          {/* No results */}
+          {!resultsLoading && !results && (
+            <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-8 text-center">
+              <div className="text-lg font-medium">No results available</div>
+            </div>
+          )}
+
+          {/* Results content */}
+          {!resultsLoading && results && (() => {
+            const allDates = Object.keys(results.daily).sort().reverse();
+            const totalDays = allDates.length;
+            const shownDates = allDates.slice(0, resultsLimit);
+
+            return (
+              <>
+                {/* Cumulative Stats */}
+                {cum && cum.total_bets > 0 && (
+                  <div className="mb-6">
+                    <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                      <StatCard
+                        label="Record"
+                        value={`${cum.wins}W-${cum.losses}L`}
+                        sub={`${cum.win_rate_pct}% win rate`}
+                      />
+                      <StatCard
+                        label="Profit"
+                        value={`$${cum.profit >= 0 ? "+" : ""}${cum.profit.toFixed(0)}`}
+                        sub={`$${cum.wagered.toFixed(0)} wagered`}
+                        color={
+                          cum.profit >= 0
+                            ? "text-[var(--green)]"
+                            : "text-[var(--red)]"
+                        }
+                      />
+                      <StatCard
+                        label="ROI"
+                        value={`${cum.roi_pct >= 0 ? "+" : ""}${cum.roi_pct.toFixed(1)}%`}
+                        sub={`${cum.total_bets} total bets`}
+                        color={
+                          cum.roi_pct >= 0
+                            ? "text-[var(--green)]"
+                            : "text-[var(--red)]"
+                        }
+                      />
+                      <StatCard
+                        label="Max Drawdown"
+                        value={`$${cum.max_drawdown.toFixed(0)}`}
+                        sub={`Peak: $+${cum.peak_profit.toFixed(0)}`}
+                      />
+                    </div>
+                    <PnlChart daily={results.daily} />
+                  </div>
+                )}
+
+                {/* Daily results list */}
+                {totalDays === 0 ? (
+                  <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-8 text-center">
+                    <div className="text-lg font-medium">No daily results yet</div>
+                    <div className="mt-1 text-sm text-[var(--text-muted)]">
+                      Results will appear once today&apos;s games are scored
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <div className="mb-3 text-sm text-[var(--text-muted)]">
+                      Showing {Math.min(shownDates.length, totalDays)} of {totalDays} days
+                    </div>
+                    <div className="grid gap-3">
+                      {shownDates.map((date) => {
+                        const day = results.daily[date];
+                        const pnlColor = day.pnl >= 0 ? "text-[var(--green)]" : "text-[var(--red)]";
+                        return (
+                          <div
+                            key={date}
+                            className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3"
+                          >
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <div className="text-sm font-medium">{formatDateHeading(date)}</div>
+                                <div className="mt-0.5 text-xs text-[var(--text-muted)]">
+                                  {day.bets.length} bet{day.bets.length !== 1 ? "s" : ""}
+                                  {day.all_scored ? "" : " · scoring in progress"}
+                                </div>
+                              </div>
+                              <div className="text-right">
+                                <div className="flex items-center gap-3">
+                                  <span className="text-sm font-semibold">
+                                    {day.wins}W-{day.losses}L
+                                  </span>
+                                  <span className={`text-sm font-bold tabular-nums ${pnlColor}`}>
+                                    ${day.pnl >= 0 ? "+" : ""}{day.pnl.toFixed(0)}
+                                  </span>
+                                </div>
+                                {day.wagered > 0 && (
+                                  <div className="mt-0.5 text-xs text-[var(--text-muted)]">
+                                    {day.roi_pct >= 0 ? "+" : ""}{day.roi_pct.toFixed(1)}% ROI · ${day.wagered.toFixed(0)} wagered
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Pagination */}
+                    {shownDates.length < totalDays && (
+                      <div className="mt-4 flex items-center justify-center gap-3">
+                        <button
+                          onClick={() => setResultsLimit((prev) => prev + 10)}
+                          className="rounded border border-[var(--card-border)] bg-[var(--card)] px-4 py-1.5 text-sm hover:bg-[#1a1a1a]"
+                        >
+                          Show 10 More
+                        </button>
+                        <button
+                          onClick={() => setResultsLimit(totalDays)}
+                          className="rounded border border-[var(--card-border)] bg-[var(--card)] px-4 py-1.5 text-sm hover:bg-[#1a1a1a]"
+                        >
+                          Show All
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            );
+          })()}
+        </div>
+      )}
+
       {/* Footer */}
       <div className="mt-12 border-t border-[var(--card-border)] pt-4 text-center text-xs text-[var(--text-muted)]">
-        YRFI/NRFI v4 · LGB Two-Model + Market-Anchored Calibration (k=0.90) ·
-        Quarter-Kelly (0.25×)
         {results?.updated_at && (
           <>
-            {" · "}Results updated{" "}
+            Last updated{" "}
             {new Date(results.updated_at).toLocaleDateString("en-US", {
               timeZone: "America/New_York",
+              month: "short",
+              day: "numeric",
+              year: "numeric",
             })}
           </>
         )}

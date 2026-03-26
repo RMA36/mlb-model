@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MLB YRFI/NRFI Model",
-  description: "v4 LightGBM two-model daily predictions and P&L tracker",
+  title: "MLB Model",
+  description: "MLB predictions and game tracker",
 };
 
 export default function RootLayout({
