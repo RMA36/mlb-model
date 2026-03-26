@@ -481,7 +481,7 @@ function BetCard({ bet }: { bet: Bet }) {
         </div>
         <div>
           <span className="text-[var(--text-muted)]">Stake</span>
-          <div className="font-mono font-medium">${bet.stake.toFixed(0)}</div>
+          <div className="font-mono font-medium">{(bet.bet_kelly * 100).toFixed(1)}%</div>
         </div>
       </div>
 
@@ -519,7 +519,7 @@ function AccordionSection({
 }
 
 
-function GameCard({ game }: { game: TodaysGame }) {
+function GameCard({ game, bets }: { game: TodaysGame; bets?: Bet[] }) {
   const hasAwayLineup = game.awayLineup.length > 0;
   const hasHomeLineup = game.homeLineup.length > 0;
   const hasLineups = hasAwayLineup && hasHomeLineup;
@@ -698,6 +698,49 @@ function GameCard({ game }: { game: TodaysGame }) {
           </div>
         )}
       </AccordionSection>
+
+      {/* Picks accordion - only if there are bets for this game */}
+      {bets && bets.length > 0 && (
+        <AccordionSection title={`Picks (${bets.length})`}>
+          <div className="space-y-2">
+            {bets.map((bet, i) => {
+              const isYrfi = bet.bet_side === "YRFI";
+              return (
+                <div key={i} className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`rounded px-2 py-0.5 text-xs font-bold ${
+                        isYrfi
+                          ? "bg-red-900/50 text-red-300"
+                          : "bg-blue-900/50 text-blue-300"
+                      }`}
+                    >
+                      {bet.bet_side}
+                    </span>
+                    <span className="font-mono font-medium">
+                      {formatOdds(bet.bet_odds)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
+                    <span>
+                      Edge{" "}
+                      <span className="text-[var(--green)] font-mono">
+                        +{(bet.bet_edge * 100).toFixed(1)}%
+                      </span>
+                    </span>
+                    <span>
+                      Stake{" "}
+                      <span className="font-mono font-medium text-[var(--text)]">
+                        {(bet.bet_kelly * 100).toFixed(1)}%
+                      </span>
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </AccordionSection>
+      )}
     </div>
   );
 }
@@ -830,6 +873,7 @@ export default function Home() {
   const [gamesLoading, setGamesLoading] = useState(true);
   const [gamesError, setGamesError] = useState<string | null>(null);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
+  const [gameBets, setGameBets] = useState<Map<number, Bet[]>>(new Map());
 
   // Load predictions when predictions tab is active or date changes
   useEffect(() => {
@@ -919,6 +963,18 @@ export default function Home() {
 
       setGames(final);
       setLastRefresh(new Date());
+
+      // Fetch today's predictions to show picks on game cards
+      const todayPreds = await fetchJSON<DayPredictions>(`predictions/${today}.json`);
+      if (todayPreds?.bets) {
+        const byGame = new Map<number, Bet[]>();
+        for (const b of todayPreds.bets) {
+          const existing = byGame.get(b.game_pk) || [];
+          existing.push(b);
+          byGame.set(b.game_pk, existing);
+        }
+        setGameBets(byGame);
+      }
     } catch {
       setGamesError("Failed to load games. Try refreshing.");
     } finally {
@@ -1057,7 +1113,7 @@ export default function Home() {
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {games.map((g) => (
-                  <GameCard key={g.gamePk} game={g} />
+                  <GameCard key={g.gamePk} game={g} bets={gameBets.get(g.gamePk)} />
                 ))}
               </div>
             </div>
@@ -1139,7 +1195,7 @@ export default function Home() {
               <div className="mb-3 flex items-center justify-between">
                 <h2 className="text-lg font-semibold">
                   {betsWithResults.length} Pick
-                  {betsWithResults.length !== 1 ? "s" : ""} — {selectedDate}
+                  {betsWithResults.length !== 1 ? "s" : ""}
                 </h2>
                 {predictions && (
                   <span className="text-xs text-[var(--text-muted)]">
@@ -1303,10 +1359,13 @@ export default function Home() {
           <>
             Last updated{" "}
             {new Date(results.updated_at).toLocaleDateString("en-US", {
-              timeZone: "America/New_York",
               month: "short",
               day: "numeric",
               year: "numeric",
+            })}{" "}
+            {new Date(results.updated_at).toLocaleTimeString("en-US", {
+              hour: "numeric",
+              minute: "2-digit",
             })}
           </>
         )}

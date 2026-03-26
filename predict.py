@@ -44,7 +44,6 @@ DEFAULT_MODEL_MEAN = 0.485
 KELLY_FRACTION = 0.25
 MAX_BET_PCT = 0.05
 MAX_GAME_PCT = 0.08
-MAX_DAILY_PCT = 0.20
 MIN_KELLY_PCT = 0.01
 BANKROLL = 1000.0
 
@@ -1191,11 +1190,6 @@ def main():
     bets = [p for p in predictions if p["passes_filter"]]
     if bets:
         total_exposure = sum(b["stake"] for b in bets)
-        if total_exposure > args.bankroll * MAX_DAILY_PCT:
-            scale = (args.bankroll * MAX_DAILY_PCT) / total_exposure
-            for b in bets:
-                b["stake"] = round(b["stake"] * scale, 2)
-            total_exposure = sum(b["stake"] for b in bets)
 
         print()
         print("=" * 95)
