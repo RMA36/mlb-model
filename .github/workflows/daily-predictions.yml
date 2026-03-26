@@ -33,16 +33,15 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run predictions
-        id: predict
         env:
           GH_TOKEN: ${{ secrets.ODDS_TRACKER_PAT }}
           TZ: America/New_York
         run: |
           DATE="${{ github.event.inputs.date || '' }}"
           if [ -n "$DATE" ]; then
-            python predict.py --date "$DATE" --json-only | tee /tmp/result.json
+            python predict.py --date "$DATE" --json-only
           else
-            python predict.py --json-only | tee /tmp/result.json
+            python predict.py --json-only
           fi
 
       - name: Commit predictions

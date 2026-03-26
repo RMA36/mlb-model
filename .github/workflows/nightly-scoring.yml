@@ -1,0 +1,58 @@
+name: Nightly Result Scoring
+
+on:
+  schedule:
+    # Run at 1:53 AM ET (05:53 UTC) — all games should be final by then
+    - cron: "53 5 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Date to score (YYYY-MM-DD). Default: yesterday"
+        required: false
+        type: string
+      backfill:
+        description: "Rescore all unscored dates"
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Score results
+        env:
+          TZ: America/New_York
+        run: |
+          DATE="${{ github.event.inputs.date || '' }}"
+          BACKFILL="${{ github.event.inputs.backfill || 'false' }}"
+          if [ "$BACKFILL" = "true" ]; then
+            python score_results.py --backfill --json-only
+          elif [ -n "$DATE" ]; then
+            python score_results.py --date "$DATE" --json-only
+          else
+            python score_results.py --json-only
+          fi
+
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/
+          if git diff --cached --quiet; then
+            echo "No new results to commit"
+          else
+            git commit -m "results: scored $(date -d yesterday +%Y-%m-%d 2>/dev/null || date -v-1d +%Y-%m-%d)"
+            git push
+          fi
