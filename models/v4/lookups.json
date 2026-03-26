@@ -40287,182 +40287,182 @@
   },
   "parks": {
     "Chase Field": {
-      "pfr": 1.06,
-      "pfh": 1.12,
+      "pfr": 106.0,
+      "pfh": 112.0,
       "elev": 1100,
       "dome": 1
     },
     "Truist Park": {
-      "pfr": 1.0,
-      "pfh": 1.0,
+      "pfr": 100.0,
+      "pfh": 100.0,
       "elev": 1050,
       "dome": 0
     },
     "Oriole Park at Camden Yards": {
-      "pfr": 1.02,
-      "pfh": 1.08,
+      "pfr": 102.0,
+      "pfh": 108.0,
       "elev": 130,
       "dome": 0
     },
     "Fenway Park": {
-      "pfr": 1.1,
-      "pfh": 1.04,
+      "pfr": 110.0,
+      "pfh": 104.0,
       "elev": 20,
       "dome": 0
     },
     "Wrigley Field": {
-      "pfr": 1.03,
-      "pfh": 1.05,
+      "pfr": 103.0,
+      "pfh": 105.0,
       "elev": 600,
       "dome": 0
     },
     "Guaranteed Rate Field": {
-      "pfr": 1.05,
-      "pfh": 1.1,
+      "pfr": 105.0,
+      "pfh": 110.0,
       "elev": 595,
       "dome": 0
     },
     "Great American Ball Park": {
-      "pfr": 1.08,
-      "pfh": 1.15,
+      "pfr": 108.0,
+      "pfh": 115.0,
       "elev": 490,
       "dome": 0
     },
     "Progressive Field": {
-      "pfr": 0.96,
-      "pfh": 0.95,
+      "pfr": 96.0,
+      "pfh": 95.0,
       "elev": 660,
       "dome": 0
     },
     "Coors Field": {
-      "pfr": 1.15,
-      "pfh": 1.14,
+      "pfr": 115.0,
+      "pfh": 114.0,
       "elev": 5200,
       "dome": 0
     },
     "Comerica Park": {
-      "pfr": 0.96,
-      "pfh": 0.92,
+      "pfr": 96.0,
+      "pfh": 92.0,
       "elev": 600,
       "dome": 0
     },
     "Minute Maid Park": {
-      "pfr": 1.0,
-      "pfh": 1.04,
+      "pfr": 100.0,
+      "pfh": 104.0,
       "elev": 40,
       "dome": 1
     },
     "Kauffman Stadium": {
-      "pfr": 0.99,
-      "pfh": 0.96,
+      "pfr": 99.0,
+      "pfh": 96.0,
       "elev": 820,
       "dome": 0
     },
     "Angel Stadium": {
-      "pfr": 0.97,
-      "pfh": 0.98,
+      "pfr": 97.0,
+      "pfh": 98.0,
       "elev": 160,
       "dome": 0
     },
     "Dodger Stadium": {
-      "pfr": 0.97,
-      "pfh": 0.98,
+      "pfr": 97.0,
+      "pfh": 98.0,
       "elev": 515,
       "dome": 0
     },
     "LoanDepot Park": {
-      "pfr": 0.92,
-      "pfh": 0.88,
+      "pfr": 92.0,
+      "pfh": 88.0,
       "elev": 7,
       "dome": 1
     },
     "American Family Field": {
-      "pfr": 1.02,
-      "pfh": 1.06,
+      "pfr": 102.0,
+      "pfh": 106.0,
       "elev": 600,
       "dome": 1
     },
     "Target Field": {
-      "pfr": 1.01,
-      "pfh": 1.02,
+      "pfr": 101.0,
+      "pfh": 102.0,
       "elev": 815,
       "dome": 0
     },
     "Citi Field": {
-      "pfr": 0.95,
-      "pfh": 0.94,
+      "pfr": 95.0,
+      "pfh": 94.0,
       "elev": 10,
       "dome": 0
     },
     "Yankee Stadium": {
-      "pfr": 1.04,
-      "pfh": 1.12,
+      "pfr": 104.0,
+      "pfh": 112.0,
       "elev": 55,
       "dome": 0
     },
     "Oakland Coliseum": {
-      "pfr": 0.94,
-      "pfh": 0.91,
+      "pfr": 94.0,
+      "pfh": 91.0,
       "elev": 5,
       "dome": 0
     },
     "Citizens Bank Park": {
-      "pfr": 1.06,
-      "pfh": 1.12,
+      "pfr": 106.0,
+      "pfh": 112.0,
       "elev": 20,
       "dome": 0
     },
     "PNC Park": {
-      "pfr": 0.96,
-      "pfh": 0.93,
+      "pfr": 96.0,
+      "pfh": 93.0,
       "elev": 730,
       "dome": 0
     },
     "Petco Park": {
-      "pfr": 0.94,
-      "pfh": 0.9,
+      "pfr": 94.0,
+      "pfh": 90.0,
       "elev": 15,
       "dome": 0
     },
     "Oracle Park": {
-      "pfr": 0.92,
-      "pfh": 0.84,
+      "pfr": 92.0,
+      "pfh": 84.0,
       "elev": 5,
       "dome": 0
     },
     "T-Mobile Park": {
-      "pfr": 0.94,
-      "pfh": 0.93,
+      "pfr": 94.0,
+      "pfh": 93.0,
       "elev": 15,
       "dome": 1
     },
     "Busch Stadium": {
-      "pfr": 0.97,
-      "pfh": 0.97,
+      "pfr": 97.0,
+      "pfh": 97.0,
       "elev": 455,
       "dome": 0
     },
     "Tropicana Field": {
-      "pfr": 0.93,
-      "pfh": 0.9,
+      "pfr": 93.0,
+      "pfh": 90.0,
       "elev": 45,
       "dome": 1
     },
     "Globe Life Field": {
-      "pfr": 1.01,
-      "pfh": 1.03,
+      "pfr": 101.0,
+      "pfh": 103.0,
       "elev": 545,
       "dome": 1
     },
     "Rogers Centre": {
-      "pfr": 1.02,
-      "pfh": 1.06,
+      "pfr": 102.0,
+      "pfh": 106.0,
       "elev": 250,
       "dome": 1
     },
     "Nationals Park": {
-      "pfr": 1.0,
-      "pfh": 1.02,
+      "pfr": 100.0,
+      "pfh": 102.0,
       "elev": 25,
       "dome": 0
     }

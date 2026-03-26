@@ -497,7 +497,8 @@ def update_umpire_tallies(tallies: dict, date_str: str, statcast: pd.DataFrame):
 def load_stadium_metadata(csv_path: Path = None) -> dict:
     """
     Load stadium metadata from CSV. Returns dict keyed by stadium_name.
-    Park factors are stored as integers (106 = 1.06); we normalize here.
+    Park factors are stored as integers (106 means +6% runs) and kept in
+    that scale to match the training feature matrix.
     """
     if csv_path is None:
         csv_path = STADIUM_CSV_REPO if STADIUM_CSV_REPO.exists() else STADIUM_CSV_LOCAL
@@ -516,8 +517,8 @@ def load_stadium_metadata(csv_path: Path = None) -> dict:
             pfr_raw = float(row.get("park_factor_runs", 100))
             pfh_raw = float(row.get("park_factor_hr", 100))
             parks[name] = {
-                "pfr": round(pfr_raw / 100.0, 3),
-                "pfh": round(pfh_raw / 100.0, 3),
+                "pfr": pfr_raw,  # integer scale (e.g. 106), matches training
+                "pfh": pfh_raw,  # integer scale (e.g. 112), matches training
                 "elev": int(float(row.get("elevation_ft", 0))),
                 "dome": 1 if roof in ("dome", "retractable") else 0,
             }

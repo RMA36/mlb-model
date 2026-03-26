@@ -304,6 +304,114 @@ def extract_game_info(game_data):
     return info
 
 
+# ── Weather (Open-Meteo) ──────────────────────────────────────────────
+
+
+def load_stadium_coordinates():
+    """Load lat/lon for each venue from stadium_metadata.csv."""
+    csv_path = MODEL_DIR / "stadium_metadata.csv"
+    if not csv_path.exists():
+        return {}
+    coords = {}
+    import csv
+    with open(csv_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            name = row.get("stadium_name", "").strip()
+            if name:
+                coords[name] = {
+                    "lat": float(row.get("latitude", 0)),
+                    "lon": float(row.get("longitude", 0)),
+                }
+    return coords
+
+
+def fetch_weather_for_games(game_infos, date_str):
+    """Fetch weather from Open-Meteo for each unique venue on game day.
+
+    Returns dict keyed by venue name with:
+      temp_min (°F), temp_max (°F), precipitation_mm, humidity (%)
+    And for games with known start times, hourly data at first pitch:
+      hourly_precipitation_mm, hourly_temp (°F)
+    """
+    coords = load_stadium_coordinates()
+    if not coords:
+        logger.warning("No stadium coordinates — skipping weather fetch")
+        return {}
+
+    # Collect unique venues with their game times
+    venues = {}
+    for info in game_infos:
+        venue = info.get("venue", "")
+        if venue and venue in coords and venue not in venues:
+            venues[venue] = {
+                "lat": coords[venue]["lat"],
+                "lon": coords[venue]["lon"],
+                "game_datetime": info.get("game_datetime"),
+            }
+
+    if not venues:
+        return {}
+
+    weather = {}
+    for venue, vinfo in venues.items():
+        try:
+            lat, lon = vinfo["lat"], vinfo["lon"]
+            # Open-Meteo forecast API — free, no key, returns daily + hourly
+            url = (
+                f"https://api.open-meteo.com/v1/forecast?"
+                f"latitude={lat}&longitude={lon}"
+                f"&daily=temperature_2m_max,temperature_2m_min,precipitation_sum"
+                f"&hourly=temperature_2m,precipitation,relative_humidity_2m"
+                f"&temperature_unit=fahrenheit"
+                f"&windspeed_unit=mph"
+                f"&precipitation_unit=mm"
+                f"&timezone=America%2FNew_York"
+                f"&start_date={date_str}&end_date={date_str}"
+            )
+            resp = requests.get(url, timeout=10)
+            resp.raise_for_status()
+            data = resp.json()
+
+            daily = data.get("daily", {})
+            w = {
+                "temp_max": daily.get("temperature_2m_max", [72])[0],
+                "temp_min": daily.get("temperature_2m_min", [62])[0],
+                "precipitation_mm": daily.get("precipitation_sum", [0])[0] or 0,
+            }
+
+            # If we have game start time, get hourly values at first pitch
+            gdt = vinfo.get("game_datetime")
+            hourly = data.get("hourly", {})
+            if gdt and hourly.get("time"):
+                try:
+                    game_utc = datetime.fromisoformat(gdt.replace("Z", "+00:00"))
+                    game_et = game_utc.astimezone(ZoneInfo("US/Eastern"))
+                    target_hour = game_et.strftime("%Y-%m-%dT%H:00")
+                    hours = hourly["time"]
+                    if target_hour in hours:
+                        idx = hours.index(target_hour)
+                        precip_vals = hourly.get("precipitation", [])
+                        temp_vals = hourly.get("temperature_2m", [])
+                        humidity_vals = hourly.get("relative_humidity_2m", [])
+                        if idx < len(precip_vals):
+                            w["hourly_precipitation_mm"] = precip_vals[idx] or 0
+                        if idx < len(temp_vals):
+                            w["hourly_temp"] = temp_vals[idx]
+                        if idx < len(humidity_vals):
+                            w["hourly_humidity"] = humidity_vals[idx]
+                except Exception:
+                    pass
+
+            weather[venue] = w
+            time.sleep(0.2)  # polite rate limiting
+        except Exception as exc:
+            logger.warning("Weather fetch failed for %s: %s", venue, exc)
+
+    logger.info("Fetched weather for %d venues", len(weather))
+    return weather
+
+
 # ── Feature computation ────────────────────────────────────────────────
 
 
@@ -415,8 +523,15 @@ def load_lookups():
     }
 
 
-def compute_features(game_info, lookups, date_str=None):
+def compute_features(game_info, lookups, date_str=None, weather=None):
     """Compute ALL 52 model features for a single game.
+
+    Parameters
+    ----------
+    weather : dict or None
+        Weather data for this venue from fetch_weather_for_games().
+        Keys: temp_min, temp_max, precipitation_mm, hourly_precipitation_mm,
+              hourly_temp, hourly_humidity.
 
     Matches the training pipeline exactly:
     - 30 pitcher features per side (career, season, FI, platoon, recent)
@@ -577,6 +692,7 @@ def compute_features(game_info, lookups, date_str=None):
     venue = game_info.get("venue", "")
     park = stadium.get(venue, {})
     is_dome = park.get("is_dome", 0)
+    wx = weather or {}
 
     try:
         temp = float(game_info.get("temp", 72))
@@ -594,20 +710,34 @@ def compute_features(game_info, lookups, date_str=None):
     except (ValueError, IndexError):
         wind_mph = 0.0
 
+    # Use Open-Meteo hourly values at first pitch when available
+    if "hourly_temp" in wx:
+        temp = wx["hourly_temp"]
+    if "hourly_humidity" in wx:
+        humidity = wx["hourly_humidity"]
+
+    # temp_min: prefer Open-Meteo daily min (matches training), fall back to temp-10
+    temp_min = wx.get("temp_min", temp - 10.0)
+
+    # precipitation: prefer hourly at first pitch, then daily sum, then 0
+    precipitation = wx.get("hourly_precipitation_mm", wx.get("precipitation_mm", 0.0))
+
     # Dome overrides (matches training pipeline)
     if is_dome:
         temp = 72.0
+        temp_min = 72.0
         humidity = 50.0
         wind_mph = 0.0
+        precipitation = 0.0
 
     features["env_temp_max"] = temp
-    features["env_temp_min"] = temp - 10.0  # approximate; training uses daily min
+    features["env_temp_min"] = temp_min
     features["env_humidity"] = humidity
     features["env_wind_mph"] = wind_mph
-    features["env_precipitation"] = 0.0  # not available from MLB API in real-time
+    features["env_precipitation"] = precipitation
     features["env_is_dome"] = float(is_dome)
-    features["env_park_factor_runs"] = park.get("park_factor_runs", 1.0)
-    features["env_park_factor_hr"] = park.get("park_factor_hr", 1.0)
+    features["env_park_factor_runs"] = park.get("park_factor_runs", 100.0)
+    features["env_park_factor_hr"] = park.get("park_factor_hr", 100.0)
     features["env_elevation_ft"] = park.get("elevation_ft", 0)
 
     # ── Umpire features ──
@@ -635,28 +765,75 @@ def compute_features(game_info, lookups, date_str=None):
     return features
 
 
-def _estimate_pa_probs(top3_obp, pitcher_k_rate):
-    """Estimate PA probabilities for positions 4, 5, 6.
+def _load_pa_grid():
+    """Load the precomputed Monte Carlo PA probability grid.
 
-    The training pipeline uses a Monte Carlo grid indexed by (OBP, K-rate).
-    The MC simulation outcome depends only on OBP (K-rate axis exists in the
-    grid but doesn't affect outcomes). We approximate with calibrated formulas.
-
-    These approximations were fitted to match the MC grid output at key OBP values:
-      OBP=0.250 -> pa4=0.61, pa5=0.27, pa6=0.08
-      OBP=0.310 -> pa4=0.71, pa5=0.37, pa6=0.15
-      OBP=0.350 -> pa4=0.78, pa5=0.45, pa6=0.21
-      OBP=0.400 -> pa4=0.86, pa5=0.57, pa6=0.31
+    Returns dict with obp_grid, k_rate_grid, pa_probs (3D array).
+    Falls back to None if file not found.
     """
-    # Clip OBP to reasonable range
-    obp = np.clip(top3_obp, 0.200, 0.450)
+    grid_path = MODEL_DIR / "pa_grid.json"
+    if not grid_path.exists():
+        logger.warning("pa_grid.json not found at %s — using fallback defaults", grid_path)
+        return None
+    with open(grid_path) as f:
+        raw = json.load(f)
+    return {
+        "obp_grid": np.array(raw["obp_grid"]),
+        "k_rate_grid": np.array(raw["k_rate_grid"]),
+        "pa_probs": np.array(raw["pa_probs"]),
+    }
 
-    # Linear approximations fitted to MC grid
-    pa4 = np.clip(0.24 + 1.55 * obp, 0.4, 0.95)
-    pa5 = np.clip(-0.23 + 1.95 * obp, 0.1, 0.70)
-    pa6 = np.clip(-0.42 + 1.82 * obp, 0.02, 0.45)
 
-    return float(pa4), float(pa5), float(pa6)
+# Module-level cache: loaded once on first call
+_PA_GRID_CACHE = None
+
+
+def _get_pa_grid():
+    global _PA_GRID_CACHE
+    if _PA_GRID_CACHE is None:
+        _PA_GRID_CACHE = _load_pa_grid()
+    return _PA_GRID_CACHE
+
+
+def _estimate_pa_probs(top3_obp, pitcher_k_rate):
+    """Look up PA probabilities for positions 4, 5, 6 from the MC grid.
+
+    Uses bilinear interpolation over the same precomputed Monte Carlo grid
+    that the training pipeline uses, ensuring exact feature parity.
+    """
+    grid = _get_pa_grid()
+    if grid is None:
+        # Fallback to defaults if grid not available
+        return DEFAULT_PA_PROB_4, DEFAULT_PA_PROB_5, DEFAULT_PA_PROB_6
+
+    obp_arr = grid["obp_grid"]
+    k_arr = grid["k_rate_grid"]
+    pa = grid["pa_probs"]   # shape (n_obp, n_k, 6)
+
+    obp = np.clip(top3_obp, obp_arr[0], obp_arr[-1])
+    k = np.clip(pitcher_k_rate, k_arr[0], k_arr[-1])
+
+    # Find surrounding grid indices for bilinear interpolation
+    i = np.searchsorted(obp_arr, obp) - 1
+    i = np.clip(i, 0, len(obp_arr) - 2)
+    j = np.searchsorted(k_arr, k) - 1
+    j = np.clip(j, 0, len(k_arr) - 2)
+
+    # Interpolation weights
+    obp_frac = (obp - obp_arr[i]) / (obp_arr[i + 1] - obp_arr[i])
+    k_frac = (k - k_arr[j]) / (k_arr[j + 1] - k_arr[j])
+
+    # Bilinear interpolation over positions 4, 5, 6 (indices 3, 4, 5)
+    v00 = pa[i, j]
+    v10 = pa[i + 1, j]
+    v01 = pa[i, j + 1]
+    v11 = pa[i + 1, j + 1]
+    interp = (v00 * (1 - obp_frac) * (1 - k_frac) +
+              v10 * obp_frac * (1 - k_frac) +
+              v01 * (1 - obp_frac) * k_frac +
+              v11 * obp_frac * k_frac)
+
+    return float(interp[3]), float(interp[4]), float(interp[5])
 
 
 # ── Model ──────────────────────────────────────────────────────────────
@@ -750,8 +927,8 @@ def main():
         except Exception:
             pass
 
-    # Process each game
-    predictions = []
+    # Pass 1: Collect eligible games and extract game info
+    eligible_games = []
     skipped_already = 0
     skipped_no_starters = 0
     skipped_started = 0
@@ -759,7 +936,6 @@ def main():
     for g in games:
         gpk = g["gamePk"]
         try:
-            # Skip games already predicted in an earlier hourly run
             if gpk in already_predicted:
                 skipped_already += 1
                 continue
@@ -773,14 +949,12 @@ def main():
                 skipped_no_starters += 1
                 continue
 
-            # Skip games that have already started or are final
             status = info.get("status", "")
             if status in ("In Progress", "Final", "Game Over", "Completed Early"):
                 logger.info("  %d (%s): %s — skipping", gpk, tag, status)
                 skipped_started += 1
                 continue
 
-            # Skip games where lineups haven't been posted yet
             home_lineup = info.get("home_lineup", [])
             away_lineup = info.get("away_lineup", [])
             if len(home_lineup) < 3 or len(away_lineup) < 3:
@@ -789,7 +963,6 @@ def main():
                 skipped_no_lineup += 1
                 continue
 
-            # Skip games starting in the past (already commenced)
             game_dt_str = info.get("game_datetime")
             if game_dt_str:
                 game_dt = datetime.fromisoformat(game_dt_str.replace("Z", "+00:00"))
@@ -801,7 +974,29 @@ def main():
                     skipped_started += 1
                     continue
 
-            features = compute_features(info, lookups, date_str=date_str)
+            eligible_games.append((gpk, info))
+            time.sleep(0.3)
+        except Exception as exc:
+            logger.warning("  %d: Error fetching game -- %s", gpk, exc)
+
+    # Pass 2: Fetch weather for all eligible venues at once
+    venue_weather = {}
+    if eligible_games:
+        try:
+            venue_weather = fetch_weather_for_games(
+                [info for _, info in eligible_games], date_str
+            )
+            logger.info("Weather data: %d venues", len(venue_weather))
+        except Exception as exc:
+            logger.warning("Weather fetch failed: %s — using approximations", exc)
+
+    # Pass 3: Compute features and predict
+    predictions = []
+    for gpk, info in eligible_games:
+        try:
+            tag = f"{info['away_team']}@{info['home_team']}"
+            wx = venue_weather.get(info.get("venue", ""))
+            features = compute_features(info, lookups, date_str=date_str, weather=wx)
             p_top, p_bot, p_raw = predict_game(features, top_model, bot_model, meta)
 
             home = info["home_team"]
@@ -901,8 +1096,6 @@ def main():
                 "stake": stake,
                 "n_books": int(odds_row["n_books"]),
             })
-
-            time.sleep(0.3)
         except Exception as exc:
             logger.warning("  %d: Error -- %s", gpk, exc)
             if args.verbose:
