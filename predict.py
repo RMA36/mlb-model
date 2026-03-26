@@ -21,8 +21,9 @@ import subprocess
 import sys
 import time
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import lightgbm as lgb
 import numpy as np
@@ -243,6 +244,8 @@ def extract_game_info(game_data):
         "home_team": normalize_abbr(gd["teams"]["home"]["abbreviation"]),
         "away_team": normalize_abbr(gd["teams"]["away"]["abbreviation"]),
         "venue": gd["venue"]["name"],
+        "game_datetime": gd.get("datetime", {}).get("dateTime"),  # ISO UTC
+        "status": gd.get("status", {}).get("detailedState", ""),
     }
 
     pp = gd.get("probablePitchers", {})
@@ -461,7 +464,8 @@ def main():
     level = logging.DEBUG if args.verbose else logging.INFO
     logging.basicConfig(level=level, format="%(asctime)s  %(message)s")
 
-    date_str = args.date or datetime.now().strftime("%Y-%m-%d")
+    ET = ZoneInfo("US/Eastern")
+    date_str = args.date or datetime.now(ET).strftime("%Y-%m-%d")
 
     # Load everything
     top_model, bot_model, meta = load_models()
@@ -495,7 +499,36 @@ def main():
             info = extract_game_info(detail)
 
             if not info.get("home_starter_id") or not info.get("away_starter_id"):
+                logger.info("  %d (%s): Starters TBD — skipping",
+                            gpk, f"{info['away_team']}@{info['home_team']}")
                 continue
+
+            # Skip games that have already started or are final
+            status = info.get("status", "")
+            if status in ("In Progress", "Final", "Game Over", "Completed Early"):
+                logger.info("  %d (%s): %s — skipping",
+                            gpk, f"{info['away_team']}@{info['home_team']}", status)
+                continue
+
+            # Skip games where lineups haven't been posted yet
+            home_lineup = info.get("home_lineup", [])
+            away_lineup = info.get("away_lineup", [])
+            if len(home_lineup) < 3 or len(away_lineup) < 3:
+                logger.info("  %d (%s): Lineups not posted yet (home=%d, away=%d) — skipping",
+                            gpk, f"{info['away_team']}@{info['home_team']}",
+                            len(home_lineup), len(away_lineup))
+                continue
+
+            # Skip games starting in the past (already commenced)
+            game_dt_str = info.get("game_datetime")
+            if game_dt_str:
+                game_dt = datetime.fromisoformat(game_dt_str.replace("Z", "+00:00"))
+                now_utc = datetime.now(timezone.utc)
+                if game_dt < now_utc:
+                    logger.info("  %d (%s): Game time %s already passed — skipping",
+                                gpk, f"{info['away_team']}@{info['home_team']}",
+                                game_dt.astimezone(ZoneInfo("US/Eastern")).strftime("%I:%M %p ET"))
+                    continue
 
             features = compute_features(info, lookups)
             p_top, p_bot, p_raw = predict_game(features, top_model, bot_model, meta)
@@ -594,28 +627,46 @@ def main():
         logger.info("No predictions generated")
         sys.exit(0)
 
-    # Save predictions JSON
+    # Save predictions JSON — merge with earlier runs from same day
     PREDICTIONS_DIR.mkdir(parents=True, exist_ok=True)
     out_path = PREDICTIONS_DIR / f"{date_str}.json"
+
+    # If file exists from an earlier run, merge (update existing games, add new ones)
+    all_predictions = {}
+    if out_path.exists():
+        try:
+            prev = json.loads(out_path.read_text())
+            for g in prev.get("games", []):
+                all_predictions[g["game_pk"]] = g
+            logger.info("Merging with %d games from earlier run", len(all_predictions))
+        except Exception:
+            pass
+
+    # Current run's predictions overwrite earlier ones for same game_pk
+    for p in predictions:
+        all_predictions[p["game_pk"]] = p
+
+    merged = list(all_predictions.values())
+
     out_data = {
         "date": date_str,
         "model": "v4-lgb-two-model",
         "calibration_k": CALIBRATION_K,
         "model_mean": model_mean,
         "bankroll": args.bankroll,
-        "generated_at": datetime.utcnow().isoformat() + "Z",
-        "games": predictions,
-        "bets": [p for p in predictions if p["passes_filter"]],
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "games": merged,
+        "bets": [p for p in merged if p["passes_filter"]],
         "summary": {
-            "total_games": len(predictions),
-            "total_bets": sum(1 for p in predictions if p["passes_filter"]),
-            "yrfi_bets": sum(1 for p in predictions if p["passes_filter"] and p["bet_side"] == "YRFI"),
-            "nrfi_bets": sum(1 for p in predictions if p["passes_filter"] and p["bet_side"] == "NRFI"),
-            "total_exposure": sum(p["stake"] for p in predictions if p["passes_filter"]),
+            "total_games": len(merged),
+            "total_bets": sum(1 for p in merged if p["passes_filter"]),
+            "yrfi_bets": sum(1 for p in merged if p["passes_filter"] and p["bet_side"] == "YRFI"),
+            "nrfi_bets": sum(1 for p in merged if p["passes_filter"] and p["bet_side"] == "NRFI"),
+            "total_exposure": sum(p["stake"] for p in merged if p["passes_filter"]),
         },
     }
     out_path.write_text(json.dumps(out_data, indent=2, default=str))
-    logger.info("Saved predictions to %s", out_path)
+    logger.info("Saved predictions to %s (%d games)", out_path, len(merged))
 
     # Print summary (unless JSON-only mode for CI)
     if args.json_only:
