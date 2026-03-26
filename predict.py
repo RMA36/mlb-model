@@ -562,25 +562,28 @@ def main():
             home = info["home_team"]
             away = info["away_team"]
 
-            # Match odds by commence time first, then validate team names.
-            # commence_time is unique per game (even doubleheaders have different times).
-            # MLB API game_datetime and odds commence_time are both UTC ISO.
-            odds_row = None
-            if game_dt_str and "commence_utc" in daily_odds.columns:
-                game_utc = pd.Timestamp(game_dt_str.replace("Z", "+00:00"))
-                time_diffs = (daily_odds["commence_utc"] - game_utc).abs()
-                best_idx = time_diffs.idxmin()
-                candidate = daily_odds.loc[best_idx]
-                # Accept if within 30 min AND team names match
-                if (time_diffs[best_idx].total_seconds() <= 1800
-                        and candidate["home_team_abbr"] == home
-                        and candidate["away_team_abbr"] == away):
-                    odds_row = candidate
+            # Match odds: filter by team names, then pick closest commence time.
+            # Team names narrow to 1 row (or 2 for doubleheaders), then
+            # commence_time disambiguates which game within that pair.
+            team_odds = daily_odds[
+                (daily_odds["home_team_abbr"] == home) &
+                (daily_odds["away_team_abbr"] == away)
+            ]
 
-            if odds_row is None:
-                logger.info("  %d (%s): No odds match for game time %s — skipping",
-                            gpk, tag, game_dt_str or "unknown")
+            if team_odds.empty:
+                logger.info("  %d (%s): No odds for this matchup — skipping", gpk, tag)
                 continue
+
+            if len(team_odds) == 1:
+                odds_row = team_odds.iloc[0]
+            else:
+                # Doubleheader: multiple odds rows for same team pair — pick closest time
+                if game_dt_str and "commence_utc" in team_odds.columns:
+                    game_utc = pd.Timestamp(game_dt_str.replace("Z", "+00:00"))
+                    time_diffs = (team_odds["commence_utc"] - game_utc).abs()
+                    odds_row = team_odds.loc[time_diffs.idxmin()]
+                else:
+                    odds_row = team_odds.iloc[0]
             p_cal = calibrate(p_raw, odds_row["mkt_y_fair"], model_mean)
 
             top_dev = p_top - top_mean
