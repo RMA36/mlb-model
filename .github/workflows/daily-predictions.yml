@@ -5,7 +5,7 @@ on:
     # Hourly checks from 9 AM ET (13:00 UTC) to 10 PM ET (02:00 UTC)
     # Each run checks which games have lineups + starters posted, predicts
     # only newly-ready games, and skips ones already predicted or started.
-    - cron: "7 13,14,15,16,17,18,19,20,21,22,23,0,1,2 * * *"
+    - cron: "53 12,13,14,15,16,17,18,19,20,21,22,23,0,1 * * *"
   workflow_dispatch:
     inputs:
       date:
