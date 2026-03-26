@@ -185,12 +185,13 @@ def load_daily_odds(date_str):
     yrfi_rows = fi[fi["outcome_name"] == "Over"].copy()
     nrfi_rows = fi[fi["outcome_name"] == "Under"].copy()
 
-    yrfi_agg = (yrfi_rows.groupby(["game_id", "home_team", "away_team"])
+    # Keep commence_time for precise game matching (handles doubleheaders)
+    yrfi_agg = (yrfi_rows.groupby(["game_id", "home_team", "away_team", "commence_time"])
                 .agg(yrfi_odds=("close_price", "median"),
                      yrfi_open=("open_price", "median"),
                      n_books=("bookmaker", "nunique"))
                 .reset_index())
-    nrfi_agg = (nrfi_rows.groupby(["game_id", "home_team", "away_team"])
+    nrfi_agg = (nrfi_rows.groupby(["game_id", "home_team", "away_team", "commence_time"])
                 .agg(nrfi_odds=("close_price", "median"),
                      nrfi_open=("open_price", "median"))
                 .reset_index())
@@ -200,6 +201,9 @@ def load_daily_odds(date_str):
 
     result["home_team_abbr"] = result["home_team"].map(FULL_NAME_TO_ABBR)
     result["away_team_abbr"] = result["away_team"].map(FULL_NAME_TO_ABBR)
+
+    # Parse commence_time to UTC datetime for matching against MLB API game times
+    result["commence_utc"] = pd.to_datetime(result["commence_time"], utc=True)
 
     valid = (result["yrfi_odds"].abs() >= 100) & (result["nrfi_odds"].abs() >= 100)
     result = result[valid].copy()
@@ -557,14 +561,24 @@ def main():
 
             home = info["home_team"]
             away = info["away_team"]
-            odds_row = daily_odds[
-                (daily_odds["home_team_abbr"] == home) &
-                (daily_odds["away_team_abbr"] == away)
-            ]
-            if odds_row.empty:
+
+            # Match odds by team + commence time (handles doubleheaders)
+            # MLB API game_datetime and odds commence_time are both UTC ISO strings
+            team_mask = ((daily_odds["home_team_abbr"] == home) &
+                         (daily_odds["away_team_abbr"] == away))
+            team_odds = daily_odds[team_mask]
+
+            if team_odds.empty:
+                logger.info("  %d (%s): No odds match — skipping", gpk, tag)
                 continue
 
-            odds_row = odds_row.iloc[0]
+            # If multiple games for same team pair (doubleheader), match by closest commence_time
+            if len(team_odds) > 1 and game_dt_str:
+                game_utc = pd.Timestamp(game_dt_str.replace("Z", "+00:00"))
+                time_diffs = (team_odds["commence_utc"] - game_utc).abs()
+                odds_row = team_odds.loc[time_diffs.idxmin()]
+            else:
+                odds_row = team_odds.iloc[0]
             p_cal = calibrate(p_raw, odds_row["mkt_y_fair"], model_mean)
 
             top_dev = p_top - top_mean
