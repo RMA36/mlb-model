@@ -4,7 +4,7 @@
   "calibration_k": 0.9,
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
-  "generated_at": "2026-03-26T20:01:29.305288+00:00",
+  "generated_at": "2026-03-26T21:57:26.813996+00:00",
   "games": [
     {
       "game_pk": 824541,
@@ -155,6 +155,31 @@
       "skip_reason": "mixed agreement",
       "stake": 0.0,
       "n_books": 5
+    },
+    {
+      "game_pk": 823163,
+      "date": "2026-03-26",
+      "away_team": "CLE",
+      "home_team": "SEA",
+      "away_starter": "Tanner Bibee",
+      "home_starter": "Logan Gilbert",
+      "umpire": "Lance Barksdale",
+      "p_top": 0.2163,
+      "p_bot": 0.2477,
+      "p_raw": 0.4104,
+      "p_cal": 0.3768,
+      "mkt_y_fair": 0.4335,
+      "mkt_n_fair": 0.5665,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0567,
+      "bet_kelly": 0.0098,
+      "bet_odds": -155.0,
+      "bet_dec": 1.645,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 5
     }
   ],
   "bets": [
@@ -210,7 +235,7 @@
     }
   ],
   "summary": {
-    "total_games": 6,
+    "total_games": 7,
     "total_bets": 2,
     "yrfi_bets": 1,
     "nrfi_bets": 1,
