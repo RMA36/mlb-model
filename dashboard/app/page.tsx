@@ -874,6 +874,7 @@ export default function Home() {
   const [gamesError, setGamesError] = useState<string | null>(null);
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
   const [gameBets, setGameBets] = useState<Map<number, Bet[]>>(new Map());
+  const [predsGeneratedAt, setPredsGeneratedAt] = useState<string | null>(null);
 
   // Load predictions when predictions tab is active or date changes
   useEffect(() => {
@@ -974,6 +975,7 @@ export default function Home() {
           byGame.set(b.game_pk, existing);
         }
         setGameBets(byGame);
+        if (todayPreds.generated_at) setPredsGeneratedAt(todayPreds.generated_at);
       }
     } catch {
       setGamesError("Failed to load games. Try refreshing.");
@@ -1355,20 +1357,31 @@ export default function Home() {
 
       {/* Footer */}
       <div className="mt-12 border-t border-[var(--card-border)] pt-4 text-center text-xs text-[var(--text-muted)]">
-        {results?.updated_at && (
-          <>
-            Last updated{" "}
-            {new Date(results.updated_at).toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}{" "}
-            {new Date(results.updated_at).toLocaleTimeString("en-US", {
-              hour: "numeric",
-              minute: "2-digit",
-            })}
-          </>
-        )}
+        {(() => {
+          const ts =
+            activeTab === "results"
+              ? results?.updated_at
+              : activeTab === "predictions"
+                ? predictions?.generated_at
+                : predsGeneratedAt;
+          if (!ts) return null;
+          const d = new Date(ts);
+          return (
+            <>
+              Last updated{" "}
+              {d.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}{" "}
+              {d.toLocaleTimeString("en-US", {
+                hour: "numeric",
+                minute: "2-digit",
+                timeZoneName: "short",
+              })}
+            </>
+          );
+        })()}
       </div>
     </main>
   );
