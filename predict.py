@@ -490,24 +490,45 @@ def main():
         logger.info("No games scheduled for %s", date_str)
         sys.exit(0)
 
+    # Load already-predicted game_pks from earlier runs today
+    out_path = PREDICTIONS_DIR / f"{date_str}.json"
+    already_predicted = set()
+    if out_path.exists():
+        try:
+            prev = json.loads(out_path.read_text())
+            already_predicted = {g["game_pk"] for g in prev.get("games", [])}
+            logger.info("Already predicted %d games from earlier run(s)", len(already_predicted))
+        except Exception:
+            pass
+
     # Process each game
     predictions = []
+    skipped_already = 0
+    skipped_no_starters = 0
+    skipped_started = 0
+    skipped_no_lineup = 0
     for g in games:
         gpk = g["gamePk"]
         try:
+            # Skip games already predicted in an earlier hourly run
+            if gpk in already_predicted:
+                skipped_already += 1
+                continue
+
             detail = fetch_game_detail(gpk)
             info = extract_game_info(detail)
+            tag = f"{info['away_team']}@{info['home_team']}"
 
             if not info.get("home_starter_id") or not info.get("away_starter_id"):
-                logger.info("  %d (%s): Starters TBD — skipping",
-                            gpk, f"{info['away_team']}@{info['home_team']}")
+                logger.info("  %d (%s): Starters TBD — skipping", gpk, tag)
+                skipped_no_starters += 1
                 continue
 
             # Skip games that have already started or are final
             status = info.get("status", "")
             if status in ("In Progress", "Final", "Game Over", "Completed Early"):
-                logger.info("  %d (%s): %s — skipping",
-                            gpk, f"{info['away_team']}@{info['home_team']}", status)
+                logger.info("  %d (%s): %s — skipping", gpk, tag, status)
+                skipped_started += 1
                 continue
 
             # Skip games where lineups haven't been posted yet
@@ -515,8 +536,8 @@ def main():
             away_lineup = info.get("away_lineup", [])
             if len(home_lineup) < 3 or len(away_lineup) < 3:
                 logger.info("  %d (%s): Lineups not posted yet (home=%d, away=%d) — skipping",
-                            gpk, f"{info['away_team']}@{info['home_team']}",
-                            len(home_lineup), len(away_lineup))
+                            gpk, tag, len(home_lineup), len(away_lineup))
+                skipped_no_lineup += 1
                 continue
 
             # Skip games starting in the past (already commenced)
@@ -526,8 +547,9 @@ def main():
                 now_utc = datetime.now(timezone.utc)
                 if game_dt < now_utc:
                     logger.info("  %d (%s): Game time %s already passed — skipping",
-                                gpk, f"{info['away_team']}@{info['home_team']}",
+                                gpk, tag,
                                 game_dt.astimezone(ZoneInfo("US/Eastern")).strftime("%I:%M %p ET"))
+                    skipped_started += 1
                     continue
 
             features = compute_features(info, lookups)
@@ -623,8 +645,18 @@ def main():
                 import traceback
                 traceback.print_exc()
 
+    logger.info("Hourly check: %d new | %d already done | %d no starters | %d no lineup | %d started/past",
+                len(predictions), skipped_already, skipped_no_starters, skipped_no_lineup, skipped_started)
+
     if not predictions:
-        logger.info("No predictions generated")
+        if skipped_already == len(games):
+            logger.info("All %d games already predicted — nothing new to do", len(games))
+        else:
+            logger.info("No new games ready for prediction yet")
+        # Still exit 0 so the workflow doesn't fail
+        if args.json_only:
+            print(json.dumps({"new_predictions": 0, "already_predicted": skipped_already,
+                               "waiting_lineups": skipped_no_lineup, "waiting_starters": skipped_no_starters}))
         sys.exit(0)
 
     # Save predictions JSON — merge with earlier runs from same day

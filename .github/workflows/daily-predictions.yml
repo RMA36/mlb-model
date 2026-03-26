@@ -2,11 +2,10 @@ name: Daily YRFI/NRFI Predictions
 
 on:
   schedule:
-    # Run twice daily to catch both afternoon and evening lineups:
-    #   11:30 AM ET (15:30 UTC) — day games (lineups posted ~10-11 AM ET)
-    #   4:45 PM ET (20:45 UTC) — evening games (lineups posted ~3-5 PM ET)
-    - cron: "30 15 * * *"
-    - cron: "45 20 * * *"
+    # Hourly checks from 10 AM ET (14:00 UTC) to 8 PM ET (00:00 UTC)
+    # Each run checks which games have lineups + starters posted, predicts
+    # only newly-ready games, and skips ones already predicted or started.
+    - cron: "7 14,15,16,17,18,19,20,21,22,23,0 * * *"
   workflow_dispatch:
     inputs:
       date:
@@ -34,15 +33,16 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run predictions
+        id: predict
         env:
           GH_TOKEN: ${{ secrets.ODDS_TRACKER_PAT }}
           TZ: America/New_York
         run: |
           DATE="${{ github.event.inputs.date || '' }}"
           if [ -n "$DATE" ]; then
-            python predict.py --date "$DATE" --json-only
+            python predict.py --date "$DATE" --json-only | tee /tmp/result.json
           else
-            python predict.py --json-only
+            python predict.py --json-only | tee /tmp/result.json
           fi
 
       - name: Commit predictions
