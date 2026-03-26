@@ -4,7 +4,7 @@
   "calibration_k": 0.9,
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
-  "generated_at": "2026-03-26T16:39:08.213132+00:00",
+  "generated_at": "2026-03-26T17:53:41.934078+00:00",
   "games": [
     {
       "game_pk": 823649,
@@ -205,6 +205,31 @@
       "skip_reason": "",
       "stake": 50.0,
       "n_books": 3
+    },
+    {
+      "game_pk": 823081,
+      "date": "2026-03-26",
+      "away_team": "TBR",
+      "home_team": "STL",
+      "away_starter": "Drew Rasmussen",
+      "home_starter": "Matthew Liberatore",
+      "umpire": "Chris Guccione",
+      "p_top": 0.3893,
+      "p_bot": 0.3315,
+      "p_raw": 0.5918,
+      "p_cal": 0.5826,
+      "mkt_y_fair": 0.4761,
+      "mkt_n_fair": 0.5239,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1065,
+      "bet_kelly": 0.0392,
+      "bet_odds": -102.0,
+      "bet_dec": 1.98,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 39.23,
+      "n_books": 5
     }
   ],
   "bets": [
@@ -382,13 +407,38 @@
       "skip_reason": "",
       "stake": 50.0,
       "n_books": 3
+    },
+    {
+      "game_pk": 823081,
+      "date": "2026-03-26",
+      "away_team": "TBR",
+      "home_team": "STL",
+      "away_starter": "Drew Rasmussen",
+      "home_starter": "Matthew Liberatore",
+      "umpire": "Chris Guccione",
+      "p_top": 0.3893,
+      "p_bot": 0.3315,
+      "p_raw": 0.5918,
+      "p_cal": 0.5826,
+      "mkt_y_fair": 0.4761,
+      "mkt_n_fair": 0.5239,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1065,
+      "bet_kelly": 0.0392,
+      "bet_odds": -102.0,
+      "bet_dec": 1.98,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 39.23,
+      "n_books": 5
     }
   ],
   "summary": {
-    "total_games": 8,
-    "total_bets": 7,
-    "yrfi_bets": 7,
+    "total_games": 9,
+    "total_bets": 8,
+    "yrfi_bets": 8,
     "nrfi_bets": 0,
-    "total_exposure": 320.9
+    "total_exposure": 360.13
   }
 }
