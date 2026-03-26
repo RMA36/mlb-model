@@ -1,0 +1,69 @@
+{
+  "date": "2026-03-26",
+  "model": "v4-lgb-two-model",
+  "calibration_k": 0.9,
+  "model_mean": 0.4734365315764994,
+  "bankroll": 1000.0,
+  "generated_at": "2026-03-26T14:55:22.719282+00:00",
+  "games": [
+    {
+      "game_pk": 823649,
+      "date": "2026-03-26",
+      "away_team": "PIT",
+      "home_team": "NYM",
+      "away_starter": "Paul Skenes",
+      "home_starter": "Freddy Peralta",
+      "umpire": "Adrian Johnson",
+      "p_top": 0.5381,
+      "p_bot": 0.3681,
+      "p_raw": 0.7081,
+      "p_cal": 0.6409,
+      "mkt_y_fair": 0.4297,
+      "mkt_n_fair": 0.5703,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.2112,
+      "bet_kelly": 0.0854,
+      "bet_odds": 120.0,
+      "bet_dec": 2.2,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 50.0,
+      "n_books": 3
+    }
+  ],
+  "bets": [
+    {
+      "game_pk": 823649,
+      "date": "2026-03-26",
+      "away_team": "PIT",
+      "home_team": "NYM",
+      "away_starter": "Paul Skenes",
+      "home_starter": "Freddy Peralta",
+      "umpire": "Adrian Johnson",
+      "p_top": 0.5381,
+      "p_bot": 0.3681,
+      "p_raw": 0.7081,
+      "p_cal": 0.6409,
+      "mkt_y_fair": 0.4297,
+      "mkt_n_fair": 0.5703,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.2112,
+      "bet_kelly": 0.0854,
+      "bet_odds": 120.0,
+      "bet_dec": 2.2,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 50.0,
+      "n_books": 3
+    }
+  ],
+  "summary": {
+    "total_games": 1,
+    "total_bets": 1,
+    "yrfi_bets": 1,
+    "nrfi_bets": 0,
+    "total_exposure": 50.0
+  }
+}
