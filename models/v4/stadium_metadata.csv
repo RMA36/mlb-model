@@ -1,0 +1,31 @@
+team,stadium_name,city,latitude,longitude,compass_direction,roof_type,elevation_ft,park_factor_runs,park_factor_hr,left_field_ft,center_field_ft,right_field_ft
+ARI,Chase Field,Phoenix,33.4455,-112.0667,0,retractable,1100,106,112,330,407,334
+ATL,Truist Park,Atlanta,33.8907,-84.4677,195,open,1050,100,100,335,400,325
+BAL,Oriole Park at Camden Yards,Baltimore,39.2838,-76.6218,218,open,130,102,108,333,410,318
+BOS,Fenway Park,Boston,42.3467,-71.0972,202,open,20,110,104,310,390,302
+CHC,Wrigley Field,Chicago,41.9484,-87.6553,228,open,600,103,105,355,400,353
+CHW,Guaranteed Rate Field,Chicago,41.8299,-87.6338,200,open,595,105,110,330,400,335
+CIN,Great American Ball Park,Cincinnati,39.0975,-84.5069,195,open,490,108,115,328,404,325
+CLE,Progressive Field,Cleveland,41.4962,-81.6852,170,open,660,96,95,325,405,325
+COL,Coors Field,Denver,39.7561,-104.9942,200,open,5200,115,114,347,415,350
+DET,Comerica Park,Detroit,42.339,-83.0485,210,open,600,96,92,345,420,330
+HOU,Minute Maid Park,Houston,29.7573,-95.3555,342,retractable,40,100,104,315,409,326
+KCR,Kauffman Stadium,Kansas City,39.0517,-94.4803,190,open,820,99,96,330,410,330
+LAA,Angel Stadium,Anaheim,33.8003,-117.8827,200,open,160,97,98,330,396,330
+LAD,Dodger Stadium,Los Angeles,34.0739,-118.24,195,open,515,97,98,330,395,330
+MIA,LoanDepot Park,Miami,25.7781,-80.2196,12,retractable,7,92,88,344,407,335
+MIL,American Family Field,Milwaukee,43.028,-87.9712,185,retractable,600,102,106,344,400,345
+MIN,Target Field,Minneapolis,44.9817,-93.2776,210,open,815,101,102,339,404,328
+NYM,Citi Field,New York,40.7571,-73.8458,48,open,10,95,94,335,408,330
+NYY,Yankee Stadium,Bronx,40.8296,-73.9262,197,open,55,104,112,318,408,314
+OAK,Oakland Coliseum,Oakland,37.7516,-122.2005,218,open,5,94,91,330,400,330
+PHI,Citizens Bank Park,Philadelphia,39.9061,-75.1665,225,open,20,106,112,329,401,330
+PIT,PNC Park,Pittsburgh,40.4469,-80.0058,200,open,730,96,93,325,399,320
+SDP,Petco Park,San Diego,32.7076,-117.157,195,open,15,94,90,336,396,322
+SFG,Oracle Park,San Francisco,37.7786,-122.3893,198,open,5,92,84,339,399,309
+SEA,T-Mobile Park,Seattle,47.5914,-122.3325,185,retractable,15,94,93,331,405,326
+STL,Busch Stadium,St. Louis,38.6226,-90.1928,195,open,455,97,97,336,400,335
+TBR,Tropicana Field,St. Petersburg,27.7682,-82.6534,180,dome,45,93,90,315,404,322
+TEX,Globe Life Field,Arlington,32.7473,-97.0845,220,retractable,545,101,103,329,407,326
+TOR,Rogers Centre,Toronto,43.6414,-79.3894,280,retractable,250,102,106,328,400,328
+WSN,Nationals Park,Washington,38.873,-77.0074,225,open,25,100,102,336,402,335
