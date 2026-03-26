@@ -2,8 +2,8 @@ name: Nightly Result Scoring
 
 on:
   schedule:
-    # Run at 1:53 AM ET (05:53 UTC) — all games should be final by then
-    - cron: "53 5 * * *"
+    # Run at 3:53 AM ET (07:53 UTC) — extra buffer for late games and delays
+    - cron: "53 7 * * *"
   workflow_dispatch:
     inputs:
       date:

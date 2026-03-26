@@ -2,9 +2,9 @@ name: Daily Stats Update
 
 on:
   schedule:
-    # Run at 8:53 AM ET (12:53 UTC) — before the first prediction check at 9 AM
-    # Statcast data for yesterday's games is usually available by ~8 AM ET
-    - cron: "53 12 * * *"
+    # Run at 6:53 AM ET (10:53 UTC) — well before the first prediction check at 9 AM
+    # Statcast data for yesterday's games is usually available by early morning
+    - cron: "53 10 * * *"
   workflow_dispatch:
     inputs:
       date:
