@@ -1,0 +1,262 @@
+{
+  "version": "v4",
+  "trained_on": "2026-03-25T20:28:19",
+  "n_games": 11699,
+  "year_range": [
+    2021,
+    2025
+  ],
+  "top1_features": [
+    "away_lineup_pa_prob_4",
+    "away_lineup_pa_prob_5",
+    "away_lineup_pa_prob_6",
+    "away_lineup_top3_obp",
+    "away_lineup_weighted_score",
+    "away_platoon_lineup_obp",
+    "away_platoon_lineup_woba",
+    "ctx_day_of_week",
+    "ctx_is_weekend",
+    "ctx_month",
+    "env_elevation_ft",
+    "env_humidity",
+    "env_is_dome",
+    "env_park_factor_hr",
+    "env_park_factor_runs",
+    "env_precipitation",
+    "env_temp_max",
+    "env_temp_min",
+    "env_wind_mph",
+    "home_p_avg_velo",
+    "home_p_bb_rate_vs_L",
+    "home_p_bb_rate_vs_R",
+    "home_p_career_bb_rate",
+    "home_p_career_hr_rate",
+    "home_p_career_k_rate",
+    "home_p_fi_bb_rate",
+    "home_p_fi_hr_rate",
+    "home_p_fi_k_rate",
+    "home_p_fi_k_rate_vs_L",
+    "home_p_fi_k_rate_vs_R",
+    "home_p_fi_platoon_k_rate",
+    "home_p_fi_runs_per_start",
+    "home_p_fi_starts",
+    "home_p_gb_rate",
+    "home_p_hr_rate_vs_L",
+    "home_p_hr_rate_vs_R",
+    "home_p_k_rate_vs_L",
+    "home_p_k_rate_vs_R",
+    "home_p_obpa_vs_L",
+    "home_p_obpa_vs_R",
+    "home_p_platoon_k_rate",
+    "home_p_recent_fi_bb_rate",
+    "home_p_recent_fi_k_rate",
+    "home_p_recent_fi_runs",
+    "home_p_rest_days",
+    "home_p_season_bb_rate",
+    "home_p_season_hr_rate",
+    "home_p_season_k_rate",
+    "home_p_whip_approx",
+    "ump_career_strike_rate",
+    "ump_consistency",
+    "ump_games_count"
+  ],
+  "bot1_features": [
+    "away_p_avg_velo",
+    "away_p_bb_rate_vs_L",
+    "away_p_bb_rate_vs_R",
+    "away_p_career_bb_rate",
+    "away_p_career_hr_rate",
+    "away_p_career_k_rate",
+    "away_p_fi_bb_rate",
+    "away_p_fi_hr_rate",
+    "away_p_fi_k_rate",
+    "away_p_fi_k_rate_vs_L",
+    "away_p_fi_k_rate_vs_R",
+    "away_p_fi_platoon_k_rate",
+    "away_p_fi_runs_per_start",
+    "away_p_fi_starts",
+    "away_p_gb_rate",
+    "away_p_hr_rate_vs_L",
+    "away_p_hr_rate_vs_R",
+    "away_p_k_rate_vs_L",
+    "away_p_k_rate_vs_R",
+    "away_p_obpa_vs_L",
+    "away_p_obpa_vs_R",
+    "away_p_platoon_k_rate",
+    "away_p_recent_fi_bb_rate",
+    "away_p_recent_fi_k_rate",
+    "away_p_recent_fi_runs",
+    "away_p_rest_days",
+    "away_p_season_bb_rate",
+    "away_p_season_hr_rate",
+    "away_p_season_k_rate",
+    "away_p_whip_approx",
+    "ctx_day_of_week",
+    "ctx_is_weekend",
+    "ctx_month",
+    "env_elevation_ft",
+    "env_humidity",
+    "env_is_dome",
+    "env_park_factor_hr",
+    "env_park_factor_runs",
+    "env_precipitation",
+    "env_temp_max",
+    "env_temp_min",
+    "env_wind_mph",
+    "home_lineup_pa_prob_4",
+    "home_lineup_pa_prob_5",
+    "home_lineup_pa_prob_6",
+    "home_lineup_top3_obp",
+    "home_lineup_weighted_score",
+    "home_platoon_lineup_obp",
+    "home_platoon_lineup_woba",
+    "ump_career_strike_rate",
+    "ump_consistency",
+    "ump_games_count"
+  ],
+  "model_mean": 0.477838465498516,
+  "top_mean": 0.25504826184806906,
+  "bot_mean": 0.2988269462103135,
+  "calibration_k": 0.9,
+  "lgb_params": {
+    "objective": "binary",
+    "metric": "binary_logloss",
+    "boosting_type": "gbdt",
+    "num_leaves": 31,
+    "learning_rate": 0.03,
+    "feature_fraction": 0.7,
+    "bagging_fraction": 0.75,
+    "bagging_freq": 5,
+    "min_child_samples": 30,
+    "lambda_l1": 0.05,
+    "lambda_l2": 1.0,
+    "verbose": -1,
+    "seed": 42
+  },
+  "top1_best_iteration": 205,
+  "bot1_best_iteration": 130,
+  "top15_features_top1": [
+    [
+      "away_lineup_weighted_score",
+      5244.849227428436
+    ],
+    [
+      "away_platoon_lineup_woba",
+      3710.380898475647
+    ],
+    [
+      "away_platoon_lineup_obp",
+      3400.2197637557983
+    ],
+    [
+      "home_p_fi_k_rate_vs_L",
+      1685.6972239017487
+    ],
+    [
+      "away_lineup_pa_prob_4",
+      1300.0887386798859
+    ],
+    [
+      "home_p_k_rate_vs_L",
+      1298.2049005031586
+    ],
+    [
+      "away_lineup_pa_prob_6",
+      1250.411259174347
+    ],
+    [
+      "away_lineup_pa_prob_5",
+      1209.8709192276
+    ],
+    [
+      "home_p_season_hr_rate",
+      1190.1335797309875
+    ],
+    [
+      "home_p_hr_rate_vs_L",
+      1164.1312687397003
+    ],
+    [
+      "home_p_avg_velo",
+      1102.693199634552
+    ],
+    [
+      "home_p_career_k_rate",
+      1059.0779452323914
+    ],
+    [
+      "home_p_gb_rate",
+      1031.3987832069397
+    ],
+    [
+      "home_p_fi_bb_rate",
+      1030.9016523361206
+    ],
+    [
+      "home_p_fi_k_rate_vs_R",
+      1028.9035212993622
+    ]
+  ],
+  "top15_features_bot1": [
+    [
+      "home_lineup_weighted_score",
+      5579.767486333847
+    ],
+    [
+      "home_platoon_lineup_woba",
+      3255.951663017273
+    ],
+    [
+      "home_platoon_lineup_obp",
+      2802.036952495575
+    ],
+    [
+      "home_lineup_pa_prob_6",
+      1168.926326751709
+    ],
+    [
+      "home_lineup_pa_prob_5",
+      1166.420877456665
+    ],
+    [
+      "away_p_avg_velo",
+      1120.026533126831
+    ],
+    [
+      "home_lineup_pa_prob_4",
+      1005.3409299850464
+    ],
+    [
+      "away_p_fi_k_rate_vs_L",
+      937.8522973060608
+    ],
+    [
+      "away_p_k_rate_vs_L",
+      825.3579893112183
+    ],
+    [
+      "away_p_fi_platoon_k_rate",
+      800.036780834198
+    ],
+    [
+      "away_p_bb_rate_vs_L",
+      791.6143593788147
+    ],
+    [
+      "away_p_season_k_rate",
+      744.5754594802856
+    ],
+    [
+      "home_lineup_top3_obp",
+      742.8265705108643
+    ],
+    [
+      "away_p_gb_rate",
+      708.7857894897461
+    ],
+    [
+      "away_p_fi_k_rate_vs_R",
+      646.9176514148712
+    ]
+  ]
+}
