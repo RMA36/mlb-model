@@ -5,7 +5,7 @@
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
   "bankroll_current": 1004.48,
-  "generated_at": "2026-03-27T20:39:52.550418+00:00",
+  "generated_at": "2026-03-27T22:23:06.128791+00:00",
   "games": [
     {
       "game_pk": 823893,
@@ -151,6 +151,94 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823324,
+      "date": "2026-03-27",
+      "away_team": "DET",
+      "home_team": "SDP",
+      "away_starter": "Framber Valdez",
+      "home_starter": "Michael King",
+      "umpire": "Lance Barrett",
+      "p_top": 0.2845,
+      "p_bot": 0.2427,
+      "p_raw": 0.4582,
+      "p_cal": 0.4321,
+      "mkt_y_fair": 0.4459,
+      "mkt_n_fair": 0.5541,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0137,
+      "bet_kelly": 0.0,
+      "bet_odds": -145.0,
+      "bet_dec": 1.69,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 69,
+        "humidity": 62,
+        "wind_mph": 5,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823162,
+      "date": "2026-03-27",
+      "away_team": "CLE",
+      "home_team": "SEA",
+      "away_starter": "Gavin Williams",
+      "home_starter": "George Kirby",
+      "umpire": "Will Little",
+      "p_top": 0.2103,
+      "p_bot": 0.1957,
+      "p_raw": 0.3648,
+      "p_cal": 0.3355,
+      "mkt_y_fair": 0.4333,
+      "mkt_n_fair": 0.5667,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0977,
+      "bet_kelly": 0.0403,
+      "bet_odds": -150.0,
+      "bet_dec": 1.667,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 40.47,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 50,
+        "humidity": 71,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823971,
+      "date": "2026-03-27",
+      "away_team": "ARI",
+      "home_team": "LAD",
+      "away_starter": "Ryne Nelson",
+      "home_starter": "Emmet Sheehan",
+      "umpire": "Cory Blaser",
+      "p_top": 0.2733,
+      "p_bot": 0.1608,
+      "p_raw": 0.3902,
+      "p_cal": 0.425,
+      "mkt_y_fair": 0.5,
+      "mkt_n_fair": 0.5,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.075,
+      "bet_kelly": 0.0215,
+      "bet_odds": -115.0,
+      "bet_dec": 1.87,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -241,13 +329,44 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823162,
+      "date": "2026-03-27",
+      "away_team": "CLE",
+      "home_team": "SEA",
+      "away_starter": "Gavin Williams",
+      "home_starter": "George Kirby",
+      "umpire": "Will Little",
+      "p_top": 0.2103,
+      "p_bot": 0.1957,
+      "p_raw": 0.3648,
+      "p_cal": 0.3355,
+      "mkt_y_fair": 0.4333,
+      "mkt_n_fair": 0.5667,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0977,
+      "bet_kelly": 0.0403,
+      "bet_odds": -150.0,
+      "bet_dec": 1.667,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 40.47,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 50,
+        "humidity": 71,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 5,
-    "total_bets": 3,
+    "total_games": 8,
+    "total_bets": 4,
     "yrfi_bets": 1,
-    "nrfi_bets": 2,
-    "total_exposure": 89.07
+    "nrfi_bets": 3,
+    "total_exposure": 129.54
   }
 }
