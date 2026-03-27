@@ -5,7 +5,7 @@
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
   "bankroll_current": 1004.48,
-  "generated_at": "2026-03-27T19:12:17.964542+00:00",
+  "generated_at": "2026-03-27T19:55:16.528511+00:00",
   "games": [
     {
       "game_pk": 823893,
@@ -63,14 +63,67 @@
         "wind_mph": 10,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824216,
+      "date": "2026-03-27",
+      "away_team": "LAA",
+      "home_team": "HOU",
+      "away_starter": "Yusei Kikuchi",
+      "home_starter": "Mike Burrows",
+      "umpire": "John Tumpane",
+      "p_top": 0.2469,
+      "p_bot": 0.2128,
+      "p_raw": 0.4071,
+      "p_cal": 0.4362,
+      "mkt_y_fair": 0.4959,
+      "mkt_n_fair": 0.5041,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0597,
+      "bet_kelly": 0.0144,
+      "bet_odds": -116.0,
+      "bet_dec": 1.862,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 14.5,
+      "n_books": 2,
+      "forecast_weather": null
     }
   ],
-  "bets": [],
+  "bets": [
+    {
+      "game_pk": 824216,
+      "date": "2026-03-27",
+      "away_team": "LAA",
+      "home_team": "HOU",
+      "away_starter": "Yusei Kikuchi",
+      "home_starter": "Mike Burrows",
+      "umpire": "John Tumpane",
+      "p_top": 0.2469,
+      "p_bot": 0.2128,
+      "p_raw": 0.4071,
+      "p_cal": 0.4362,
+      "mkt_y_fair": 0.4959,
+      "mkt_n_fair": 0.5041,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0597,
+      "bet_kelly": 0.0144,
+      "bet_odds": -116.0,
+      "bet_dec": 1.862,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 14.5,
+      "n_books": 2,
+      "forecast_weather": null
+    }
+  ],
   "summary": {
-    "total_games": 2,
-    "total_bets": 0,
+    "total_games": 3,
+    "total_bets": 1,
     "yrfi_bets": 0,
-    "nrfi_bets": 0,
-    "total_exposure": 0
+    "nrfi_bets": 1,
+    "total_exposure": 14.5
   }
 }
