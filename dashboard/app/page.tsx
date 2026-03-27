@@ -22,6 +22,13 @@ const VENUE_ROOF: Record<string, "dome" | "retractable" | "open"> = {
 
 // ── Existing interfaces ──────────────────────────────────────────────
 
+interface ForecastWeather {
+  temp: number;
+  humidity: number;
+  wind_mph: number;
+  precipitation_mm: number;
+}
+
 interface Bet {
   game_pk: number;
   date: string;
@@ -48,6 +55,7 @@ interface Bet {
   away_1st_runs?: number;
   home_1st_runs?: number;
   total_1st_runs?: number;
+  forecast_weather?: ForecastWeather | null;
 }
 
 interface DayPredictions {
@@ -125,6 +133,8 @@ interface TodaysGame {
   homeStarter: { name: string; throws: string; stats: PitcherStats } | null;
   awayLineup: LineupPlayer[];
   homeLineup: LineupPlayer[];
+  firstInningAway: number | null;
+  firstInningHome: number | null;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -261,6 +271,8 @@ async function fetchMLBSchedule(date: string): Promise<TodaysGame[]> {
         homeStarter,
         awayLineup: [],
         homeLineup: [],
+        firstInningAway: null,
+        firstInningHome: null,
       });
     }
 
@@ -284,6 +296,8 @@ async function fetchGameDetails(
   awayScore: number | null;
   homeScore: number | null;
   currentInning: string | null;
+  firstInningAway: number | null;
+  firstInningHome: number | null;
 } | null> {
   try {
     const res = await fetch(
@@ -328,6 +342,12 @@ async function fetchGameDetails(
       currentInning = `${half} ${ord}`;
     }
 
+    // Extract 1st inning runs
+    const innings = linescore?.innings || [];
+    const firstInning = innings.length > 0 ? innings[0] : null;
+    const firstInningAway = firstInning?.away?.runs ?? null;
+    const firstInningHome = firstInning?.home?.runs ?? null;
+
     return {
       awayLineup: extractLineup("away"),
       homeLineup: extractLineup("home"),
@@ -338,6 +358,8 @@ async function fetchGameDetails(
       awayScore: linescore?.teams?.away?.runs ?? null,
       homeScore: linescore?.teams?.home?.runs ?? null,
       currentInning,
+      firstInningAway,
+      firstInningHome,
     };
   } catch {
     return null;
@@ -519,7 +541,7 @@ function AccordionSection({
 }
 
 
-function GameCard({ game, bets }: { game: TodaysGame; bets?: Bet[] }) {
+function GameCard({ game, bets, forecast }: { game: TodaysGame; bets?: Bet[]; forecast?: ForecastWeather }) {
   const hasAwayLineup = game.awayLineup.length > 0;
   const hasHomeLineup = game.homeLineup.length > 0;
   const hasLineups = hasAwayLineup && hasHomeLineup;
@@ -601,6 +623,28 @@ function GameCard({ game, bets }: { game: TodaysGame; bets?: Bet[] }) {
       {game.roofType === "dome" ? (
         <div className="border-t border-[var(--card-border)] px-4 py-2 text-xs text-[var(--text-muted)]">
           Indoor — no weather impact
+        </div>
+      ) : forecast ? (
+        <div className="border-t border-[var(--card-border)] px-4 py-2 text-xs">
+          <span className="text-[var(--text)]">
+            {forecast.temp}°F · {forecast.humidity}% humidity
+          </span>
+          {forecast.wind_mph > 0 && (
+            <span className="text-[var(--text-muted)]">
+              {" "}· {forecast.wind_mph} mph wind
+            </span>
+          )}
+          {forecast.precipitation_mm > 0 && (
+            <span className="text-[var(--text-muted)]">
+              {" "}· {forecast.precipitation_mm}mm precip
+            </span>
+          )}
+          {game.roofType === "retractable" && (
+            <span className="text-[var(--text-muted)]">
+              {" "}(retractable roof)
+            </span>
+          )}
+          <span className="text-[var(--text-muted)] ml-1">— forecast</span>
         </div>
       ) : game.weather ? (
         <div className="border-t border-[var(--card-border)] px-4 py-2 text-xs">
@@ -705,6 +749,9 @@ function GameCard({ game, bets }: { game: TodaysGame; bets?: Bet[] }) {
           <div className="space-y-2">
             {bets.map((bet, i) => {
               const isYrfi = bet.bet_side === "YRFI";
+              const hasFirst = game.firstInningAway !== null && game.firstInningHome !== null;
+              const firstTotal = (game.firstInningAway ?? 0) + (game.firstInningHome ?? 0);
+              const betWon = isYrfi ? firstTotal > 0 : firstTotal === 0;
               return (
                 <div key={i} className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-2">
@@ -734,6 +781,15 @@ function GameCard({ game, bets }: { game: TodaysGame; bets?: Bet[] }) {
                         {(bet.bet_kelly * 100).toFixed(1)}%
                       </span>
                     </span>
+                    {!isPreGame && hasFirst && (
+                      <span className={`font-bold ${betWon ? "text-[var(--green)]" : "text-[var(--red)]"}`}>
+                        1st: {game.firstInningAway}-{game.firstInningHome}{" "}
+                        {betWon ? "W" : "L"}
+                      </span>
+                    )}
+                    {!isPreGame && !hasFirst && (
+                      <span className="text-yellow-300 animate-pulse">Live</span>
+                    )}
                   </div>
                 </div>
               );
@@ -845,6 +901,242 @@ function PnlChart({ daily }: { daily: Record<string, DayResults> }) {
   );
 }
 
+function CalendarView({ daily }: { daily: Record<string, DayResults> }) {
+  const dates = Object.keys(daily).sort();
+  if (dates.length === 0) return null;
+
+  const firstDate = new Date(dates[0] + "T12:00:00");
+  const lastDate = new Date(dates[dates.length - 1] + "T12:00:00");
+
+  const [calMonth, setCalMonth] = useState({
+    year: lastDate.getFullYear(),
+    month: lastDate.getMonth(),
+  });
+
+  const minMonth = { year: firstDate.getFullYear(), month: firstDate.getMonth() };
+  const maxMonth = { year: lastDate.getFullYear(), month: lastDate.getMonth() };
+
+  const canPrev = calMonth.year > minMonth.year || (calMonth.year === minMonth.year && calMonth.month > minMonth.month);
+  const canNext = calMonth.year < maxMonth.year || (calMonth.year === maxMonth.year && calMonth.month < maxMonth.month);
+
+  const daysInMonth = new Date(calMonth.year, calMonth.month + 1, 0).getDate();
+  const firstDayOfWeek = new Date(calMonth.year, calMonth.month, 1).getDay();
+
+  const monthLabel = new Date(calMonth.year, calMonth.month).toLocaleDateString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
+
+  const navigateMonth = (dir: -1 | 1) => {
+    setCalMonth((prev) => {
+      let m = prev.month + dir;
+      let y = prev.year;
+      if (m < 0) { m = 11; y--; }
+      if (m > 11) { m = 0; y++; }
+      return { year: y, month: m };
+    });
+  };
+
+  const cells: (string | null)[] = [];
+  for (let i = 0; i < firstDayOfWeek; i++) cells.push(null);
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${calMonth.year}-${String(calMonth.month + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+    cells.push(dateStr);
+  }
+
+  return (
+    <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-4 mt-4">
+      <div className="flex items-center justify-between mb-3">
+        <button
+          onClick={() => navigateMonth(-1)}
+          disabled={!canPrev}
+          className="px-2 py-1 text-sm text-[var(--text-muted)] hover:text-[var(--text)] disabled:opacity-30"
+        >
+          &lt;
+        </button>
+        <h3 className="text-sm font-medium">{monthLabel}</h3>
+        <button
+          onClick={() => navigateMonth(1)}
+          disabled={!canNext}
+          className="px-2 py-1 text-sm text-[var(--text-muted)] hover:text-[var(--text)] disabled:opacity-30"
+        >
+          &gt;
+        </button>
+      </div>
+      <div className="grid grid-cols-7 gap-1 text-center text-xs">
+        {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+          <div key={d} className="py-1 text-[var(--text-muted)] font-medium">
+            {d}
+          </div>
+        ))}
+        {cells.map((dateStr, i) => {
+          if (!dateStr) return <div key={`empty-${i}`} />;
+          const day = daily[dateStr];
+          const dayNum = parseInt(dateStr.split("-")[2]);
+          const hasBets = !!day;
+          const pnl = day?.pnl ?? 0;
+          const bgClass = !hasBets
+            ? ""
+            : pnl > 0
+              ? "bg-green-900/40"
+              : pnl < 0
+                ? "bg-red-900/40"
+                : "bg-[var(--card-border)]";
+          const textColor = !hasBets
+            ? "text-[var(--text-muted)]"
+            : pnl > 0
+              ? "text-[var(--green)]"
+              : pnl < 0
+                ? "text-[var(--red)]"
+                : "text-[var(--text)]";
+
+          return (
+            <div
+              key={dateStr}
+              className={`rounded p-1 ${bgClass} ${hasBets ? "cursor-pointer hover:ring-1 hover:ring-[var(--text-muted)]" : ""}`}
+              onClick={() => {
+                if (hasBets) {
+                  const el = document.getElementById(`day-${dateStr}`);
+                  el?.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+              }}
+            >
+              <div className="text-[10px] text-[var(--text-muted)]">{dayNum}</div>
+              {hasBets && (
+                <div className={`text-[10px] font-bold tabular-nums ${textColor}`}>
+                  {pnl >= 0 ? "+" : ""}${pnl.toFixed(0)}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function BankrollChart({ daily }: { daily: Record<string, DayResults> }) {
+  const dates = Object.keys(daily).sort();
+  if (dates.length === 0) return null;
+
+  let running = 1000;
+  const points = dates.map((d) => {
+    running += daily[d].pnl;
+    return { date: d, bankroll: running };
+  });
+  points.unshift({ date: "", bankroll: 1000 });
+
+  const maxVal = Math.max(...points.map((p) => p.bankroll));
+  const minVal = Math.min(...points.map((p) => p.bankroll));
+  const range = maxVal - minVal || 1;
+
+  const W = 800;
+  const H = 200;
+  const PAD = 40;
+  const plotW = W - PAD * 2;
+  const plotH = H - PAD * 2;
+
+  const toX = (i: number) => PAD + (i / Math.max(points.length - 1, 1)) * plotW;
+  const toY = (v: number) => PAD + plotH - ((v - minVal) / range) * plotH;
+
+  const pathD = points
+    .map((p, i) => `${i === 0 ? "M" : "L"} ${toX(i).toFixed(1)} ${toY(p.bankroll).toFixed(1)}`)
+    .join(" ");
+
+  const lastVal = points[points.length - 1].bankroll;
+
+  return (
+    <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-4">
+      <h3 className="mb-2 text-sm font-medium text-[var(--text-muted)]">Bankroll Equity Curve</h3>
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 250 }}>
+        <line x1={PAD} y1={toY(1000)} x2={W - PAD} y2={toY(1000)} stroke="#333" strokeDasharray="4" />
+        <text x={PAD - 4} y={toY(1000) + 4} textAnchor="end" fill="#666" fontSize="10">$1000</text>
+        <path d={pathD} fill="none" stroke={lastVal >= 1000 ? "var(--green)" : "var(--red)"} strokeWidth="2.5" />
+        <text x={toX(points.length - 1) + 6} y={toY(lastVal) + 4} fill={lastVal >= 1000 ? "var(--green)" : "var(--red)"} fontSize="11" fontWeight="bold">
+          ${lastVal.toFixed(0)}
+        </text>
+        <text x={PAD - 4} y={PAD + 4} textAnchor="end" fill="#666" fontSize="10">${maxVal.toFixed(0)}</text>
+        <text x={PAD - 4} y={H - PAD + 4} textAnchor="end" fill="#666" fontSize="10">${minVal.toFixed(0)}</text>
+      </svg>
+    </div>
+  );
+}
+
+function CalibrationDriftChart({ daily }: { daily: Record<string, DayResults> }) {
+  const dates = Object.keys(daily).sort();
+  // Flatten all scored bets with dates
+  const allBets: { date: string; p_cal: number; actual: number }[] = [];
+  for (const d of dates) {
+    for (const b of daily[d].bets) {
+      if (b.result === "W" || b.result === "L") {
+        const actual = (b.total_1st_runs !== undefined && b.total_1st_runs > 0) ? 1 : 0;
+        allBets.push({ date: d, p_cal: b.p_cal, actual });
+      }
+    }
+  }
+  if (allBets.length < 10) return null;
+
+  // Rolling 30-bet window
+  const windowSize = Math.min(30, Math.floor(allBets.length / 2));
+  const points: { idx: number; predicted: number; actual: number }[] = [];
+  for (let i = windowSize; i <= allBets.length; i++) {
+    const window = allBets.slice(i - windowSize, i);
+    const avgPredicted = window.reduce((s, b) => s + b.p_cal, 0) / window.length;
+    const avgActual = window.reduce((s, b) => s + b.actual, 0) / window.length;
+    points.push({ idx: i, predicted: avgPredicted, actual: avgActual });
+  }
+
+  const W = 800;
+  const H = 200;
+  const PAD = 40;
+  const plotW = W - PAD * 2;
+  const plotH = H - PAD * 2;
+
+  const allVals = points.flatMap((p) => [p.predicted, p.actual]);
+  const maxV = Math.max(...allVals, 0.6);
+  const minV = Math.min(...allVals, 0.3);
+  const range = maxV - minV || 0.1;
+
+  const toX = (i: number) => PAD + (i / Math.max(points.length - 1, 1)) * plotW;
+  const toY = (v: number) => PAD + plotH - ((v - minV) / range) * plotH;
+
+  const predPath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${toX(i).toFixed(1)} ${toY(p.predicted).toFixed(1)}`).join(" ");
+  const actPath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${toX(i).toFixed(1)} ${toY(p.actual).toFixed(1)}`).join(" ");
+
+  const lastPred = points[points.length - 1].predicted;
+  const lastAct = points[points.length - 1].actual;
+  const gap = Math.abs(lastPred - lastAct);
+
+  return (
+    <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-4">
+      <h3 className="mb-2 text-sm font-medium text-[var(--text-muted)]">
+        Calibration Drift (Rolling {windowSize}-bet)
+      </h3>
+      {gap > 0.05 && (
+        <div className="mb-2 rounded bg-yellow-900/30 px-3 py-1.5 text-xs text-yellow-300">
+          Divergence warning: {(gap * 100).toFixed(1)}% gap between predicted and actual YRFI rate
+        </div>
+      )}
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 250 }}>
+        <path d={predPath} fill="none" stroke="#3b82f6" strokeWidth="2" />
+        <path d={actPath} fill="none" stroke="#f97316" strokeWidth="2" />
+        <text x={W - PAD} y={toY(lastPred) - 6} textAnchor="end" fill="#3b82f6" fontSize="10">
+          Predicted {(lastPred * 100).toFixed(1)}%
+        </text>
+        <text x={W - PAD} y={toY(lastAct) + 14} textAnchor="end" fill="#f97316" fontSize="10">
+          Actual {(lastAct * 100).toFixed(1)}%
+        </text>
+        <text x={PAD - 4} y={PAD + 4} textAnchor="end" fill="#666" fontSize="10">{(maxV * 100).toFixed(0)}%</text>
+        <text x={PAD - 4} y={H - PAD + 4} textAnchor="end" fill="#666" fontSize="10">{(minV * 100).toFixed(0)}%</text>
+      </svg>
+      <div className="mt-2 flex gap-4 text-xs text-[var(--text-muted)]">
+        <span><span className="inline-block w-3 h-0.5 bg-blue-500 mr-1 align-middle" /> Predicted YRFI rate</span>
+        <span><span className="inline-block w-3 h-0.5 bg-orange-500 mr-1 align-middle" /> Actual YRFI rate</span>
+      </div>
+    </div>
+  );
+}
+
 // ── Page ─────────────────────────────────────────────────────────────
 
 function todayET(): string {
@@ -853,7 +1145,7 @@ function todayET(): string {
   });
 }
 
-type TabId = "games" | "predictions" | "results";
+type TabId = "games" | "predictions" | "results" | "risk";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabId>("games");
@@ -875,6 +1167,7 @@ export default function Home() {
   const [lastRefresh, setLastRefresh] = useState<Date | null>(null);
   const [gameBets, setGameBets] = useState<Map<number, Bet[]>>(new Map());
   const [predsGeneratedAt, setPredsGeneratedAt] = useState<string | null>(null);
+  const [gameForecasts, setGameForecasts] = useState<Map<number, ForecastWeather>>(new Map());
 
   // Load predictions when predictions tab is active or date changes
   useEffect(() => {
@@ -892,9 +1185,9 @@ export default function Home() {
     load();
   }, [selectedDate, activeTab]);
 
-  // Load results when results tab is active
+  // Load results when results or risk tab is active
   useEffect(() => {
-    if (activeTab !== "results") return;
+    if (activeTab !== "results" && activeTab !== "risk") return;
     if (results) return; // already loaded
     async function load() {
       setResultsLoading(true);
@@ -955,6 +1248,8 @@ export default function Home() {
           awayScore: g.awayScore !== null ? (detail.awayScore ?? g.awayScore) : null,
           homeScore: g.homeScore !== null ? (detail.homeScore ?? g.homeScore) : null,
           currentInning: detail.currentInning ?? g.currentInning,
+          firstInningAway: detail.firstInningAway,
+          firstInningHome: detail.firstInningHome,
         };
       });
 
@@ -976,6 +1271,14 @@ export default function Home() {
         }
         setGameBets(byGame);
         if (todayPreds.generated_at) setPredsGeneratedAt(todayPreds.generated_at);
+      }
+      // Build forecast weather map from all predicted games
+      if (todayPreds?.games) {
+        const forecasts = new Map<number, ForecastWeather>();
+        for (const g of todayPreds.games) {
+          if (g.forecast_weather) forecasts.set(g.game_pk, g.forecast_weather);
+        }
+        setGameForecasts(forecasts);
       }
     } catch {
       setGamesError("Failed to load games. Try refreshing.");
@@ -1047,6 +1350,12 @@ export default function Home() {
         >
           Results
         </button>
+        <button
+          className={tabClass("risk")}
+          onClick={() => setActiveTab("risk")}
+        >
+          Risk
+        </button>
       </div>
 
       {/* ── TODAY'S GAMES TAB ──────────────────────────────────────── */}
@@ -1115,7 +1424,7 @@ export default function Home() {
               </div>
               <div className="grid gap-4 md:grid-cols-2">
                 {games.map((g) => (
-                  <GameCard key={g.gamePk} game={g} bets={gameBets.get(g.gamePk)} />
+                  <GameCard key={g.gamePk} game={g} bets={gameBets.get(g.gamePk)} forecast={gameForecasts.get(g.gamePk)} />
                 ))}
               </div>
             </div>
@@ -1276,6 +1585,7 @@ export default function Home() {
                       />
                     </div>
                     <PnlChart daily={results.daily} />
+                    <CalendarView daily={results.daily} />
                   </div>
                 )}
 
@@ -1299,6 +1609,7 @@ export default function Home() {
                         return (
                           <div
                             key={date}
+                            id={`day-${date}`}
                             className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3"
                           >
                             <div className="flex items-center justify-between">
@@ -1355,11 +1666,98 @@ export default function Home() {
         </div>
       )}
 
+      {/* ── RISK TAB ────────────────────────────────────────────── */}
+      {activeTab === "risk" && (
+        <div>
+          {resultsLoading && (
+            <div className="py-12 text-center text-[var(--text-muted)]">Loading risk data...</div>
+          )}
+
+          {!resultsLoading && !results && (
+            <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-8 text-center">
+              <div className="text-lg font-medium">No results available</div>
+            </div>
+          )}
+
+          {!resultsLoading && results && (() => {
+            const dates = Object.keys(results.daily).sort();
+            let running = 0;
+            let peak = 0;
+            let maxDrawdown = 0;
+            let maxDdStart = "";
+            let maxDdEnd = "";
+            let currentStreak = 0;
+            let streakType: "W" | "L" | null = null;
+
+            for (const d of dates) {
+              const dayPnl = results.daily[d].pnl;
+              running += dayPnl;
+              if (running > peak) peak = running;
+              const dd = peak - running;
+              if (dd > maxDrawdown) {
+                maxDrawdown = dd;
+                maxDdEnd = d;
+                // Find drawdown start (peak date)
+                let peakRunning = 0;
+                for (const pd of dates) {
+                  peakRunning += results.daily[pd].pnl;
+                  if (peakRunning >= peak) { maxDdStart = pd; break; }
+                }
+              }
+              // Streak
+              if (dayPnl > 0) {
+                if (streakType === "W") currentStreak++;
+                else { streakType = "W"; currentStreak = 1; }
+              } else if (dayPnl < 0) {
+                if (streakType === "L") currentStreak++;
+                else { streakType = "L"; currentStreak = 1; }
+              }
+            }
+
+            const currentBankroll = 1000 + running;
+
+            return (
+              <>
+                {/* Drawdown & Bankroll Stats */}
+                <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  <StatCard
+                    label="Current Bankroll"
+                    value={`$${currentBankroll.toFixed(0)}`}
+                    sub={`$1000 base ${running >= 0 ? "+" : ""}$${running.toFixed(0)} P&L`}
+                    color={running >= 0 ? "text-[var(--green)]" : "text-[var(--red)]"}
+                  />
+                  <StatCard
+                    label="Max Drawdown"
+                    value={`-$${maxDrawdown.toFixed(0)}`}
+                    sub={maxDdStart && maxDdEnd ? `${maxDdStart} to ${maxDdEnd}` : "N/A"}
+                    color="text-[var(--red)]"
+                  />
+                  <StatCard
+                    label="Current Streak"
+                    value={`${currentStreak}${streakType || ""}`}
+                    sub={streakType === "W" ? "winning days" : streakType === "L" ? "losing days" : ""}
+                    color={streakType === "W" ? "text-[var(--green)]" : streakType === "L" ? "text-[var(--red)]" : ""}
+                  />
+                </div>
+
+                {/* Bankroll Equity Curve */}
+                <BankrollChart daily={results.daily} />
+
+                {/* Calibration Drift */}
+                <div className="mt-4">
+                  <CalibrationDriftChart daily={results.daily} />
+                </div>
+              </>
+            );
+          })()}
+        </div>
+      )}
+
       {/* Footer */}
       <div className="mt-12 border-t border-[var(--card-border)] pt-4 text-center text-xs text-[var(--text-muted)]">
         {(() => {
           const ts =
-            activeTab === "results"
+            activeTab === "results" || activeTab === "risk"
               ? results?.updated_at
               : activeTab === "predictions"
                 ? predictions?.generated_at

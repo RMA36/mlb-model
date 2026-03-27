@@ -361,7 +361,7 @@ def fetch_weather_for_games(game_infos, date_str):
                 f"https://api.open-meteo.com/v1/forecast?"
                 f"latitude={lat}&longitude={lon}"
                 f"&daily=temperature_2m_max,temperature_2m_min,precipitation_sum"
-                f"&hourly=temperature_2m,precipitation,relative_humidity_2m"
+                f"&hourly=temperature_2m,precipitation,relative_humidity_2m,windspeed_10m"
                 f"&temperature_unit=fahrenheit"
                 f"&windspeed_unit=mph"
                 f"&precipitation_unit=mm"
@@ -399,6 +399,9 @@ def fetch_weather_for_games(game_infos, date_str):
                             w["hourly_temp"] = temp_vals[idx]
                         if idx < len(humidity_vals):
                             w["hourly_humidity"] = humidity_vals[idx]
+                        wind_vals = hourly.get("windspeed_10m", [])
+                        if idx < len(wind_vals):
+                            w["hourly_wind_mph"] = wind_vals[idx]
                 except Exception:
                     pass
 
@@ -889,6 +892,20 @@ def main():
     level = logging.DEBUG if args.verbose else logging.INFO
     logging.basicConfig(level=level, format="%(asctime)s  %(message)s")
 
+    # Compound bankroll: size off starting bankroll + cumulative P&L
+    if args.bankroll == BANKROLL:
+        results_file = ROOT / "results" / "results.json"
+        if results_file.exists():
+            try:
+                res = json.loads(results_file.read_text())
+                cum_profit = res.get("cumulative", {}).get("profit", 0.0)
+                compound = BANKROLL + cum_profit
+                args.bankroll = max(compound, 100.0)  # floor at $100
+                logger.info("Compound bankroll: $%.2f (base $%.0f + P&L $%+.2f)",
+                            args.bankroll, BANKROLL, cum_profit)
+            except Exception:
+                pass
+
     ET = ZoneInfo("US/Eastern")
     date_str = args.date or datetime.now(ET).strftime("%Y-%m-%d")
 
@@ -1094,6 +1111,12 @@ def main():
                 "skip_reason": skip,
                 "stake": stake,
                 "n_books": int(odds_row["n_books"]),
+                "forecast_weather": {
+                    "temp": round(wx.get("hourly_temp", wx.get("temp_max", 72))),
+                    "humidity": round(wx.get("hourly_humidity", 50)),
+                    "wind_mph": round(wx.get("hourly_wind_mph", 0)),
+                    "precipitation_mm": round(wx.get("hourly_precipitation_mm", wx.get("precipitation_mm", 0)), 1),
+                } if wx else None,
             })
         except Exception as exc:
             logger.warning("  %d: Error -- %s", gpk, exc)
@@ -1141,7 +1164,8 @@ def main():
         "model": "v4-lgb-two-model",
         "calibration_k": CALIBRATION_K,
         "model_mean": model_mean,
-        "bankroll": args.bankroll,
+        "bankroll": BANKROLL,
+        "bankroll_current": round(args.bankroll, 2),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "games": merged,
         "bets": [p for p in merged if p["passes_filter"]],
