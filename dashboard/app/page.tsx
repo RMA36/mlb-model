@@ -176,6 +176,17 @@ function teamLogoUrl(teamId: number): string {
   return `https://www.mlbstatic.com/team-logos/team-cap-on-dark/${teamId}.svg`;
 }
 
+function decToAmerican(dec: number): number {
+  if (dec >= 2.0) return Math.round((dec - 1) * 100);
+  if (dec <= 1.0) return -9999;
+  return Math.round(-100 / (dec - 1));
+}
+
+function fairProbToAmerican(prob: number): number {
+  if (prob <= 0 || prob >= 1) return 0;
+  return decToAmerican(1 / prob);
+}
+
 // ── Data fetching ────────────────────────────────────────────────────
 
 async function fetchJSON<T>(path: string): Promise<T | null> {
@@ -901,6 +912,253 @@ function PnlChart({ daily }: { daily: Record<string, DayResults> }) {
   );
 }
 
+function OddsSpectrum({ p_cal, mktYFair, mktNFair, betSide, passesFilter }: {
+  p_cal: number;
+  mktYFair: number;
+  mktNFair: number;
+  betSide: string | null;
+  passesFilter: boolean;
+}) {
+  // Since YRFI/NRFI are inverses, use a single probability-based spectrum
+  // Left = NRFI favored (low YRFI prob), Right = YRFI favored (high YRFI prob)
+  // Range: 20% to 80% YRFI probability
+  const MIN_P = 0.20;
+  const MAX_P = 0.80;
+
+  const probToPos = (p: number): number => {
+    const clamped = Math.max(MIN_P, Math.min(MAX_P, p));
+    return ((clamped - MIN_P) / (MAX_P - MIN_P)) * 100;
+  };
+
+  const bePos = probToPos(p_cal); // Model breakeven = p_cal
+  const mktPos = probToPos(mktYFair); // Market implied YRFI prob
+
+  // Breakeven American odds for display
+  const yrfiBreakeven = fairProbToAmerican(p_cal);
+  const nrfiBreakeven = fairProbToAmerican(1 - p_cal);
+  // Apply ~6.5% vig to fair probs to approximate actual book lines
+  const VIG = 1.065;
+  const yrfiMarket = fairProbToAmerican(Math.min(mktYFair * VIG, 0.99));
+  const nrfiMarket = fairProbToAmerican(Math.min(mktNFair * VIG, 0.99));
+
+  // Edge: model thinks YRFI prob is higher than market → YRFI edge (bePos > mktPos)
+  // Model thinks YRFI prob is lower than market → NRFI edge (bePos < mktPos)
+  const hasYrfiEdge = p_cal > mktYFair;
+  const hasNrfiEdge = p_cal < mktYFair;
+  const edgeLeft = Math.min(bePos, mktPos);
+  const edgeWidth = Math.abs(bePos - mktPos);
+
+  const isYrfiBet = passesFilter && betSide === "YRFI";
+  const isNrfiBet = passesFilter && betSide === "NRFI";
+  const edgeColor = hasYrfiEdge ? "bg-red-900/50" : hasNrfiEdge ? "bg-blue-900/50" : "";
+  const activeBetGlow = (isYrfiBet || isNrfiBet) ? "ring-1 ring-inset ring-white/20" : "";
+
+  return (
+    <div className="mt-2">
+      {/* YRFI odds scale above */}
+      {(() => {
+        const yrfiMarkers = [
+          { p: 0.25, label: "+300" },
+          { p: 0.333, label: "+200" },
+          { p: 0.40, label: "+150" },
+          { p: 0.50, label: "±100" },
+          { p: 0.60, label: "-150" },
+          { p: 0.667, label: "-200" },
+          { p: 0.75, label: "-300" },
+        ];
+        return (
+          <div className="relative h-4 mb-0.5">
+            <div className="absolute right-0 text-[9px] sm:text-[10px] font-bold text-red-300">YRFI</div>
+            {yrfiMarkers.map(({ p, label }) => {
+              const pos = probToPos(p);
+              if (pos <= 2 || pos >= 92) return null;
+              return (
+                <div
+                  key={label}
+                  className="absolute text-[8px] sm:text-[9px] text-red-300/50 font-mono"
+                  style={{ left: `${pos}%`, transform: "translateX(-50%)", top: "0" }}
+                >
+                  {label}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })()}
+      {/* Bar */}
+      <div className="relative h-7 sm:h-8 bg-[var(--card-border)] rounded overflow-hidden">
+        {/* Edge zone — from relevant market line to model */}
+        {edgeWidth > 0.5 && (passesFilter ? (
+          <div
+            className={`absolute top-0 bottom-0 ${edgeColor} ${activeBetGlow}`}
+            style={hasYrfiEdge
+              ? { left: `calc(${mktPos}% + 3px)`, width: `calc(${bePos - mktPos}% - 3px)` }
+              : { left: `${bePos}%`, width: `calc(${mktPos - bePos}% - 3px)` }
+            }
+          />
+        ) : (
+          <div
+            className={`absolute top-[45%] h-[10%] rounded ${edgeColor}`}
+            style={hasYrfiEdge
+              ? { left: `calc(${mktPos}% + 3px)`, width: `calc(${bePos - mktPos}% - 3px)` }
+              : { left: `${bePos}%`, width: `calc(${mktPos - bePos}% - 3px)` }
+            }
+          />
+        ))}
+        {/* Tick marks at odds positions */}
+        {[0.25, 0.333, 0.40, 0.50, 0.60, 0.667, 0.75].map((p) => (
+          <div
+            key={p}
+            className={`absolute top-0 bottom-0 w-px ${p === 0.5 ? "bg-white/15" : "bg-white/8"}`}
+            style={{ left: `${probToPos(p)}%` }}
+          />
+        ))}
+        {/* NRFI approx market line */}
+        <div
+          className="absolute top-0 bottom-0 w-0.5 bg-blue-400/60"
+          style={{ left: `${mktPos}%`, transform: "translateX(-3px)" }}
+          title={`≈NRFI Mkt: ${formatOdds(nrfiMarket)}`}
+        />
+        {/* YRFI approx market line */}
+        <div
+          className="absolute top-0 bottom-0 w-0.5 bg-red-400/60"
+          style={{ left: `${mktPos}%`, transform: "translateX(3px)" }}
+          title={`≈YRFI Mkt: ${formatOdds(yrfiMarket)}`}
+        />
+        {/* Model breakeven marker (slider) */}
+        <div
+          className="absolute top-1 bottom-1 w-2 sm:w-2.5 rounded-sm bg-amber-400"
+          style={{ left: `${bePos}%`, transform: "translateX(-50%)" }}
+          title={`Model: YRFI ${(p_cal * 100).toFixed(0)}%`}
+        />
+      </div>
+      {/* NRFI odds scale below */}
+      {(() => {
+        // NRFI odds are inverse: at p_yrfi=0.25, NRFI is -300; at p_yrfi=0.75, NRFI is +300
+        const nrfiMarkers = [
+          { p: 0.25, label: "-300" },
+          { p: 0.333, label: "-200" },
+          { p: 0.40, label: "-150" },
+          { p: 0.50, label: "±100" },
+          { p: 0.60, label: "+150" },
+          { p: 0.667, label: "+200" },
+          { p: 0.75, label: "+300" },
+        ];
+        return (
+          <div className="relative h-4 mt-0.5">
+            <div className="absolute left-0 text-[9px] sm:text-[10px] font-bold text-blue-300">NRFI</div>
+            {nrfiMarkers.map(({ p, label }) => {
+              const pos = probToPos(p);
+              if (pos <= 8 || pos >= 98) return null;
+              return (
+                <div
+                  key={label}
+                  className="absolute text-[8px] sm:text-[9px] text-blue-300/50 font-mono"
+                  style={{ left: `${pos}%`, transform: "translateX(-50%)", top: "0" }}
+                >
+                  {label}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })()}
+      {/* BE / Mkt labels */}
+      <div className="flex justify-between mt-1 text-[10px] sm:text-xs">
+        <div className="text-blue-300 font-mono">
+          <span className="text-[var(--text-muted)] text-[9px] sm:text-[10px]">BE </span>
+          {formatOdds(nrfiBreakeven)}
+          <span className="text-[var(--text-muted)] mx-1">|</span>
+          <span className="text-[var(--text-muted)] text-[9px] sm:text-[10px]">≈Mkt </span>
+          {formatOdds(nrfiMarket)}
+        </div>
+        <div className="text-red-300 font-mono">
+          <span className="text-[var(--text-muted)] text-[9px] sm:text-[10px]">BE </span>
+          {formatOdds(yrfiBreakeven)}
+          <span className="text-[var(--text-muted)] mx-1">|</span>
+          <span className="text-[var(--text-muted)] text-[9px] sm:text-[10px]">≈Mkt </span>
+          {formatOdds(yrfiMarket)}
+        </div>
+      </div>
+      {/* Legend */}
+      <div className="flex items-center gap-3 text-[9px] sm:text-[10px] text-[var(--text-muted)] mt-1">
+        <span><span className="inline-block w-2 h-2 bg-amber-400 mr-1 align-middle rounded-sm" /> Model</span>
+        <span><span className="inline-block w-3 h-0.5 bg-blue-400/60 mr-1 align-middle" /> ≈NRFI Mkt</span>
+        <span><span className="inline-block w-3 h-0.5 bg-red-400/60 mr-1 align-middle" /> ≈YRFI Mkt</span>
+      </div>
+    </div>
+  );
+}
+
+function BreakevenCard({ game }: { game: Bet }) {
+  const borderColor = game.passes_filter
+    ? game.bet_side === "YRFI"
+      ? "border-l-red-500"
+      : "border-l-blue-500"
+    : "border-l-transparent";
+
+  const agreementColor =
+    game.agreement === "YRFI"
+      ? "bg-red-900/50 text-red-300"
+      : game.agreement === "NRFI"
+        ? "bg-blue-900/50 text-blue-300"
+        : "bg-gray-700/50 text-gray-300";
+
+  return (
+    <div className={`rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-3 sm:p-4 border-l-4 ${borderColor}`}>
+      {/* Header */}
+      <div className="flex items-center justify-between mb-2">
+        <div>
+          <div className="text-sm font-semibold">
+            {game.away_team} @ {game.home_team}
+          </div>
+          <div className="text-xs text-[var(--text-muted)]">
+            {game.away_starter} vs {game.home_starter}
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className={`rounded px-2 py-0.5 text-[10px] sm:text-xs font-bold ${agreementColor}`}>
+            {game.agreement}
+          </span>
+          {game.passes_filter ? (
+            <span className="text-xs font-bold text-[var(--green)]">
+              +{(game.bet_edge * 100).toFixed(1)}%
+            </span>
+          ) : (
+            <span className="text-[10px] sm:text-xs text-[var(--text-muted)]">
+              {game.skip_reason}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Spectrum */}
+      <OddsSpectrum
+        p_cal={game.p_cal}
+        mktYFair={game.mkt_y_fair}
+        mktNFair={game.mkt_n_fair}
+        betSide={game.bet_side}
+        passesFilter={game.passes_filter}
+      />
+
+      {/* Bet details if qualifying */}
+      {game.passes_filter && (
+        <div className="mt-2 flex items-center gap-2 text-xs">
+          <span className={`rounded px-2 py-0.5 font-bold ${
+            game.bet_side === "YRFI" ? "bg-red-900/50 text-red-300" : "bg-blue-900/50 text-blue-300"
+          }`}>
+            {game.bet_side}
+          </span>
+          <span className="font-mono font-medium">{formatOdds(game.bet_odds)}</span>
+          <span className="text-[var(--text-muted)]">
+            Stake <span className="font-mono font-medium text-[var(--text)]">{(game.bet_kelly * 100).toFixed(1)}%</span>
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function CalendarView({ daily }: { daily: Record<string, DayResults> }) {
   const dates = Object.keys(daily).sort();
   if (dates.length === 0) return null;
@@ -1145,7 +1403,7 @@ function todayET(): string {
   });
 }
 
-type TabId = "games" | "predictions" | "results" | "risk";
+type TabId = "games" | "breakeven" | "predictions" | "results" | "risk";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabId>("games");
@@ -1168,6 +1426,7 @@ export default function Home() {
   const [gameBets, setGameBets] = useState<Map<number, Bet[]>>(new Map());
   const [predsGeneratedAt, setPredsGeneratedAt] = useState<string | null>(null);
   const [gameForecasts, setGameForecasts] = useState<Map<number, ForecastWeather>>(new Map());
+  const [analysisGames, setAnalysisGames] = useState<Bet[]>([]);
 
   // Load predictions when predictions tab is active or date changes
   useEffect(() => {
@@ -1279,6 +1538,7 @@ export default function Home() {
           if (g.forecast_weather) forecasts.set(g.game_pk, g.forecast_weather);
         }
         setGameForecasts(forecasts);
+        setAnalysisGames(todayPreds.games);
       }
     } catch {
       setGamesError("Failed to load games. Try refreshing.");
@@ -1288,7 +1548,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (activeTab !== "games") return;
+    if (activeTab !== "games" && activeTab !== "breakeven") return;
     loadGames();
 
     // Auto-refresh every 5 minutes
@@ -1336,13 +1596,19 @@ export default function Home() {
       {/* Tab Bar */}
       <div className="mb-6 flex gap-1 border-b border-[var(--card-border)]">
         <button className={tabClass("games")} onClick={() => setActiveTab("games")}>
-          Today&apos;s Games
+          Games
+        </button>
+        <button
+          className={tabClass("breakeven")}
+          onClick={() => setActiveTab("breakeven")}
+        >
+          Breakeven
         </button>
         <button
           className={tabClass("predictions")}
           onClick={() => setActiveTab("predictions")}
         >
-          Predictions
+          Picks
         </button>
         <button
           className={tabClass("results")}
@@ -1426,6 +1692,49 @@ export default function Home() {
                 {games.map((g) => (
                   <GameCard key={g.gamePk} game={g} bets={gameBets.get(g.gamePk)} forecast={gameForecasts.get(g.gamePk)} />
                 ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── BREAKEVEN ODDS TAB ─────────────────────────────────────── */}
+      {activeTab === "breakeven" && (
+        <div>
+          {gamesLoading && analysisGames.length === 0 && (
+            <div className="py-12 text-center text-[var(--text-muted)]">
+              Loading analysis...
+            </div>
+          )}
+
+          {!gamesLoading && analysisGames.length === 0 && (
+            <div className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-8 text-center">
+              <div className="text-lg font-medium">
+                Awaiting lineup data
+              </div>
+              <div className="mt-1 text-sm text-[var(--text-muted)]">
+                Predictions update throughout the day as lineups are posted
+              </div>
+            </div>
+          )}
+
+          {analysisGames.length > 0 && (
+            <div>
+              <div className="mb-3 text-sm text-[var(--text-muted)]">
+                {analysisGames.length} game{analysisGames.length !== 1 ? "s" : ""} analyzed
+                {" · "}
+                {analysisGames.filter((g) => g.passes_filter).length} qualifying bet{analysisGames.filter((g) => g.passes_filter).length !== 1 ? "s" : ""}
+              </div>
+              <div className="grid gap-3">
+                {[...analysisGames]
+                  .sort((a, b) => {
+                    // Qualifying bets first, then by edge descending
+                    if (a.passes_filter !== b.passes_filter) return a.passes_filter ? -1 : 1;
+                    return b.bet_edge - a.bet_edge;
+                  })
+                  .map((g) => (
+                    <BreakevenCard key={g.game_pk} game={g} />
+                  ))}
               </div>
             </div>
           )}
@@ -1761,7 +2070,7 @@ export default function Home() {
               ? results?.updated_at
               : activeTab === "predictions"
                 ? predictions?.generated_at
-                : predsGeneratedAt;
+                : predsGeneratedAt; // covers "games" and "breakeven"
           if (!ts) return null;
           const d = new Date(ts);
           return (
