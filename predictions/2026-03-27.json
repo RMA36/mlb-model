@@ -5,7 +5,7 @@
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
   "bankroll_current": 1004.48,
-  "generated_at": "2026-03-27T20:17:56.711022+00:00",
+  "generated_at": "2026-03-27T20:39:52.550418+00:00",
   "games": [
     {
       "game_pk": 823893,
@@ -120,6 +120,37 @@
         "wind_mph": 4,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 822839,
+      "date": "2026-03-27",
+      "away_team": "OAK",
+      "home_team": "TOR",
+      "away_starter": "Luis Severino",
+      "home_starter": "Kevin Gausman",
+      "umpire": "Marvin Hudson",
+      "p_top": 0.3179,
+      "p_bot": 0.3497,
+      "p_raw": 0.5564,
+      "p_cal": 0.5867,
+      "mkt_y_fair": 0.512,
+      "mkt_n_fair": 0.488,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0747,
+      "bet_kelly": 0.0242,
+      "bet_odds": -118.5,
+      "bet_dec": 1.844,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 24.35,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 30,
+        "humidity": 44,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -179,13 +210,44 @@
         "wind_mph": 4,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 822839,
+      "date": "2026-03-27",
+      "away_team": "OAK",
+      "home_team": "TOR",
+      "away_starter": "Luis Severino",
+      "home_starter": "Kevin Gausman",
+      "umpire": "Marvin Hudson",
+      "p_top": 0.3179,
+      "p_bot": 0.3497,
+      "p_raw": 0.5564,
+      "p_cal": 0.5867,
+      "mkt_y_fair": 0.512,
+      "mkt_n_fair": 0.488,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0747,
+      "bet_kelly": 0.0242,
+      "bet_odds": -118.5,
+      "bet_dec": 1.844,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 24.35,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 30,
+        "humidity": 44,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 4,
-    "total_bets": 2,
-    "yrfi_bets": 0,
+    "total_games": 5,
+    "total_bets": 3,
+    "yrfi_bets": 1,
     "nrfi_bets": 2,
-    "total_exposure": 64.72
+    "total_exposure": 89.07
   }
 }
