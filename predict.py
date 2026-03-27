@@ -85,7 +85,7 @@ FULL_NAME_TO_ABBR = {
     "Los Angeles Angels": "LAA", "Los Angeles Dodgers": "LAD",
     "Miami Marlins": "MIA", "Milwaukee Brewers": "MIL",
     "Minnesota Twins": "MIN", "New York Mets": "NYM",
-    "New York Yankees": "NYY", "Oakland Athletics": "OAK",
+    "New York Yankees": "NYY", "Oakland Athletics": "OAK", "Athletics": "OAK",
     "Philadelphia Phillies": "PHI", "Pittsburgh Pirates": "PIT",
     "San Diego Padres": "SDP", "San Francisco Giants": "SFG",
     "Seattle Mariners": "SEA", "St. Louis Cardinals": "STL",
