@@ -1590,7 +1590,10 @@ export default function Home() {
     <main className="mx-auto max-w-4xl px-4 py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold">MLB Model</h1>
+        <div>
+          <h1 className="text-3xl font-bold">Betty</h1>
+          <p className="text-sm text-[var(--text-muted)]">A 5 Big Guys Model</p>
+        </div>
       </div>
 
       {/* Tab Bar */}
