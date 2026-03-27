@@ -486,7 +486,7 @@ function BetCard({ bet }: { bet: Bet }) {
         </div>
       </div>
 
-      <div className="mt-3 grid grid-cols-4 gap-2 text-xs">
+      <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
         <div>
           <span className="text-[var(--text-muted)]">Model</span>
           <div className="font-mono font-medium">{modelPct.toFixed(1)}%</div>
@@ -753,7 +753,7 @@ function GameCard({ game, bets, forecast }: { game: TodaysGame; bets?: Bet[]; fo
               const firstTotal = (game.firstInningAway ?? 0) + (game.firstInningHome ?? 0);
               const betWon = isYrfi ? firstTotal > 0 : firstTotal === 0;
               return (
-                <div key={i} className="flex items-center justify-between text-sm">
+                <div key={i} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-0 text-sm">
                   <div className="flex items-center gap-2">
                     <span
                       className={`rounded px-2 py-0.5 text-xs font-bold ${
@@ -768,7 +768,7 @@ function GameCard({ game, bets, forecast }: { game: TodaysGame; bets?: Bet[]; fo
                       {formatOdds(bet.bet_odds)}
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
+                  <div className="flex items-center gap-2 sm:gap-3 text-xs text-[var(--text-muted)]">
                     <span>
                       Edge{" "}
                       <span className="text-[var(--green)] font-mono">
@@ -1320,7 +1320,7 @@ export default function Home() {
     : [];
 
   const tabClass = (tab: TabId) =>
-    `px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
+    `px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-t-lg transition-colors whitespace-nowrap ${
       activeTab === tab
         ? "bg-[var(--card)] text-[var(--text)] border border-b-0 border-[var(--card-border)]"
         : "text-[var(--text-muted)] hover:text-[var(--text)]"
@@ -1362,8 +1362,8 @@ export default function Home() {
       {activeTab === "games" && (
         <div>
           {/* Date heading + refresh */}
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold">
+          <div className="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <h2 className="text-base sm:text-lg font-semibold">
               {formatDateHeading(todayET())}
             </h2>
             <div className="flex items-center gap-2">
@@ -1422,7 +1422,7 @@ export default function Home() {
               <div className="mb-3 text-sm text-[var(--text-muted)]">
                 {games.length} game{games.length !== 1 ? "s" : ""} scheduled
               </div>
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
                 {games.map((g) => (
                   <GameCard key={g.gamePk} game={g} bets={gameBets.get(g.gamePk)} forecast={gameForecasts.get(g.gamePk)} />
                 ))}
@@ -1436,7 +1436,7 @@ export default function Home() {
       {activeTab === "predictions" && (
         <div>
           {/* Date Picker */}
-          <div className="mb-6 flex items-center gap-3">
+          <div className="mb-6 flex flex-wrap items-center gap-2 sm:gap-3">
             <input
               type="date"
               value={selectedDate}
@@ -1552,7 +1552,7 @@ export default function Home() {
                 {/* Cumulative Stats */}
                 {cum && cum.total_bets > 0 && (
                   <div className="mb-6">
-                    <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+                    <div className="mb-3 grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-4">
                       <StatCard
                         label="Record"
                         value={`${cum.wins}W-${cum.losses}L`}
@@ -1614,7 +1614,7 @@ export default function Home() {
                           >
                             <div className="flex items-center justify-between">
                               <div>
-                                <div className="text-sm font-medium">{formatDateHeading(date)}</div>
+                                <div className="text-xs sm:text-sm font-medium">{formatDateHeading(date)}</div>
                                 <div className="mt-0.5 text-xs text-[var(--text-muted)]">
                                   {day.bets.length} bet{day.bets.length !== 1 ? "s" : ""}
                                   {day.all_scored ? "" : " · scoring in progress"}
@@ -1719,7 +1719,7 @@ export default function Home() {
             return (
               <>
                 {/* Drawdown & Bankroll Stats */}
-                <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                <div className="mb-6 grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-3">
                   <StatCard
                     label="Current Bankroll"
                     value={`$${currentBankroll.toFixed(0)}`}
