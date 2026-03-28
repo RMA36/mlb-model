@@ -5,7 +5,7 @@
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
   "bankroll_current": 967.01,
-  "generated_at": "2026-03-28T19:06:29.999473+00:00",
+  "generated_at": "2026-03-28T19:44:53.973584+00:00",
   "games": [
     {
       "game_pk": 822838,
@@ -213,14 +213,77 @@
       "stake": 0.0,
       "n_books": 4,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 824945,
+      "date": "2026-03-28",
+      "away_team": "KCR",
+      "home_team": "ATL",
+      "away_starter": "Michael Wacha",
+      "home_starter": "Reynaldo L\u00f3pez",
+      "umpire": "Mike Muchlinski",
+      "p_top": 0.2853,
+      "p_bot": 0.353,
+      "p_raw": 0.5376,
+      "p_cal": 0.5618,
+      "mkt_y_fair": 0.5041,
+      "mkt_n_fair": 0.4959,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0578,
+      "bet_kelly": 0.0128,
+      "bet_odds": -116.5,
+      "bet_dec": 1.858,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 12.42,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 64,
+        "humidity": 20,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      }
     }
   ],
-  "bets": [],
+  "bets": [
+    {
+      "game_pk": 824945,
+      "date": "2026-03-28",
+      "away_team": "KCR",
+      "home_team": "ATL",
+      "away_starter": "Michael Wacha",
+      "home_starter": "Reynaldo L\u00f3pez",
+      "umpire": "Mike Muchlinski",
+      "p_top": 0.2853,
+      "p_bot": 0.353,
+      "p_raw": 0.5376,
+      "p_cal": 0.5618,
+      "mkt_y_fair": 0.5041,
+      "mkt_n_fair": 0.4959,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0578,
+      "bet_kelly": 0.0128,
+      "bet_odds": -116.5,
+      "bet_dec": 1.858,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 12.42,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 64,
+        "humidity": 20,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      }
+    }
+  ],
   "summary": {
-    "total_games": 7,
-    "total_bets": 0,
-    "yrfi_bets": 0,
+    "total_games": 8,
+    "total_bets": 1,
+    "yrfi_bets": 1,
     "nrfi_bets": 0,
-    "total_exposure": 0
+    "total_exposure": 12.42
   }
 }
