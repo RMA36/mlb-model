@@ -1,0 +1,81 @@
+{
+  "date": "2026-03-28",
+  "model": "v4-lgb-two-model",
+  "calibration_k": 0.9,
+  "model_mean": 0.4734365315764994,
+  "bankroll": 1000.0,
+  "bankroll_current": 967.01,
+  "generated_at": "2026-03-28T16:36:15.742133+00:00",
+  "games": [
+    {
+      "game_pk": 822838,
+      "date": "2026-03-28",
+      "away_team": "OAK",
+      "home_team": "TOR",
+      "away_starter": "Jeffrey Springs",
+      "home_starter": "Dylan Cease",
+      "umpire": "Tripp Gibson",
+      "p_top": 0.3059,
+      "p_bot": 0.2655,
+      "p_raw": 0.4901,
+      "p_cal": 0.5319,
+      "mkt_y_fair": 0.5169,
+      "mkt_n_fair": 0.4831,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.015,
+      "bet_kelly": 0.0,
+      "bet_odds": -122.5,
+      "bet_dec": 1.816,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 2,
+      "forecast_weather": {
+        "temp": 34,
+        "humidity": 45,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823651,
+      "date": "2026-03-28",
+      "away_team": "PIT",
+      "home_team": "NYM",
+      "away_starter": "Mitch Keller",
+      "home_starter": "David Peterson",
+      "umpire": "Quinn Wolcott",
+      "p_top": 0.2094,
+      "p_bot": 0.386,
+      "p_raw": 0.5146,
+      "p_cal": 0.5227,
+      "mkt_y_fair": 0.4856,
+      "mkt_n_fair": 0.5144,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.037,
+      "bet_kelly": 0.003,
+      "bet_odds": -107.0,
+      "bet_dec": 1.935,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 2,
+      "forecast_weather": {
+        "temp": 44,
+        "humidity": 20,
+        "wind_mph": 14,
+        "precipitation_mm": 0
+      }
+    }
+  ],
+  "bets": [],
+  "summary": {
+    "total_games": 2,
+    "total_bets": 0,
+    "yrfi_bets": 0,
+    "nrfi_bets": 0,
+    "total_exposure": 0
+  }
+}
