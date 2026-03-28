@@ -5,7 +5,7 @@
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
   "bankroll_current": 967.01,
-  "generated_at": "2026-03-28T20:52:40.726391+00:00",
+  "generated_at": "2026-03-28T21:28:57.475389+00:00",
   "games": [
     {
       "game_pk": 822838,
@@ -275,6 +275,68 @@
         "wind_mph": 14,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823241,
+      "date": "2026-03-28",
+      "away_team": "NYY",
+      "home_team": "SFG",
+      "away_starter": "Will Warren",
+      "home_starter": "Tyler Mahle",
+      "umpire": "Chad Whitson",
+      "p_top": 0.3372,
+      "p_bot": 0.2169,
+      "p_raw": 0.481,
+      "p_cal": 0.4847,
+      "mkt_y_fair": 0.4779,
+      "mkt_n_fair": 0.5221,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0068,
+      "bet_kelly": 0.0,
+      "bet_odds": -103.5,
+      "bet_dec": 1.966,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 65,
+        "humidity": 61,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823323,
+      "date": "2026-03-28",
+      "away_team": "DET",
+      "home_team": "SDP",
+      "away_starter": "Jack Flaherty",
+      "home_starter": "Randy V\u00e1squez",
+      "umpire": "Malachi Moore",
+      "p_top": 0.3871,
+      "p_bot": 0.2615,
+      "p_raw": 0.5474,
+      "p_cal": 0.5564,
+      "mkt_y_fair": 0.4899,
+      "mkt_n_fair": 0.5101,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0666,
+      "bet_kelly": 0.0171,
+      "bet_odds": -110.0,
+      "bet_dec": 1.909,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 74,
+        "humidity": 55,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -342,7 +404,7 @@
     }
   ],
   "summary": {
-    "total_games": 9,
+    "total_games": 11,
     "total_bets": 2,
     "yrfi_bets": 1,
     "nrfi_bets": 1,
