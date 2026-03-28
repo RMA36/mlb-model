@@ -5,7 +5,7 @@
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
   "bankroll_current": 967.01,
-  "generated_at": "2026-03-28T16:36:15.742133+00:00",
+  "generated_at": "2026-03-28T17:03:59.478631+00:00",
   "games": [
     {
       "game_pk": 822838,
@@ -68,11 +68,42 @@
         "wind_mph": 14,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823488,
+      "date": "2026-03-28",
+      "away_team": "TEX",
+      "home_team": "PHI",
+      "away_starter": "Jacob Latz",
+      "home_starter": "Aaron Nola",
+      "umpire": "D.J. Reyburn",
+      "p_top": 0.2435,
+      "p_bot": 0.3789,
+      "p_raw": 0.5301,
+      "p_cal": 0.5138,
+      "mkt_y_fair": 0.4628,
+      "mkt_n_fair": 0.5372,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.051,
+      "bet_kelly": 0.0116,
+      "bet_odds": 104.0,
+      "bet_dec": 2.04,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 1,
+      "forecast_weather": {
+        "temp": 45,
+        "humidity": 21,
+        "wind_mph": 15,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [],
   "summary": {
-    "total_games": 2,
+    "total_games": 3,
     "total_bets": 0,
     "yrfi_bets": 0,
     "nrfi_bets": 0,
