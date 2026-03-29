@@ -5,7 +5,7 @@
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
   "bankroll_current": 952.79,
-  "generated_at": "2026-03-29T15:26:02.099945+00:00",
+  "generated_at": "2026-03-29T16:00:18.208396+00:00",
   "games": [
     {
       "game_pk": 824864,
@@ -280,6 +280,63 @@
         "wind_mph": 13,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824215,
+      "date": "2026-03-29",
+      "away_team": "LAA",
+      "home_team": "HOU",
+      "away_starter": "Jack Kochanowicz",
+      "home_starter": "Tatsuya Imai",
+      "umpire": "Brennan Miller",
+      "p_top": 0.3197,
+      "p_bot": 0.3883,
+      "p_raw": 0.5839,
+      "p_cal": 0.6076,
+      "mkt_y_fair": 0.5082,
+      "mkt_n_fair": 0.4918,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0994,
+      "bet_kelly": 0.0361,
+      "bet_odds": -118.0,
+      "bet_dec": 1.847,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 34.43,
+      "n_books": 5,
+      "forecast_weather": null
+    },
+    {
+      "game_pk": 824700,
+      "date": "2026-03-29",
+      "away_team": "WSN",
+      "home_team": "CHC",
+      "away_starter": "Jake Irvin",
+      "home_starter": "Shota Imanaga",
+      "umpire": "Roberto Ortiz",
+      "p_top": 0.1869,
+      "p_bot": 0.2852,
+      "p_raw": 0.4188,
+      "p_cal": 0.4814,
+      "mkt_y_fair": 0.5306,
+      "mkt_n_fair": 0.4694,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0492,
+      "bet_kelly": 0.0093,
+      "bet_odds": 100.0,
+      "bet_dec": 2.0,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 62,
+        "humidity": 27,
+        "wind_mph": 14,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -432,13 +489,39 @@
         "wind_mph": 11,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824215,
+      "date": "2026-03-29",
+      "away_team": "LAA",
+      "home_team": "HOU",
+      "away_starter": "Jack Kochanowicz",
+      "home_starter": "Tatsuya Imai",
+      "umpire": "Brennan Miller",
+      "p_top": 0.3197,
+      "p_bot": 0.3883,
+      "p_raw": 0.5839,
+      "p_cal": 0.6076,
+      "mkt_y_fair": 0.5082,
+      "mkt_n_fair": 0.4918,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0994,
+      "bet_kelly": 0.0361,
+      "bet_odds": -118.0,
+      "bet_dec": 1.847,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 34.43,
+      "n_books": 5,
+      "forecast_weather": null
     }
   ],
   "summary": {
-    "total_games": 9,
-    "total_bets": 5,
-    "yrfi_bets": 4,
+    "total_games": 11,
+    "total_bets": 6,
+    "yrfi_bets": 5,
     "nrfi_bets": 1,
-    "total_exposure": 197.35000000000002
+    "total_exposure": 231.78000000000003
   }
 }
