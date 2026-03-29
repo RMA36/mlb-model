@@ -5,7 +5,7 @@
   "model_mean": 0.4734365315764994,
   "bankroll": 1000.0,
   "bankroll_current": 952.79,
-  "generated_at": "2026-03-29T14:51:03.104022+00:00",
+  "generated_at": "2026-03-29T15:26:02.099945+00:00",
   "games": [
     {
       "game_pk": 824864,
@@ -187,6 +187,99 @@
       "stake": 20.52,
       "n_books": 1,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823647,
+      "date": "2026-03-29",
+      "away_team": "PIT",
+      "home_team": "NYM",
+      "away_starter": "Carmen Mlodzinski",
+      "home_starter": "Nolan McLean",
+      "umpire": "Ramon De Jesus",
+      "p_top": 0.2739,
+      "p_bot": 0.3481,
+      "p_raw": 0.5266,
+      "p_cal": 0.5276,
+      "mkt_y_fair": 0.4797,
+      "mkt_n_fair": 0.5203,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0479,
+      "bet_kelly": 0.0079,
+      "bet_odds": -105.0,
+      "bet_dec": 1.952,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 48,
+        "humidity": 47,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823810,
+      "date": "2026-03-29",
+      "away_team": "CHW",
+      "home_team": "MIL",
+      "away_starter": "Anthony Kay",
+      "home_starter": "Brandon Sproat",
+      "umpire": "Carlos Torres",
+      "p_top": 0.1653,
+      "p_bot": 0.1991,
+      "p_raw": 0.3315,
+      "p_cal": 0.3417,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1277,
+      "bet_kelly": 0.0535,
+      "bet_odds": -130.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.64,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 58,
+        "humidity": 39,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823079,
+      "date": "2026-03-29",
+      "away_team": "TBR",
+      "home_team": "STL",
+      "away_starter": "Steven Matz",
+      "home_starter": "Dustin May",
+      "umpire": "Nestor Ceja",
+      "p_top": 0.2623,
+      "p_bot": 0.3324,
+      "p_raw": 0.5075,
+      "p_cal": 0.4972,
+      "mkt_y_fair": 0.4665,
+      "mkt_n_fair": 0.5335,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0307,
+      "bet_kelly": 0.0,
+      "bet_odds": 101.0,
+      "bet_dec": 2.01,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 68,
+        "humidity": 25,
+        "wind_mph": 13,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -308,13 +401,44 @@
       "stake": 20.52,
       "n_books": 1,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823810,
+      "date": "2026-03-29",
+      "away_team": "CHW",
+      "home_team": "MIL",
+      "away_starter": "Anthony Kay",
+      "home_starter": "Brandon Sproat",
+      "umpire": "Carlos Torres",
+      "p_top": 0.1653,
+      "p_bot": 0.1991,
+      "p_raw": 0.3315,
+      "p_cal": 0.3417,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1277,
+      "bet_kelly": 0.0535,
+      "bet_odds": -130.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.64,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 58,
+        "humidity": 39,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 6,
-    "total_bets": 4,
+    "total_games": 9,
+    "total_bets": 5,
     "yrfi_bets": 4,
-    "nrfi_bets": 0,
-    "total_exposure": 149.71
+    "nrfi_bets": 1,
+    "total_exposure": 197.35000000000002
   }
 }
