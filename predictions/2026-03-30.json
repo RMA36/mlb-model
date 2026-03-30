@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 862.25,
-  "generated_at": "2026-03-30T22:07:17.275880+00:00",
+  "generated_at": "2026-03-30T22:56:15.149003+00:00",
   "games": [
     {
       "game_pk": 824135,
@@ -425,6 +425,37 @@
       "stake": 17.0,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823159,
+      "date": "2026-03-30",
+      "away_team": "NYY",
+      "home_team": "SEA",
+      "away_starter": "Ryan Weathers",
+      "home_starter": "Luis Castillo",
+      "umpire": "Mike Estabrook",
+      "p_top": 0.1945,
+      "p_bot": 0.1528,
+      "p_raw": 0.3176,
+      "p_cal": 0.3291,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1403,
+      "bet_kelly": 0.0608,
+      "bet_odds": -130.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.11,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 47,
+        "humidity": 64,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -634,13 +665,44 @@
       "stake": 17.0,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823159,
+      "date": "2026-03-30",
+      "away_team": "NYY",
+      "home_team": "SEA",
+      "away_starter": "Ryan Weathers",
+      "home_starter": "Luis Castillo",
+      "umpire": "Mike Estabrook",
+      "p_top": 0.1945,
+      "p_bot": 0.1528,
+      "p_raw": 0.3176,
+      "p_cal": 0.3291,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1403,
+      "bet_kelly": 0.0608,
+      "bet_odds": -130.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.11,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 47,
+        "humidity": 64,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 14,
-    "total_bets": 7,
+    "total_games": 15,
+    "total_bets": 8,
     "yrfi_bets": 3,
-    "nrfi_bets": 4,
-    "total_exposure": 215.33
+    "nrfi_bets": 5,
+    "total_exposure": 258.44
   }
 }
