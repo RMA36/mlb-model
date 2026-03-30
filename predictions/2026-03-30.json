@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 862.25,
-  "generated_at": "2026-03-30T19:31:51.475973+00:00",
+  "generated_at": "2026-03-30T20:23:34.848747+00:00",
   "games": [
     {
       "game_pk": 824135,
@@ -218,6 +218,32 @@
         "wind_mph": 2,
         "precipitation_mm": 0.1
       }
+    },
+    {
+      "game_pk": 824214,
+      "date": "2026-03-30",
+      "away_team": "BOS",
+      "home_team": "HOU",
+      "away_starter": "Ranger Suarez",
+      "home_starter": "Lance McCullers Jr.",
+      "umpire": "Nate Tomlinson",
+      "p_top": 0.1771,
+      "p_bot": 0.1403,
+      "p_raw": 0.2925,
+      "p_cal": 0.3214,
+      "mkt_y_fair": 0.4843,
+      "mkt_n_fair": 0.5157,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1629,
+      "bet_kelly": 0.0732,
+      "bet_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.11,
+      "n_books": 5,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -282,13 +308,39 @@
         "wind_mph": 2,
         "precipitation_mm": 0.1
       }
+    },
+    {
+      "game_pk": 824214,
+      "date": "2026-03-30",
+      "away_team": "BOS",
+      "home_team": "HOU",
+      "away_starter": "Ranger Suarez",
+      "home_starter": "Lance McCullers Jr.",
+      "umpire": "Nate Tomlinson",
+      "p_top": 0.1771,
+      "p_bot": 0.1403,
+      "p_raw": 0.2925,
+      "p_cal": 0.3214,
+      "mkt_y_fair": 0.4843,
+      "mkt_n_fair": 0.5157,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1629,
+      "bet_kelly": 0.0732,
+      "bet_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.11,
+      "n_books": 5,
+      "forecast_weather": null
     }
   ],
   "summary": {
-    "total_games": 7,
-    "total_bets": 2,
+    "total_games": 8,
+    "total_bets": 3,
     "yrfi_bets": 2,
-    "nrfi_bets": 0,
-    "total_exposure": 63.01
+    "nrfi_bets": 1,
+    "total_exposure": 106.12
   }
 }
