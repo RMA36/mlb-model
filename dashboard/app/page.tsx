@@ -1332,10 +1332,10 @@ function CalibrationDriftChart({ daily }: { daily: Record<string, DayResults> })
       }
     }
   }
-  if (allBets.length < 10) return null;
+  if (allBets.length < 30) return null;
 
   // Rolling 30-bet window
-  const windowSize = Math.min(30, Math.floor(allBets.length / 2));
+  const windowSize = 30;
   const points: { idx: number; predicted: number; actual: number }[] = [];
   for (let i = windowSize; i <= allBets.length; i++) {
     const window = allBets.slice(i - windowSize, i);
