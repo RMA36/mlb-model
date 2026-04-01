@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 885.95,
-  "generated_at": "2026-04-01T18:07:54.192704+00:00",
+  "generated_at": "2026-04-01T19:32:16.070500+00:00",
   "games": [
     {
       "game_pk": 824940,
@@ -389,6 +389,37 @@
         "wind_mph": 10,
         "precipitation_mm": 2.0
       }
+    },
+    {
+      "game_pk": 824136,
+      "date": "2026-04-01",
+      "away_team": "MIN",
+      "home_team": "KCR",
+      "away_starter": "Joe Ryan",
+      "home_starter": "Noah Cameron",
+      "umpire": "Andy Fletcher",
+      "p_top": 0.4614,
+      "p_bot": 0.192,
+      "p_raw": 0.5648,
+      "p_cal": 0.5583,
+      "mkt_y_fair": 0.4761,
+      "mkt_n_fair": 0.5239,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0822,
+      "bet_kelly": 0.0269,
+      "bet_odds": -102.0,
+      "bet_dec": 1.98,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 55,
+        "humidity": 97,
+        "wind_mph": 10,
+        "precipitation_mm": 0.8
+      }
     }
   ],
   "bets": [
@@ -539,7 +570,7 @@
     }
   ],
   "summary": {
-    "total_games": 13,
+    "total_games": 14,
     "total_bets": 5,
     "yrfi_bets": 1,
     "nrfi_bets": 4,
