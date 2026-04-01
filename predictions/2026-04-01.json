@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 885.95,
-  "generated_at": "2026-04-01T16:00:06.396782+00:00",
+  "generated_at": "2026-04-01T17:10:12.033483+00:00",
   "games": [
     {
       "game_pk": 824940,
@@ -265,6 +265,99 @@
       "stake": 0.0,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 824698,
+      "date": "2026-04-01",
+      "away_team": "LAA",
+      "home_team": "CHC",
+      "away_starter": "Yusei Kikuchi",
+      "home_starter": "Matthew Boyd",
+      "umpire": "David Rackley",
+      "p_top": 0.207,
+      "p_bot": 0.2678,
+      "p_raw": 0.4194,
+      "p_cal": 0.3624,
+      "mkt_y_fair": 0.4112,
+      "mkt_n_fair": 0.5888,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0488,
+      "bet_kelly": 0.0099,
+      "bet_odds": -165.0,
+      "bet_dec": 1.606,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 38,
+        "humidity": 88,
+        "wind_mph": 18,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 825106,
+      "date": "2026-04-01",
+      "away_team": "DET",
+      "home_team": "ARI",
+      "away_starter": "Tarik Skubal",
+      "home_starter": "Zac Gallen",
+      "umpire": "Adam Hamari",
+      "p_top": 0.2471,
+      "p_bot": 0.255,
+      "p_raw": 0.4391,
+      "p_cal": 0.4125,
+      "mkt_y_fair": 0.4435,
+      "mkt_n_fair": 0.5565,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.031,
+      "bet_kelly": 0.0,
+      "bet_odds": -145.0,
+      "bet_dec": 1.69,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 80,
+        "humidity": 26,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823321,
+      "date": "2026-04-01",
+      "away_team": "SFG",
+      "home_team": "SDP",
+      "away_starter": "Adrian Houser",
+      "home_starter": "Nick Pivetta",
+      "umpire": "Ryan Additon",
+      "p_top": 0.3455,
+      "p_bot": 0.3105,
+      "p_raw": 0.5487,
+      "p_cal": 0.5503,
+      "mkt_y_fair": 0.4826,
+      "mkt_n_fair": 0.5174,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0677,
+      "bet_kelly": 0.0184,
+      "bet_odds": -106.0,
+      "bet_dec": 1.943,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 16.31,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 70,
+        "humidity": 70,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -350,13 +443,44 @@
       "stake": 32.69,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823321,
+      "date": "2026-04-01",
+      "away_team": "SFG",
+      "home_team": "SDP",
+      "away_starter": "Adrian Houser",
+      "home_starter": "Nick Pivetta",
+      "umpire": "Ryan Additon",
+      "p_top": 0.3455,
+      "p_bot": 0.3105,
+      "p_raw": 0.5487,
+      "p_cal": 0.5503,
+      "mkt_y_fair": 0.4826,
+      "mkt_n_fair": 0.5174,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0677,
+      "bet_kelly": 0.0184,
+      "bet_odds": -106.0,
+      "bet_dec": 1.943,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 16.31,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 70,
+        "humidity": 70,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 9,
-    "total_bets": 3,
-    "yrfi_bets": 0,
+    "total_games": 12,
+    "total_bets": 4,
+    "yrfi_bets": 1,
     "nrfi_bets": 3,
-    "total_exposure": 75.84
+    "total_exposure": 92.15
   }
 }
