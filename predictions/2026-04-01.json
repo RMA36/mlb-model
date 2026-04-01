@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 885.95,
-  "generated_at": "2026-04-01T17:10:12.033483+00:00",
+  "generated_at": "2026-04-01T18:07:54.192704+00:00",
   "games": [
     {
       "game_pk": 824940,
@@ -358,6 +358,37 @@
         "wind_mph": 11,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823157,
+      "date": "2026-04-01",
+      "away_team": "NYY",
+      "home_team": "SEA",
+      "away_starter": "Cam Schlittler",
+      "home_starter": "George Kirby",
+      "umpire": "Lance Barrett",
+      "p_top": 0.2173,
+      "p_bot": 0.207,
+      "p_raw": 0.3794,
+      "p_cal": 0.3625,
+      "mkt_y_fair": 0.4473,
+      "mkt_n_fair": 0.5527,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0848,
+      "bet_kelly": 0.0298,
+      "bet_odds": -143.0,
+      "bet_dec": 1.699,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 26.38,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 50,
+        "humidity": 86,
+        "wind_mph": 10,
+        "precipitation_mm": 2.0
+      }
     }
   ],
   "bets": [
@@ -474,13 +505,44 @@
         "wind_mph": 11,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823157,
+      "date": "2026-04-01",
+      "away_team": "NYY",
+      "home_team": "SEA",
+      "away_starter": "Cam Schlittler",
+      "home_starter": "George Kirby",
+      "umpire": "Lance Barrett",
+      "p_top": 0.2173,
+      "p_bot": 0.207,
+      "p_raw": 0.3794,
+      "p_cal": 0.3625,
+      "mkt_y_fair": 0.4473,
+      "mkt_n_fair": 0.5527,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0848,
+      "bet_kelly": 0.0298,
+      "bet_odds": -143.0,
+      "bet_dec": 1.699,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 26.38,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 50,
+        "humidity": 86,
+        "wind_mph": 10,
+        "precipitation_mm": 2.0
+      }
     }
   ],
   "summary": {
-    "total_games": 12,
-    "total_bets": 4,
+    "total_games": 13,
+    "total_bets": 5,
     "yrfi_bets": 1,
-    "nrfi_bets": 3,
-    "total_exposure": 92.15
+    "nrfi_bets": 4,
+    "total_exposure": 118.53
   }
 }
