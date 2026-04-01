@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 885.95,
-  "generated_at": "2026-04-01T19:32:16.070500+00:00",
+  "generated_at": "2026-04-01T21:26:04.276899+00:00",
   "games": [
     {
       "game_pk": 824940,
@@ -420,6 +420,32 @@
         "wind_mph": 10,
         "precipitation_mm": 0.8
       }
+    },
+    {
+      "game_pk": 823970,
+      "date": "2026-04-01",
+      "away_team": "CLE",
+      "home_team": "LAD",
+      "away_starter": "Gavin Williams",
+      "home_starter": "Yoshinobu Yamamoto",
+      "umpire": "Quinn Wolcott",
+      "p_top": 0.3445,
+      "p_bot": 0.1714,
+      "p_raw": 0.4569,
+      "p_cal": 0.4611,
+      "mkt_y_fair": 0.4761,
+      "mkt_n_fair": 0.5239,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.015,
+      "bet_kelly": 0.0,
+      "bet_odds": -125.0,
+      "bet_dec": 1.8,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -570,7 +596,7 @@
     }
   ],
   "summary": {
-    "total_games": 14,
+    "total_games": 15,
     "total_bets": 5,
     "yrfi_bets": 1,
     "nrfi_bets": 4,
