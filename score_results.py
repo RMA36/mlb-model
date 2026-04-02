@@ -16,6 +16,9 @@ Usage:
 import argparse
 import json
 import logging
+import os
+import subprocess
+import time
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -27,6 +30,28 @@ logger = logging.getLogger(__name__)
 ROOT = Path(__file__).parent
 PREDICTIONS_DIR = ROOT / "predictions"
 RESULTS_FILE = ROOT / "results" / "results.json"
+
+ODDS_MASTER_REPO = "RMA36/mlb-odds-tracker-2026"
+ODDS_MASTER_PATH = "data/2026/odds_master_2026.parquet"
+ODDS_CACHE = ROOT / ".cache" / "odds_master_2026.parquet"
+
+FULL_NAME_TO_ABBR = {
+    "Arizona Diamondbacks": "ARI", "Atlanta Braves": "ATL",
+    "Baltimore Orioles": "BAL", "Boston Red Sox": "BOS",
+    "Chicago Cubs": "CHC", "Chicago White Sox": "CHW",
+    "Cincinnati Reds": "CIN", "Cleveland Guardians": "CLE",
+    "Colorado Rockies": "COL", "Detroit Tigers": "DET",
+    "Houston Astros": "HOU", "Kansas City Royals": "KCR",
+    "Los Angeles Angels": "LAA", "Los Angeles Dodgers": "LAD",
+    "Miami Marlins": "MIA", "Milwaukee Brewers": "MIL",
+    "Minnesota Twins": "MIN", "New York Mets": "NYM",
+    "New York Yankees": "NYY", "Oakland Athletics": "OAK", "Athletics": "OAK",
+    "Philadelphia Phillies": "PHI", "Pittsburgh Pirates": "PIT",
+    "San Diego Padres": "SDP", "San Francisco Giants": "SFG",
+    "Seattle Mariners": "SEA", "St. Louis Cardinals": "STL",
+    "Tampa Bay Rays": "TBR", "Texas Rangers": "TEX",
+    "Toronto Blue Jays": "TOR", "Washington Nationals": "WSN",
+}
 
 ET = ZoneInfo("America/New_York")
 
@@ -95,6 +120,107 @@ def american_to_decimal(odds: float) -> float:
         return 1 + 100 / abs(odds)
 
 
+def american_to_implied(odds: float) -> float:
+    """Convert American odds to implied probability."""
+    if odds > 0:
+        return 100 / (odds + 100)
+    return abs(odds) / (abs(odds) + 100)
+
+
+def download_odds_master():
+    """Download odds master from GitHub using gh CLI or GITHUB_TOKEN."""
+    ODDS_CACHE.parent.mkdir(parents=True, exist_ok=True)
+
+    if ODDS_CACHE.exists():
+        age_hours = (time.time() - os.path.getmtime(ODDS_CACHE)) / 3600
+        if age_hours < 1.0:
+            logger.info("Using cached odds (%.0f min old)", age_hours * 60)
+            return ODDS_CACHE
+
+    try:
+        result = subprocess.run(
+            ["gh", "api", f"repos/{ODDS_MASTER_REPO}/contents/{ODDS_MASTER_PATH}",
+             "--jq", ".download_url"],
+            capture_output=True, text=True, timeout=30)
+        if result.returncode == 0 and result.stdout.strip():
+            urllib.request.urlretrieve(result.stdout.strip(), ODDS_CACHE)
+            logger.info("Downloaded odds via gh CLI")
+            return ODDS_CACHE
+    except FileNotFoundError:
+        pass
+
+    token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    if token:
+        url = f"https://api.github.com/repos/{ODDS_MASTER_REPO}/contents/{ODDS_MASTER_PATH}"
+        req = urllib.request.Request(url, headers={
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github.raw+json",
+        })
+        with urllib.request.urlopen(req) as resp:
+            ODDS_CACHE.write_bytes(resp.read())
+        logger.info("Downloaded odds via GITHUB_TOKEN")
+        return ODDS_CACHE
+
+    if ODDS_CACHE.exists():
+        logger.warning("Cannot refresh odds — using stale cache")
+        return ODDS_CACHE
+
+    logger.warning("No way to download odds (no gh CLI, no GITHUB_TOKEN)")
+    return None
+
+
+def load_closing_odds(date_str: str) -> dict:
+    """Load closing YRFI/NRFI odds for a date. Returns {(away_abbr, home_abbr): {yrfi: odds, nrfi: odds}}."""
+    try:
+        import pandas as pd
+    except ImportError:
+        logger.warning("pandas not available — skipping CLV")
+        return {}
+
+    odds_path = download_odds_master()
+    if odds_path is None or not odds_path.exists():
+        return {}
+
+    df = pd.read_parquet(odds_path)
+    fi = df[df["market"] == "totals_1st_1_innings"].copy()
+    if fi.empty:
+        return {}
+
+    fi["commence_utc"] = pd.to_datetime(fi["commence_time"], utc=True)
+    fi["commence_et"] = fi["commence_utc"].dt.tz_convert("US/Eastern")
+    fi["game_day"] = fi["commence_et"].dt.strftime("%Y-%m-%d")
+    fi = fi[fi["game_day"] == date_str].copy()
+    if fi.empty:
+        return {}
+
+    fi["home_abbr"] = fi["home_team"].map(FULL_NAME_TO_ABBR)
+    fi["away_abbr"] = fi["away_team"].map(FULL_NAME_TO_ABBR)
+
+    yrfi = fi[fi["outcome_name"] == "Over"]
+    nrfi = fi[fi["outcome_name"] == "Under"]
+
+    yrfi_agg = (yrfi.groupby(["away_abbr", "home_abbr"])
+                .agg(close_odds=("close_price", "median"))
+                .reset_index())
+    nrfi_agg = (nrfi.groupby(["away_abbr", "home_abbr"])
+                .agg(close_odds=("close_price", "median"))
+                .reset_index())
+
+    closing = {}
+    for _, row in yrfi_agg.iterrows():
+        key = (row["away_abbr"], row["home_abbr"])
+        closing[key] = {"yrfi": row["close_odds"]}
+    for _, row in nrfi_agg.iterrows():
+        key = (row["away_abbr"], row["home_abbr"])
+        if key in closing:
+            closing[key]["nrfi"] = row["close_odds"]
+        else:
+            closing[key] = {"nrfi": row["close_odds"]}
+
+    logger.info("Loaded closing odds for %d games on %s", len(closing), date_str)
+    return closing
+
+
 def score_date(date_str: str, results: dict) -> int:
     """Score all bets for a given date. Returns number of newly scored bets."""
     pred_path = PREDICTIONS_DIR / f"{date_str}.json"
@@ -115,6 +241,9 @@ def score_date(date_str: str, results: dict) -> int:
         if existing.get("all_scored"):
             logger.info("%s: Already fully scored (%d bets)", date_str, len(existing["bets"]))
             return 0
+
+    # Load closing odds for CLV calculation
+    closing_odds = load_closing_odds(date_str)
 
     scored_bets = []
     newly_scored = 0
@@ -138,7 +267,12 @@ def score_date(date_str: str, results: dict) -> int:
         dec_odds = american_to_decimal(bet["bet_odds"])
         pnl = bet["stake"] * (dec_odds - 1) if won else -bet["stake"]
 
-        scored_bets.append({
+        # CLV: compare entry odds to true closing odds
+        game_key = (bet["away_team"], bet["home_team"])
+        side_key = bet["bet_side"].lower()  # "yrfi" or "nrfi"
+        close_line = closing_odds.get(game_key, {}).get(side_key)
+
+        scored_bet = {
             **bet,
             "result": "W" if won else "L",
             "away_1st_runs": ls["away_1st_runs"],
@@ -146,7 +280,16 @@ def score_date(date_str: str, results: dict) -> int:
             "total_1st_runs": ls["total_1st_runs"],
             "pnl": round(pnl, 2),
             "dec_odds": round(dec_odds, 3),
-        })
+        }
+
+        if close_line is not None:
+            close_impl = american_to_implied(close_line)
+            entry_impl = american_to_implied(bet["bet_odds"])
+            # Positive CLV = we got a better price than the closing line
+            scored_bet["close_odds"] = round(close_line, 1)
+            scored_bet["clv"] = round(entry_impl - close_impl, 4)
+
+        scored_bets.append(scored_bet)
         newly_scored += 1
         tag = "✓ W" if won else "✗ L"
         logger.info("  %s @ %s: %s %s → %s (1st: %d-%d) → $%+.2f",

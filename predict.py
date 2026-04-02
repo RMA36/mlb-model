@@ -1061,13 +1061,16 @@ def main():
             bet_kelly = 0
             bet_dec = 1.0
             bet_odds = 0
+            open_odds = 0
 
             if edge_y > edge_n and edge_y > 0:
                 bet_side, bet_edge, bet_kelly = "YRFI", edge_y, kelly_y
                 bet_dec, bet_odds = odds_row["yrfi_dec"], odds_row["yrfi_odds"]
+                open_odds = odds_row["yrfi_open"]
             elif edge_n > 0:
                 bet_side, bet_edge, bet_kelly = "NRFI", edge_n, kelly_n
                 bet_dec, bet_odds = odds_row["nrfi_dec"], odds_row["nrfi_odds"]
+                open_odds = odds_row["nrfi_open"]
 
             passes = False
             skip = ""
@@ -1106,6 +1109,7 @@ def main():
                 "bet_edge": round(bet_edge, 4),
                 "bet_kelly": round(bet_kelly, 4),
                 "bet_odds": bet_odds,
+                "open_odds": open_odds,
                 "bet_dec": round(bet_dec, 3),
                 "passes_filter": passes,
                 "skip_reason": skip,
