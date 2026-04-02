@@ -1395,6 +1395,106 @@ function CalibrationDriftChart({ daily }: { daily: Record<string, DayResults> })
   );
 }
 
+// ── Results Day Card (expandable) ────────────────────────────────────
+
+function ResultsDayCard({ date, day, pnlColor }: { date: string; day: DayResults; pnlColor: string }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div
+      id={`day-${date}`}
+      className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] overflow-hidden"
+    >
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full px-4 py-3 text-left hover:bg-[#1a1a1a] transition-colors"
+      >
+        <div className="flex items-center justify-between">
+          <div>
+            <div className="text-xs sm:text-sm font-medium">{formatDateHeading(date)}</div>
+            <div className="mt-0.5 text-xs text-[var(--text-muted)]">
+              {day.bets.length} bet{day.bets.length !== 1 ? "s" : ""}
+              {day.all_scored ? "" : " · scoring in progress"}
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="text-right">
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-semibold">
+                  {day.wins}W-{day.losses}L
+                </span>
+                <span className={`text-sm font-bold tabular-nums ${pnlColor}`}>
+                  ${day.pnl >= 0 ? "+" : ""}{day.pnl.toFixed(0)}
+                </span>
+              </div>
+              {day.wagered > 0 && (
+                <div className="mt-0.5 text-xs text-[var(--text-muted)]">
+                  {day.roi_pct >= 0 ? "+" : ""}{day.roi_pct.toFixed(1)}% ROI · ${day.wagered.toFixed(0)} wagered
+                </div>
+              )}
+            </div>
+            <span className="text-[10px] text-[var(--text-muted)]">{expanded ? "▼" : "▶"}</span>
+          </div>
+        </div>
+      </button>
+
+      {expanded && day.bets.length > 0 && (
+        <div className="border-t border-[var(--card-border)] px-4 py-2">
+          <table className="w-full text-xs">
+            <thead>
+              <tr className="text-[var(--text-muted)] uppercase tracking-wider">
+                <th className="py-1 text-left font-medium">Pick</th>
+                <th className="py-1 text-left font-medium">1st Inn</th>
+                <th className="py-1 text-right font-medium">Edge</th>
+                <th className="py-1 text-right font-medium">P&L</th>
+              </tr>
+            </thead>
+            <tbody>
+              {day.bets.map((bet, i) => {
+                const isYrfi = bet.bet_side === "YRFI";
+                const hasScore = bet.away_1st_runs !== undefined && bet.home_1st_runs !== undefined;
+                const resultColor = bet.result === "W" ? "text-[var(--green)]" : bet.result === "L" ? "text-[var(--red)]" : "text-yellow-300";
+                return (
+                  <tr key={i} className="border-t border-[var(--card-border)]/50">
+                    <td className="py-1.5">
+                      <div className="flex items-center gap-2">
+                        <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${isYrfi ? "bg-red-900/50 text-red-300" : "bg-blue-900/50 text-blue-300"}`}>
+                          {bet.bet_side}
+                        </span>
+                        <span className="text-[var(--text-muted)]">
+                          {bet.away_team} @ {bet.home_team}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="py-1.5">
+                      {hasScore ? (
+                        <span className={`font-mono ${resultColor}`}>
+                          {bet.away_1st_runs}-{bet.home_1st_runs}{" "}
+                          <span className="font-bold">{bet.result === "W" ? "W" : bet.result === "L" ? "L" : "?"}</span>
+                        </span>
+                      ) : (
+                        <span className="text-yellow-300">Pending</span>
+                      )}
+                    </td>
+                    <td className="py-1.5 text-right font-mono text-[var(--green)]">
+                      +{(bet.bet_edge * 100).toFixed(1)}%
+                    </td>
+                    <td className={`py-1.5 text-right font-mono font-bold ${resultColor}`}>
+                      {bet.pnl !== undefined
+                        ? `${bet.pnl >= 0 ? "+" : ""}$${bet.pnl.toFixed(2)}`
+                        : "—"}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Page ─────────────────────────────────────────────────────────────
 
 function todayET(): string {
@@ -1605,7 +1705,7 @@ export default function Home() {
           className={tabClass("breakeven")}
           onClick={() => setActiveTab("breakeven")}
         >
-          Breakeven
+          Edge
         </button>
         <button
           className={tabClass("predictions")}
@@ -1813,26 +1913,62 @@ export default function Home() {
           )}
 
           {/* Bet cards */}
-          {!loading && betsWithResults.length > 0 && (
-            <div>
-              <div className="mb-3 flex items-center justify-between">
-                <h2 className="text-lg font-semibold">
-                  {betsWithResults.length} Pick
-                  {betsWithResults.length !== 1 ? "s" : ""}
-                </h2>
-                {predictions && (
-                  <span className="text-xs text-[var(--text-muted)]">
-                    {predictions.summary.total_games} games analyzed
-                  </span>
-                )}
+          {!loading && betsWithResults.length > 0 && (() => {
+            const wins = betsWithResults.filter((b) => b.result === "W").length;
+            const losses = betsWithResults.filter((b) => b.result === "L").length;
+            const pending = betsWithResults.filter((b) => b.result !== "W" && b.result !== "L").length;
+            const dayPnl = betsWithResults.reduce((sum, b) => sum + (b.pnl ?? 0), 0);
+            const hasAnyResult = wins + losses > 0;
+
+            return (
+              <div>
+                {/* Daily Tracker */}
+                <div className="mb-4 rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div>
+                        <div className="text-xs uppercase tracking-wider text-[var(--text-muted)]">Record</div>
+                        <div className="text-lg font-bold">
+                          {wins}W-{losses}L
+                        </div>
+                      </div>
+                      {pending > 0 && (
+                        <div>
+                          <div className="text-xs uppercase tracking-wider text-[var(--text-muted)]">Pending</div>
+                          <div className="text-lg font-bold text-yellow-300">{pending}</div>
+                        </div>
+                      )}
+                    </div>
+                    {hasAnyResult && (
+                      <div className="text-right">
+                        <div className="text-xs uppercase tracking-wider text-[var(--text-muted)]">Daily P&L</div>
+                        <div className={`text-lg font-bold tabular-nums ${dayPnl >= 0 ? "text-[var(--green)]" : "text-[var(--red)]"}`}>
+                          ${dayPnl >= 0 ? "+" : ""}{dayPnl.toFixed(2)}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="mb-3 flex items-center justify-between">
+                  <h2 className="text-lg font-semibold">
+                    {betsWithResults.length} Pick
+                    {betsWithResults.length !== 1 ? "s" : ""}
+                  </h2>
+                  {predictions && (
+                    <span className="text-xs text-[var(--text-muted)]">
+                      {predictions.summary.total_games} games analyzed
+                    </span>
+                  )}
+                </div>
+                <div className="grid gap-3">
+                  {betsWithResults.map((b) => (
+                    <BetCard key={b.game_pk} bet={b} />
+                  ))}
+                </div>
               </div>
-              <div className="grid gap-3">
-                {betsWithResults.map((b) => (
-                  <BetCard key={b.game_pk} bet={b} />
-                ))}
-              </div>
-            </div>
-          )}
+            );
+          })()}
         </div>
       )}
 
@@ -1919,36 +2055,7 @@ export default function Home() {
                         const day = results.daily[date];
                         const pnlColor = day.pnl >= 0 ? "text-[var(--green)]" : "text-[var(--red)]";
                         return (
-                          <div
-                            key={date}
-                            id={`day-${date}`}
-                            className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] px-4 py-3"
-                          >
-                            <div className="flex items-center justify-between">
-                              <div>
-                                <div className="text-xs sm:text-sm font-medium">{formatDateHeading(date)}</div>
-                                <div className="mt-0.5 text-xs text-[var(--text-muted)]">
-                                  {day.bets.length} bet{day.bets.length !== 1 ? "s" : ""}
-                                  {day.all_scored ? "" : " · scoring in progress"}
-                                </div>
-                              </div>
-                              <div className="text-right">
-                                <div className="flex items-center gap-3">
-                                  <span className="text-sm font-semibold">
-                                    {day.wins}W-{day.losses}L
-                                  </span>
-                                  <span className={`text-sm font-bold tabular-nums ${pnlColor}`}>
-                                    ${day.pnl >= 0 ? "+" : ""}{day.pnl.toFixed(0)}
-                                  </span>
-                                </div>
-                                {day.wagered > 0 && (
-                                  <div className="mt-0.5 text-xs text-[var(--text-muted)]">
-                                    {day.roi_pct >= 0 ? "+" : ""}{day.roi_pct.toFixed(1)}% ROI · ${day.wagered.toFixed(0)} wagered
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
+                          <ResultsDayCard key={date} date={date} day={day} pnlColor={pnlColor} />
                         );
                       })}
                     </div>
@@ -2054,6 +2161,81 @@ export default function Home() {
 
                 {/* Bankroll Equity Curve */}
                 <BankrollChart daily={results.daily} />
+
+                {/* Edge-Level Performance */}
+                {(() => {
+                  // Bucket all bets by edge level
+                  const allBets: Bet[] = [];
+                  for (const d of dates) {
+                    for (const b of results.daily[d].bets) {
+                      if (b.result === "W" || b.result === "L") allBets.push(b);
+                    }
+                  }
+                  if (allBets.length === 0) return null;
+
+                  const edgeBuckets = [
+                    { label: "1-3%", min: 0.01, max: 0.03 },
+                    { label: "3-5%", min: 0.03, max: 0.05 },
+                    { label: "5-8%", min: 0.05, max: 0.08 },
+                    { label: "8-12%", min: 0.08, max: 0.12 },
+                    { label: "12%+", min: 0.12, max: Infinity },
+                  ];
+
+                  const bucketData = edgeBuckets.map(({ label, min, max }) => {
+                    const bets = allBets.filter((b) => b.bet_edge >= min && b.bet_edge < max);
+                    const wins = bets.filter((b) => b.result === "W").length;
+                    const losses = bets.length - wins;
+                    const pnl = bets.reduce((s, b) => s + (b.pnl ?? 0), 0);
+                    const wagered = bets.reduce((s, b) => s + (b.stake ?? 0), 0);
+                    const roi = wagered > 0 ? (pnl / wagered) * 100 : 0;
+                    const avgEdge = bets.length > 0 ? bets.reduce((s, b) => s + b.bet_edge, 0) / bets.length * 100 : 0;
+                    return { label, count: bets.length, wins, losses, pnl, roi, avgEdge, wagered };
+                  }).filter((b) => b.count > 0);
+
+                  return (
+                    <div className="mt-4 rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-4">
+                      <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                        Performance by Edge Level
+                      </h3>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs">
+                          <thead>
+                            <tr className="text-[var(--text-muted)] uppercase tracking-wider border-b border-[var(--card-border)]">
+                              <th className="py-2 text-left font-medium">Edge</th>
+                              <th className="py-2 text-right font-medium">Bets</th>
+                              <th className="py-2 text-right font-medium">Record</th>
+                              <th className="py-2 text-right font-medium">Win%</th>
+                              <th className="py-2 text-right font-medium">P&L</th>
+                              <th className="py-2 text-right font-medium">ROI</th>
+                              <th className="py-2 text-right font-medium">Avg Edge</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {bucketData.map((b) => (
+                              <tr key={b.label} className="border-t border-[var(--card-border)]/50">
+                                <td className="py-2 font-medium">{b.label}</td>
+                                <td className="py-2 text-right font-mono">{b.count}</td>
+                                <td className="py-2 text-right font-mono">{b.wins}W-{b.losses}L</td>
+                                <td className="py-2 text-right font-mono">
+                                  {((b.wins / b.count) * 100).toFixed(0)}%
+                                </td>
+                                <td className={`py-2 text-right font-mono font-bold ${b.pnl >= 0 ? "text-[var(--green)]" : "text-[var(--red)]"}`}>
+                                  {b.pnl >= 0 ? "+" : ""}${b.pnl.toFixed(0)}
+                                </td>
+                                <td className={`py-2 text-right font-mono ${b.roi >= 0 ? "text-[var(--green)]" : "text-[var(--red)]"}`}>
+                                  {b.roi >= 0 ? "+" : ""}{b.roi.toFixed(1)}%
+                                </td>
+                                <td className="py-2 text-right font-mono text-[var(--green)]">
+                                  +{b.avgEdge.toFixed(1)}%
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 {/* Calibration Drift */}
                 <div className="mt-4">
