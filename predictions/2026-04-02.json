@@ -1,0 +1,51 @@
+{
+  "date": "2026-04-02",
+  "model": "v4-lgb-two-model",
+  "calibration_k": 0.9,
+  "model_mean": 0.4735420506440864,
+  "bankroll": 1000.0,
+  "bankroll_current": 852.9,
+  "generated_at": "2026-04-02T17:39:29.185089+00:00",
+  "games": [
+    {
+      "game_pk": 824133,
+      "date": "2026-04-02",
+      "away_team": "MIN",
+      "home_team": "KCR",
+      "away_starter": "Taj Bradley",
+      "home_starter": "Cole Ragans",
+      "umpire": "Cory Blaser",
+      "p_top": 0.3004,
+      "p_bot": 0.2981,
+      "p_raw": 0.5089,
+      "p_cal": 0.5318,
+      "mkt_y_fair": 0.5,
+      "mkt_n_fair": 0.5,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0318,
+      "bet_kelly": 0.0,
+      "bet_odds": -115.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.87,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 65,
+        "humidity": 82,
+        "wind_mph": 17,
+        "precipitation_mm": 0
+      }
+    }
+  ],
+  "bets": [],
+  "summary": {
+    "total_games": 1,
+    "total_bets": 0,
+    "yrfi_bets": 0,
+    "nrfi_bets": 0,
+    "total_exposure": 0
+  }
+}
