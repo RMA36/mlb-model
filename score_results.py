@@ -221,7 +221,7 @@ def load_closing_odds(date_str: str) -> dict:
     return closing
 
 
-def score_date(date_str: str, results: dict) -> int:
+def score_date(date_str: str, results: dict, force: bool = False) -> int:
     """Score all bets for a given date. Returns number of newly scored bets."""
     pred_path = PREDICTIONS_DIR / f"{date_str}.json"
     if not pred_path.exists():
@@ -235,8 +235,8 @@ def score_date(date_str: str, results: dict) -> int:
         logger.info("%s: No bets to score", date_str)
         return 0
 
-    # Check if already scored
-    if date_str in results["daily"]:
+    # Check if already scored (skip unless forced)
+    if date_str in results["daily"] and not force:
         existing = results["daily"][date_str]
         if existing.get("all_scored"):
             logger.info("%s: Already fully scored (%d bets)", date_str, len(existing["bets"]))
@@ -363,20 +363,22 @@ def main():
     parser = argparse.ArgumentParser(description="Score YRFI/NRFI predictions")
     parser.add_argument("--date", help="Date to score (YYYY-MM-DD). Default: yesterday")
     parser.add_argument("--backfill", action="store_true", help="Rescore all unscored dates")
+    parser.add_argument("--rescore", action="store_true", help="Force rescore all dates (e.g. to backfill CLV)")
     parser.add_argument("--json-only", action="store_true", help="Output JSON summary only")
     args = parser.parse_args()
 
     results = load_results()
 
-    if args.backfill:
+    if args.backfill or args.rescore:
         # Find all prediction files and score any that aren't fully scored
         dates = sorted(p.stem for p in PREDICTIONS_DIR.glob("*.json"))
-        logger.info("Backfilling %d dates...", len(dates))
+        logger.info("%s %d dates...", "Rescoring" if args.rescore else "Backfilling", len(dates))
         total_scored = 0
         for d in dates:
-            n = score_date(d, results)
+            n = score_date(d, results, force=args.rescore)
             total_scored += n
-        logger.info("Backfill complete: %d bets scored", total_scored)
+        logger.info("%s complete: %d bets scored",
+                     "Rescore" if args.rescore else "Backfill", total_scored)
     else:
         if args.date:
             date_str = args.date
@@ -385,7 +387,7 @@ def main():
             yesterday = datetime.now(ET) - timedelta(days=1)
             date_str = yesterday.strftime("%Y-%m-%d")
 
-        score_date(date_str, results)
+        score_date(date_str, results, force=False)
 
     rebuild_cumulative(results)
 
