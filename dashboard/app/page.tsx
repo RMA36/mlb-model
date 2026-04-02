@@ -252,7 +252,7 @@ async function fetchMLBSchedule(date: string): Promise<TodaysGame[]> {
 
       // Determine game state and inning
       const detailedState = g.status?.detailedState || "Scheduled";
-      const isLive = detailedState === "In Progress" || detailedState === "Manager Challenge" || detailedState === "Delayed";
+      const isLive = detailedState === "In Progress" || detailedState === "Manager Challenge";
       const isFinal = detailedState === "Final" || detailedState === "Game Over" || detailedState === "Completed Early";
       let currentInning: string | null = null;
       if (isLive && g.linescore) {
@@ -562,7 +562,9 @@ function GameCard({ game, bets, forecast }: { game: TodaysGame; bets?: Bet[]; fo
 
   const isFinal = game.gameState === "Final" || game.gameState === "Game Over" || game.gameState === "Completed Early";
   const isLive = game.gameState === "In Progress" || game.gameState === "Manager Challenge";
-  const isPreGame = !isFinal && !isLive;
+  const isPostponed = game.gameState === "Postponed" || game.gameState === "Suspended";
+  const isDelayed = game.gameState === "Delayed" || game.gameState === "Delayed Start" || game.gameState === "Delay";
+  const isPreGame = !isFinal && !isLive && !isPostponed && !isDelayed;
 
   const awayWins = isFinal && game.awayScore !== null && game.homeScore !== null && game.awayScore > game.homeScore;
   const homeWins = isFinal && game.awayScore !== null && game.homeScore !== null && game.homeScore > game.awayScore;
@@ -591,6 +593,16 @@ function GameCard({ game, bets, forecast }: { game: TodaysGame; bets?: Bet[]; fo
 
         {/* Center: status */}
         <div className="flex flex-col items-center mx-3">
+          {isPostponed && (
+            <span className="rounded bg-orange-900/60 px-2 py-0.5 text-xs font-bold text-orange-300">
+              PPD
+            </span>
+          )}
+          {isDelayed && (
+            <span className="rounded bg-yellow-900/60 px-2 py-0.5 text-xs font-bold text-yellow-300 animate-pulse">
+              Delayed
+            </span>
+          )}
           {isPreGame && (
             <span className="text-xs text-[var(--text-muted)]">
               {formatGameTime(game.gameTime)}
