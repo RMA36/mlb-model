@@ -2237,6 +2237,76 @@ export default function Home() {
                   );
                 })()}
 
+                {/* YRFI vs NRFI Performance */}
+                {(() => {
+                  const allBets: Bet[] = [];
+                  for (const d of dates) {
+                    for (const b of results.daily[d].bets) {
+                      if (b.result === "W" || b.result === "L") allBets.push(b);
+                    }
+                  }
+                  if (allBets.length === 0) return null;
+
+                  const sideData = (["YRFI", "NRFI"] as const).map((side) => {
+                    const bets = allBets.filter((b) => b.bet_side === side);
+                    const wins = bets.filter((b) => b.result === "W").length;
+                    const losses = bets.length - wins;
+                    const pnl = bets.reduce((s, b) => s + (b.pnl ?? 0), 0);
+                    const wagered = bets.reduce((s, b) => s + (b.stake ?? 0), 0);
+                    const roi = wagered > 0 ? (pnl / wagered) * 100 : 0;
+                    const avgEdge = bets.length > 0 ? bets.reduce((s, b) => s + b.bet_edge, 0) / bets.length * 100 : 0;
+                    return { label: side, count: bets.length, wins, losses, pnl, roi, avgEdge };
+                  }).filter((b) => b.count > 0);
+
+                  return (
+                    <div className="mt-4 rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-4">
+                      <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                        YRFI vs NRFI
+                      </h3>
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-xs">
+                          <thead>
+                            <tr className="text-[var(--text-muted)] uppercase tracking-wider border-b border-[var(--card-border)]">
+                              <th className="py-2 text-left font-medium">Side</th>
+                              <th className="py-2 text-right font-medium">Bets</th>
+                              <th className="py-2 text-right font-medium">Record</th>
+                              <th className="py-2 text-right font-medium">Win%</th>
+                              <th className="py-2 text-right font-medium">P&L</th>
+                              <th className="py-2 text-right font-medium">ROI</th>
+                              <th className="py-2 text-right font-medium">Avg Edge</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {sideData.map((b) => (
+                              <tr key={b.label} className="border-t border-[var(--card-border)]/50">
+                                <td className="py-2">
+                                  <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${b.label === "YRFI" ? "bg-red-900/50 text-red-300" : "bg-blue-900/50 text-blue-300"}`}>
+                                    {b.label}
+                                  </span>
+                                </td>
+                                <td className="py-2 text-right font-mono">{b.count}</td>
+                                <td className="py-2 text-right font-mono">{b.wins}W-{b.losses}L</td>
+                                <td className="py-2 text-right font-mono">
+                                  {((b.wins / b.count) * 100).toFixed(0)}%
+                                </td>
+                                <td className={`py-2 text-right font-mono font-bold ${b.pnl >= 0 ? "text-[var(--green)]" : "text-[var(--red)]"}`}>
+                                  {b.pnl >= 0 ? "+" : ""}${b.pnl.toFixed(0)}
+                                </td>
+                                <td className={`py-2 text-right font-mono ${b.roi >= 0 ? "text-[var(--green)]" : "text-[var(--red)]"}`}>
+                                  {b.roi >= 0 ? "+" : ""}{b.roi.toFixed(1)}%
+                                </td>
+                                <td className="py-2 text-right font-mono text-[var(--green)]">
+                                  +{b.avgEdge.toFixed(1)}%
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  );
+                })()}
+
                 {/* Calibration Drift */}
                 <div className="mt-4">
                   <CalibrationDriftChart daily={results.daily} />
