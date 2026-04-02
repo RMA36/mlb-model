@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 852.9,
-  "generated_at": "2026-04-02T21:51:16.271508+00:00",
+  "generated_at": "2026-04-02T23:04:25.790886+00:00",
   "games": [
     {
       "game_pk": 824133,
@@ -70,6 +70,38 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823242,
+      "date": "2026-04-02",
+      "away_team": "NYM",
+      "home_team": "SFG",
+      "away_starter": "David Peterson",
+      "home_starter": "Robbie Ray",
+      "umpire": "Nestor Ceja",
+      "p_top": 0.2719,
+      "p_bot": 0.3452,
+      "p_raw": 0.5232,
+      "p_cal": 0.499,
+      "mkt_y_fair": 0.4543,
+      "mkt_n_fair": 0.5457,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0447,
+      "bet_kelly": 0.0082,
+      "bet_odds": 107.5,
+      "open_odds": 107.5,
+      "bet_dec": 2.075,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 61,
+        "humidity": 50,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -107,7 +139,7 @@
     }
   ],
   "summary": {
-    "total_games": 2,
+    "total_games": 3,
     "total_bets": 1,
     "yrfi_bets": 0,
     "nrfi_bets": 1,
