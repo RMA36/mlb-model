@@ -1704,13 +1704,13 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
       {/* Header */}
-      <div className="mb-2 flex items-center justify-between">
+      <div className="mb-2 inline-flex items-end gap-3">
         <img
           src="/logo.png"
           alt="Betty"
           className="h-28 w-auto"
         />
-        <p className="text-xs font-medium tracking-wide uppercase bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">
+        <p className="text-xs font-medium tracking-wide uppercase bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent pb-1">
           A 5 Big Guys Model
         </p>
       </div>
