@@ -1704,22 +1704,15 @@ export default function Home() {
   return (
     <main className="mx-auto max-w-4xl px-4 py-8">
       {/* Header */}
-      <div className="mb-6 flex items-center gap-3">
+      <div className="mb-2 flex items-center justify-between">
         <img
-          src="/icon-192.png"
+          src="/logo.png"
           alt="Betty"
-          className="h-12 w-12 rounded-lg"
+          className="h-28 w-auto"
         />
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">
-              Betty
-            </span>
-          </h1>
-          <p className="text-xs text-[var(--text-muted)] tracking-wide uppercase">
-            A 5 Big Guys Model
-          </p>
-        </div>
+        <p className="text-xs font-medium tracking-wide uppercase bg-gradient-to-r from-red-400 via-white to-blue-400 bg-clip-text text-transparent">
+          A 5 Big Guys Model
+        </p>
       </div>
 
       {/* Tab Bar */}
