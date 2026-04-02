@@ -70,8 +70,8 @@ MLB_API = "https://statsapi.mlb.com"
 
 # Odds master file from companion tracker repo
 ODDS_MASTER_REPO = "RMA36/mlb-odds-tracker-2026"
-ODDS_MASTER_PATH = "data/2026/odds_master_2026.parquet"
-ODDS_CACHE = ROOT / ".cache" / "odds_master_2026.parquet"
+ODDS_MASTER_PATH = "data/2026/yrfi_master_2026.parquet"
+ODDS_CACHE = ROOT / ".cache" / "yrfi_master_2026.parquet"
 
 # ── Team mappings ──────────────────────────────────────────────────────
 
@@ -168,15 +168,14 @@ def download_odds_master():
 
 
 def load_daily_odds(date_str):
-    """Load YRFI/NRFI odds for a specific date from the odds master file."""
+    """Load YRFI/NRFI odds for a specific date from the YRFI master file."""
     odds_path = download_odds_master()
     if odds_path is None or not odds_path.exists():
         return pd.DataFrame()
 
-    df = pd.read_parquet(odds_path)
-    fi = df[df["market"] == "totals_1st_1_innings"].copy()
+    fi = pd.read_parquet(odds_path)
     if fi.empty:
-        logger.warning("No totals_1st_1_innings market in odds master")
+        logger.warning("No data in YRFI master")
         return pd.DataFrame()
 
     # Use commence_time (UTC) → ET for true game date
@@ -186,7 +185,7 @@ def load_daily_odds(date_str):
     fi = fi[fi["game_day"] == date_str].copy()
 
     if fi.empty:
-        all_days = df[df["market"] == "totals_1st_1_innings"].copy()
+        all_days = pd.read_parquet(odds_path)
         all_days["commence_utc"] = pd.to_datetime(all_days["commence_time"], utc=True)
         all_days["commence_et"] = all_days["commence_utc"].dt.tz_convert("US/Eastern")
         all_days["game_day"] = all_days["commence_et"].dt.strftime("%Y-%m-%d")

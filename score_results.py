@@ -32,8 +32,8 @@ PREDICTIONS_DIR = ROOT / "predictions"
 RESULTS_FILE = ROOT / "results" / "results.json"
 
 ODDS_MASTER_REPO = "RMA36/mlb-odds-tracker-2026"
-ODDS_MASTER_PATH = "data/2026/odds_master_2026.parquet"
-ODDS_CACHE = ROOT / ".cache" / "odds_master_2026.parquet"
+ODDS_MASTER_PATH = "data/2026/yrfi_master_2026.parquet"
+ODDS_CACHE = ROOT / ".cache" / "yrfi_master_2026.parquet"
 
 FULL_NAME_TO_ABBR = {
     "Arizona Diamondbacks": "ARI", "Atlanta Braves": "ATL",
@@ -181,8 +181,7 @@ def load_closing_odds(date_str: str) -> dict:
     if odds_path is None or not odds_path.exists():
         return {}
 
-    df = pd.read_parquet(odds_path)
-    fi = df[df["market"] == "totals_1st_1_innings"].copy()
+    fi = pd.read_parquet(odds_path)
     if fi.empty:
         return {}
 
