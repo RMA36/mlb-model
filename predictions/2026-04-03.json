@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 842.04,
-  "generated_at": "2026-04-03T21:05:29.102234+00:00",
+  "generated_at": "2026-04-03T22:20:49.776323+00:00",
   "games": [
     {
       "game_pk": 822758,
@@ -321,6 +321,70 @@
         "wind_mph": 16,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824056,
+      "date": "2026-04-03",
+      "away_team": "SEA",
+      "home_team": "LAA",
+      "away_starter": "Bryan Woo",
+      "home_starter": "Reid Detmers",
+      "umpire": "Ramon De Jesus",
+      "p_top": 0.2899,
+      "p_bot": 0.3503,
+      "p_raw": 0.5387,
+      "p_cal": 0.5178,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0586,
+      "bet_kelly": 0.0146,
+      "bet_odds": 105.0,
+      "open_odds": 100.0,
+      "bet_dec": 2.05,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 12.33,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 83,
+        "humidity": 6,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 825103,
+      "date": "2026-04-03",
+      "away_team": "ATL",
+      "home_team": "ARI",
+      "away_starter": "Grant Holmes",
+      "home_starter": "Eduardo Rodriguez",
+      "umpire": "Mike Estabrook",
+      "p_top": 0.2425,
+      "p_bot": 0.27,
+      "p_raw": 0.447,
+      "p_cal": 0.4942,
+      "mkt_y_fair": 0.5181,
+      "mkt_n_fair": 0.4819,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0239,
+      "bet_kelly": 0.0,
+      "bet_odds": -105.0,
+      "open_odds": -104.5,
+      "bet_dec": 1.952,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 85,
+        "humidity": 7,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -387,13 +451,45 @@
         "wind_mph": 14,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824056,
+      "date": "2026-04-03",
+      "away_team": "SEA",
+      "home_team": "LAA",
+      "away_starter": "Bryan Woo",
+      "home_starter": "Reid Detmers",
+      "umpire": "Ramon De Jesus",
+      "p_top": 0.2899,
+      "p_bot": 0.3503,
+      "p_raw": 0.5387,
+      "p_cal": 0.5178,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0586,
+      "bet_kelly": 0.0146,
+      "bet_odds": 105.0,
+      "open_odds": 100.0,
+      "bet_dec": 2.05,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 12.33,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 83,
+        "humidity": 6,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 10,
-    "total_bets": 2,
-    "yrfi_bets": 0,
+    "total_games": 12,
+    "total_bets": 3,
+    "yrfi_bets": 1,
     "nrfi_bets": 2,
-    "total_exposure": 59.7
+    "total_exposure": 72.03
   }
 }
