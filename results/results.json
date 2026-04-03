@@ -1,6 +1,6 @@
 {
   "model": "v4-lgb-two-model",
-  "updated_at": "2026-04-02T16:07:13.484323+00:00",
+  "updated_at": "2026-04-03T08:35:57.249104+00:00",
   "bankroll_start": 1000,
   "daily": {
     "2026-03-26": {
@@ -1424,16 +1424,64 @@
       "pnl": -33.05,
       "wagered": 118.53,
       "roi_pct": -27.9
+    },
+    "2026-04-02": {
+      "bets": [
+        {
+          "game_pk": 825105,
+          "date": "2026-04-02",
+          "away_team": "ATL",
+          "home_team": "ARI",
+          "away_starter": "Reynaldo L\u00f3pez",
+          "home_starter": "Ryne Nelson",
+          "umpire": "Malachi Moore",
+          "p_top": 0.2554,
+          "p_bot": 0.2062,
+          "p_raw": 0.4089,
+          "p_cal": 0.4519,
+          "mkt_y_fair": 0.5101,
+          "mkt_n_fair": 0.4899,
+          "agreement": "NRFI",
+          "bet_side": "NRFI",
+          "bet_edge": 0.0582,
+          "bet_kelly": 0.0127,
+          "bet_odds": -110.0,
+          "open_odds": -110.0,
+          "bet_dec": 1.909,
+          "passes_filter": true,
+          "skip_reason": "",
+          "stake": 10.86,
+          "n_books": 5,
+          "forecast_weather": {
+            "temp": 82,
+            "humidity": 15,
+            "wind_mph": 8,
+            "precipitation_mm": 0
+          },
+          "result": "L",
+          "away_1st_runs": 1,
+          "home_1st_runs": 0,
+          "total_1st_runs": 1,
+          "pnl": -10.86,
+          "dec_odds": 1.909
+        }
+      ],
+      "all_scored": true,
+      "wins": 0,
+      "losses": 1,
+      "pnl": -10.86,
+      "wagered": 10.86,
+      "roi_pct": -100.0
     }
   },
   "cumulative": {
-    "total_bets": 36,
+    "total_bets": 37,
     "wins": 16,
-    "losses": 20,
-    "win_rate_pct": 44.4,
-    "profit": -147.1,
-    "wagered": 1090.53,
-    "roi_pct": -13.5,
+    "losses": 21,
+    "win_rate_pct": 43.2,
+    "profit": -157.96,
+    "wagered": 1101.39,
+    "roi_pct": -14.3,
     "peak_profit": 4.48,
     "max_drawdown": 210.98
   }
