@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 842.04,
-  "generated_at": "2026-04-03T15:01:24.168058+00:00",
+  "generated_at": "2026-04-03T15:51:48.462793+00:00",
   "games": [
     {
       "game_pk": 822758,
@@ -161,14 +161,111 @@
       "stake": 0.0,
       "n_books": 4,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 822919,
+      "date": "2026-04-03",
+      "away_team": "CIN",
+      "home_team": "TEX",
+      "away_starter": "Brady Singer",
+      "home_starter": "MacKenzie Gore",
+      "umpire": "Clint Vondrak",
+      "p_top": 0.0834,
+      "p_bot": 0.2658,
+      "p_raw": 0.3271,
+      "p_cal": 0.3443,
+      "mkt_y_fair": 0.4761,
+      "mkt_n_fair": 0.5239,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1318,
+      "bet_kelly": 0.0563,
+      "bet_odds": -125.0,
+      "open_odds": -125.0,
+      "bet_dec": 1.8,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 42.1,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 83,
+        "humidity": 60,
+        "wind_mph": 17,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823732,
+      "date": "2026-04-03",
+      "away_team": "TBR",
+      "home_team": "MIN",
+      "away_starter": "Joe Boyle",
+      "home_starter": "Bailey Ober",
+      "umpire": "Ryan Blakney",
+      "p_top": 0.4273,
+      "p_bot": 0.2687,
+      "p_raw": 0.5812,
+      "p_cal": 0.5671,
+      "mkt_y_fair": 0.4702,
+      "mkt_n_fair": 0.5298,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0969,
+      "bet_kelly": 0.0336,
+      "bet_odds": 100.0,
+      "open_odds": -2.5,
+      "bet_dec": 2.0,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 37,
+        "humidity": 85,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
-  "bets": [],
+  "bets": [
+    {
+      "game_pk": 822919,
+      "date": "2026-04-03",
+      "away_team": "CIN",
+      "home_team": "TEX",
+      "away_starter": "Brady Singer",
+      "home_starter": "MacKenzie Gore",
+      "umpire": "Clint Vondrak",
+      "p_top": 0.0834,
+      "p_bot": 0.2658,
+      "p_raw": 0.3271,
+      "p_cal": 0.3443,
+      "mkt_y_fair": 0.4761,
+      "mkt_n_fair": 0.5239,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1318,
+      "bet_kelly": 0.0563,
+      "bet_odds": -125.0,
+      "open_odds": -125.0,
+      "bet_dec": 1.8,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 42.1,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 83,
+        "humidity": 60,
+        "wind_mph": 17,
+        "precipitation_mm": 0
+      }
+    }
+  ],
   "summary": {
-    "total_games": 5,
-    "total_bets": 0,
+    "total_games": 7,
+    "total_bets": 1,
     "yrfi_bets": 0,
-    "nrfi_bets": 0,
-    "total_exposure": 0
+    "nrfi_bets": 1,
+    "total_exposure": 42.1
   }
 }
