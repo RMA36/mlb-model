@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 842.04,
-  "generated_at": "2026-04-03T16:36:47.362877+00:00",
+  "generated_at": "2026-04-03T17:18:27.604645+00:00",
   "games": [
     {
       "game_pk": 822758,
@@ -257,6 +257,38 @@
         "wind_mph": 17,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824458,
+      "date": "2026-04-03",
+      "away_team": "CHC",
+      "home_team": "CLE",
+      "away_starter": "Cade Horton",
+      "home_starter": "Joey Cantillo",
+      "umpire": "Dan Merzel",
+      "p_top": 0.2508,
+      "p_bot": 0.1954,
+      "p_raw": 0.3971,
+      "p_cal": 0.3875,
+      "mkt_y_fair": 0.4562,
+      "mkt_n_fair": 0.5438,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0688,
+      "bet_kelly": 0.0209,
+      "bet_odds": -136.5,
+      "open_odds": -140.0,
+      "bet_dec": 1.733,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 17.6,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 67,
+        "humidity": 85,
+        "wind_mph": 14,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -291,13 +323,45 @@
         "wind_mph": 17,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824458,
+      "date": "2026-04-03",
+      "away_team": "CHC",
+      "home_team": "CLE",
+      "away_starter": "Cade Horton",
+      "home_starter": "Joey Cantillo",
+      "umpire": "Dan Merzel",
+      "p_top": 0.2508,
+      "p_bot": 0.1954,
+      "p_raw": 0.3971,
+      "p_cal": 0.3875,
+      "mkt_y_fair": 0.4562,
+      "mkt_n_fair": 0.5438,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0688,
+      "bet_kelly": 0.0209,
+      "bet_odds": -136.5,
+      "open_odds": -140.0,
+      "bet_dec": 1.733,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 17.6,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 67,
+        "humidity": 85,
+        "wind_mph": 14,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 8,
-    "total_bets": 1,
+    "total_games": 9,
+    "total_bets": 2,
     "yrfi_bets": 0,
-    "nrfi_bets": 1,
-    "total_exposure": 42.1
+    "nrfi_bets": 2,
+    "total_exposure": 59.7
   }
 }
