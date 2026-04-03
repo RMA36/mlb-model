@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 842.04,
-  "generated_at": "2026-04-03T17:18:27.604645+00:00",
+  "generated_at": "2026-04-03T21:05:29.102234+00:00",
   "games": [
     {
       "game_pk": 822758,
@@ -289,6 +289,38 @@
         "wind_mph": 14,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824134,
+      "date": "2026-04-03",
+      "away_team": "MIL",
+      "home_team": "KCR",
+      "away_starter": "Chad Patrick",
+      "home_starter": "Luinder Avila",
+      "umpire": "Ryan Wills",
+      "p_top": 0.1822,
+      "p_bot": 0.3976,
+      "p_raw": 0.5073,
+      "p_cal": 0.5635,
+      "mkt_y_fair": 0.5331,
+      "mkt_n_fair": 0.4669,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0304,
+      "bet_kelly": 0.0,
+      "bet_odds": -133.0,
+      "open_odds": -130.0,
+      "bet_dec": 1.752,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 73,
+        "humidity": 79,
+        "wind_mph": 16,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -358,7 +390,7 @@
     }
   ],
   "summary": {
-    "total_games": 9,
+    "total_games": 10,
     "total_bets": 2,
     "yrfi_bets": 0,
     "nrfi_bets": 2,
