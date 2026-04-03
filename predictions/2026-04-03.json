@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 842.04,
-  "generated_at": "2026-04-03T15:51:48.462793+00:00",
+  "generated_at": "2026-04-03T16:36:47.362877+00:00",
   "games": [
     {
       "game_pk": 822758,
@@ -225,6 +225,38 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823406,
+      "date": "2026-04-03",
+      "away_team": "BAL",
+      "home_team": "PIT",
+      "away_starter": "Kyle Bradish",
+      "home_starter": "Mitch Keller",
+      "umpire": "Chad Fairchild",
+      "p_top": 0.3386,
+      "p_bot": 0.1678,
+      "p_raw": 0.4496,
+      "p_cal": 0.4683,
+      "mkt_y_fair": 0.4899,
+      "mkt_n_fair": 0.5101,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0216,
+      "bet_kelly": 0.0,
+      "bet_odds": -120.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 80,
+        "humidity": 51,
+        "wind_mph": 17,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -262,7 +294,7 @@
     }
   ],
   "summary": {
-    "total_games": 7,
+    "total_games": 8,
     "total_bets": 1,
     "yrfi_bets": 0,
     "nrfi_bets": 1,
