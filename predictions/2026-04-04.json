@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 876.28,
-  "generated_at": "2026-04-04T17:26:19.812607+00:00",
+  "generated_at": "2026-04-04T19:00:05.952716+00:00",
   "games": [
     {
       "game_pk": 824295,
@@ -188,6 +188,33 @@
       "stake": 43.81,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823404,
+      "date": "2026-04-04",
+      "away_team": "BAL",
+      "home_team": "PIT",
+      "away_starter": "Shane Baz",
+      "home_starter": "Carmen Mlodzinski",
+      "umpire": "Dan Iassogna",
+      "p_top": 0.2346,
+      "p_bot": 0.4895,
+      "p_raw": 0.6093,
+      "p_cal": 0.613,
+      "mkt_y_fair": 0.4908,
+      "mkt_n_fair": 0.5092,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1221,
+      "bet_kelly": 0.0468,
+      "bet_odds": -110.0,
+      "open_odds": -111.0,
+      "bet_dec": 1.909,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -247,7 +274,7 @@
     }
   ],
   "summary": {
-    "total_games": 6,
+    "total_games": 7,
     "total_bets": 2,
     "yrfi_bets": 1,
     "nrfi_bets": 1,
