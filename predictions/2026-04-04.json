@@ -1,0 +1,51 @@
+{
+  "date": "2026-04-04",
+  "model": "v4-lgb-two-model",
+  "calibration_k": 0.9,
+  "model_mean": 0.4735420506440864,
+  "bankroll": 1000.0,
+  "bankroll_current": 876.28,
+  "generated_at": "2026-04-04T14:49:58.933473+00:00",
+  "games": [
+    {
+      "game_pk": 824295,
+      "date": "2026-04-04",
+      "away_team": "STL",
+      "home_team": "DET",
+      "away_starter": "Dustin May",
+      "home_starter": "Jack Flaherty",
+      "umpire": "Nate Tomlinson",
+      "p_top": 0.41,
+      "p_bot": 0.2143,
+      "p_raw": 0.5365,
+      "p_cal": 0.5268,
+      "mkt_y_fair": 0.4702,
+      "mkt_n_fair": 0.5298,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0566,
+      "bet_kelly": 0.0134,
+      "bet_odds": 100.0,
+      "open_odds": 100.0,
+      "bet_dec": 2.0,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 2,
+      "forecast_weather": {
+        "temp": 60,
+        "humidity": 93,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
+    }
+  ],
+  "bets": [],
+  "summary": {
+    "total_games": 1,
+    "total_bets": 0,
+    "yrfi_bets": 0,
+    "nrfi_bets": 0,
+    "total_exposure": 0
+  }
+}
