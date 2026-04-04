@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 876.28,
-  "generated_at": "2026-04-04T22:15:33.479148+00:00",
+  "generated_at": "2026-04-04T22:53:13.662546+00:00",
   "games": [
     {
       "game_pk": 824295,
@@ -407,6 +407,70 @@
         "wind_mph": 16,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823239,
+      "date": "2026-04-04",
+      "away_team": "NYM",
+      "home_team": "SFG",
+      "away_starter": "Clay Holmes",
+      "home_starter": "Landen Roupp",
+      "umpire": "David Rackley",
+      "p_top": 0.4394,
+      "p_bot": 0.2005,
+      "p_raw": 0.5519,
+      "p_cal": 0.5334,
+      "mkt_y_fair": 0.4629,
+      "mkt_n_fair": 0.5371,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0705,
+      "bet_kelly": 0.019,
+      "bet_odds": 102.0,
+      "open_odds": 102.0,
+      "bet_dec": 2.02,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 79,
+        "humidity": 25,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 824054,
+      "date": "2026-04-04",
+      "away_team": "SEA",
+      "home_team": "LAA",
+      "away_starter": "Emerson Hancock",
+      "home_starter": "Jack Kochanowicz",
+      "umpire": "Paul Clemons",
+      "p_top": 0.3847,
+      "p_bot": 0.2501,
+      "p_raw": 0.5386,
+      "p_cal": 0.5994,
+      "mkt_y_fair": 0.5408,
+      "mkt_n_fair": 0.4592,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0586,
+      "bet_kelly": 0.0146,
+      "bet_odds": -135.0,
+      "open_odds": -135.0,
+      "bet_dec": 1.741,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 83,
+        "humidity": 14,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -498,7 +562,7 @@
     }
   ],
   "summary": {
-    "total_games": 13,
+    "total_games": 15,
     "total_bets": 3,
     "yrfi_bets": 2,
     "nrfi_bets": 1,
