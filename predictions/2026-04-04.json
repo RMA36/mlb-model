@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 876.28,
-  "generated_at": "2026-04-04T14:49:58.933473+00:00",
+  "generated_at": "2026-04-04T15:23:17.197956+00:00",
   "games": [
     {
       "game_pk": 824295,
@@ -38,14 +38,69 @@
         "wind_mph": 10,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824622,
+      "date": "2026-04-04",
+      "away_team": "TOR",
+      "home_team": "CHW",
+      "away_starter": "Mason Fluharty",
+      "home_starter": "Grant Taylor",
+      "umpire": "Junior Valentine",
+      "p_top": 0.2274,
+      "p_bot": 0.1916,
+      "p_raw": 0.3754,
+      "p_cal": 0.3811,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0883,
+      "bet_kelly": 0.0309,
+      "bet_odds": -130.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 27.05,
+      "n_books": 1,
+      "forecast_weather": null
     }
   ],
-  "bets": [],
+  "bets": [
+    {
+      "game_pk": 824622,
+      "date": "2026-04-04",
+      "away_team": "TOR",
+      "home_team": "CHW",
+      "away_starter": "Mason Fluharty",
+      "home_starter": "Grant Taylor",
+      "umpire": "Junior Valentine",
+      "p_top": 0.2274,
+      "p_bot": 0.1916,
+      "p_raw": 0.3754,
+      "p_cal": 0.3811,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0883,
+      "bet_kelly": 0.0309,
+      "bet_odds": -130.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 27.05,
+      "n_books": 1,
+      "forecast_weather": null
+    }
+  ],
   "summary": {
-    "total_games": 1,
-    "total_bets": 0,
+    "total_games": 2,
+    "total_bets": 1,
     "yrfi_bets": 0,
-    "nrfi_bets": 0,
-    "total_exposure": 0
+    "nrfi_bets": 1,
+    "total_exposure": 27.05
   }
 }
