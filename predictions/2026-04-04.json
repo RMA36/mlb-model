@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 876.28,
-  "generated_at": "2026-04-04T21:45:09.713919+00:00",
+  "generated_at": "2026-04-04T22:15:33.479148+00:00",
   "games": [
     {
       "game_pk": 824295,
@@ -375,6 +375,38 @@
         "wind_mph": 9,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824134,
+      "date": "2026-04-04",
+      "away_team": "MIL",
+      "home_team": "KCR",
+      "away_starter": "Brandon Sproat",
+      "home_starter": "Seth Lugo",
+      "umpire": "Lance Barksdale",
+      "p_top": 0.2932,
+      "p_bot": 0.3277,
+      "p_raw": 0.5248,
+      "p_cal": 0.5421,
+      "mkt_y_fair": 0.4959,
+      "mkt_n_fair": 0.5041,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0462,
+      "bet_kelly": 0.0067,
+      "bet_odds": -112.5,
+      "open_odds": -108.0,
+      "bet_dec": 1.889,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 52,
+        "humidity": 45,
+        "wind_mph": 16,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -466,7 +498,7 @@
     }
   ],
   "summary": {
-    "total_games": 12,
+    "total_games": 13,
     "total_bets": 3,
     "yrfi_bets": 2,
     "nrfi_bets": 1,
