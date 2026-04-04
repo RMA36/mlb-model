@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 876.28,
-  "generated_at": "2026-04-04T19:42:37.191261+00:00",
+  "generated_at": "2026-04-04T20:16:55.498466+00:00",
   "games": [
     {
       "game_pk": 824295,
@@ -311,6 +311,38 @@
         "wind_mph": 1,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823569,
+      "date": "2026-04-04",
+      "away_team": "MIA",
+      "home_team": "NYY",
+      "away_starter": "Max Meyer",
+      "home_starter": "Ryan Weathers",
+      "umpire": "Ron Kulpa",
+      "p_top": 0.1998,
+      "p_bot": 0.335,
+      "p_raw": 0.4679,
+      "p_cal": 0.466,
+      "mkt_y_fair": 0.4711,
+      "mkt_n_fair": 0.5289,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0051,
+      "bet_kelly": 0.0,
+      "bet_odds": -128.0,
+      "open_odds": -130.0,
+      "bet_dec": 1.781,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 52,
+        "humidity": 54,
+        "wind_mph": 13,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -370,7 +402,7 @@
     }
   ],
   "summary": {
-    "total_games": 10,
+    "total_games": 11,
     "total_bets": 2,
     "yrfi_bets": 1,
     "nrfi_bets": 1,
