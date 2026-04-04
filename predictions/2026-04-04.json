@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 876.28,
-  "generated_at": "2026-04-04T20:16:55.498466+00:00",
+  "generated_at": "2026-04-04T21:45:09.713919+00:00",
   "games": [
     {
       "game_pk": 824295,
@@ -343,6 +343,38 @@
         "wind_mph": 13,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824378,
+      "date": "2026-04-04",
+      "away_team": "PHI",
+      "home_team": "COL",
+      "away_starter": "Jes\u00fas Luzardo",
+      "home_starter": "Brennan Bernardino",
+      "umpire": "Alex Tosi",
+      "p_top": 0.279,
+      "p_bot": 0.4105,
+      "p_raw": 0.575,
+      "p_cal": 0.626,
+      "mkt_y_fair": 0.5347,
+      "mkt_n_fair": 0.4653,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0913,
+      "bet_kelly": 0.0331,
+      "bet_odds": -132.0,
+      "open_odds": -135.0,
+      "bet_dec": 1.758,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 29.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 60,
+        "humidity": 18,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -399,13 +431,45 @@
       "stake": 43.81,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 824378,
+      "date": "2026-04-04",
+      "away_team": "PHI",
+      "home_team": "COL",
+      "away_starter": "Jes\u00fas Luzardo",
+      "home_starter": "Brennan Bernardino",
+      "umpire": "Alex Tosi",
+      "p_top": 0.279,
+      "p_bot": 0.4105,
+      "p_raw": 0.575,
+      "p_cal": 0.626,
+      "mkt_y_fair": 0.5347,
+      "mkt_n_fair": 0.4653,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0913,
+      "bet_kelly": 0.0331,
+      "bet_odds": -132.0,
+      "open_odds": -135.0,
+      "bet_dec": 1.758,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 29.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 60,
+        "humidity": 18,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 11,
-    "total_bets": 2,
-    "yrfi_bets": 1,
+    "total_games": 12,
+    "total_bets": 3,
+    "yrfi_bets": 2,
     "nrfi_bets": 1,
-    "total_exposure": 70.86
+    "total_exposure": 99.86
   }
 }
