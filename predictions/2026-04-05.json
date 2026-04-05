@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 903.65,
-  "generated_at": "2026-04-05T17:28:08.062168+00:00",
+  "generated_at": "2026-04-05T18:01:28.378604+00:00",
   "games": [
     {
       "game_pk": 822756,
@@ -380,6 +380,38 @@
       "stake": 0.0,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 825102,
+      "date": "2026-04-05",
+      "away_team": "ATL",
+      "home_team": "ARI",
+      "away_starter": "Mart\u00edn P\u00e9rez",
+      "home_starter": "Brandon Pfaadt",
+      "umpire": "Lance Barrett",
+      "p_top": 0.3554,
+      "p_bot": 0.428,
+      "p_raw": 0.6313,
+      "p_cal": 0.6584,
+      "mkt_y_fair": 0.5164,
+      "mkt_n_fair": 0.4836,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.142,
+      "bet_kelly": 0.0604,
+      "bet_odds": -122.0,
+      "open_odds": -122.0,
+      "bet_dec": 1.82,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 45.18,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 93,
+        "humidity": 11,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -505,13 +537,45 @@
         "wind_mph": 5,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 825102,
+      "date": "2026-04-05",
+      "away_team": "ATL",
+      "home_team": "ARI",
+      "away_starter": "Mart\u00edn P\u00e9rez",
+      "home_starter": "Brandon Pfaadt",
+      "umpire": "Lance Barrett",
+      "p_top": 0.3554,
+      "p_bot": 0.428,
+      "p_raw": 0.6313,
+      "p_cal": 0.6584,
+      "mkt_y_fair": 0.5164,
+      "mkt_n_fair": 0.4836,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.142,
+      "bet_kelly": 0.0604,
+      "bet_odds": -122.0,
+      "open_odds": -122.0,
+      "bet_dec": 1.82,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 45.18,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 93,
+        "humidity": 11,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 12,
-    "total_bets": 4,
-    "yrfi_bets": 3,
+    "total_games": 13,
+    "total_bets": 5,
+    "yrfi_bets": 4,
     "nrfi_bets": 1,
-    "total_exposure": 113.45
+    "total_exposure": 158.63
   }
 }
