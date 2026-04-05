@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 903.65,
-  "generated_at": "2026-04-05T19:02:16.266281+00:00",
+  "generated_at": "2026-04-05T19:46:55.459763+00:00",
   "games": [
     {
       "game_pk": 822756,
@@ -444,6 +444,38 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824296,
+      "date": "2026-04-05",
+      "away_team": "STL",
+      "home_team": "DET",
+      "away_starter": "Kyle Leahy",
+      "home_starter": "Keider Montero",
+      "umpire": "Mark Wegner",
+      "p_top": 0.3027,
+      "p_bot": 0.2099,
+      "p_raw": 0.4491,
+      "p_cal": 0.4588,
+      "mkt_y_fair": 0.4808,
+      "mkt_n_fair": 0.5192,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.022,
+      "bet_kelly": 0.0,
+      "bet_odds": -125.0,
+      "open_odds": -125.0,
+      "bet_dec": 1.8,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 40,
+        "humidity": 61,
+        "wind_mph": 14,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -636,7 +668,7 @@
     }
   ],
   "summary": {
-    "total_games": 14,
+    "total_games": 15,
     "total_bets": 6,
     "yrfi_bets": 5,
     "nrfi_bets": 1,
