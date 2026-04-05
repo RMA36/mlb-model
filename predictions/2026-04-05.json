@@ -5,7 +5,7 @@
   "model_mean": 0.4735420506440864,
   "bankroll": 1000.0,
   "bankroll_current": 903.65,
-  "generated_at": "2026-04-05T15:29:37.896643+00:00",
+  "generated_at": "2026-04-05T16:51:59.757036+00:00",
   "games": [
     {
       "game_pk": 822756,
@@ -257,6 +257,102 @@
         "wind_mph": 14,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824131,
+      "date": "2026-04-05",
+      "away_team": "MIL",
+      "home_team": "KCR",
+      "away_starter": "Kyle Harrison",
+      "home_starter": "Kris Bubic",
+      "umpire": "Will Little",
+      "p_top": 0.2271,
+      "p_bot": 0.3693,
+      "p_raw": 0.5126,
+      "p_cal": 0.4913,
+      "mkt_y_fair": 0.4562,
+      "mkt_n_fair": 0.5438,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0351,
+      "bet_kelly": 0.0017,
+      "bet_odds": 105.0,
+      "open_odds": 105.0,
+      "bet_dec": 2.05,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 56,
+        "humidity": 39,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 824379,
+      "date": "2026-04-05",
+      "away_team": "PHI",
+      "home_team": "COL",
+      "away_starter": "Taijuan Walker",
+      "home_starter": "Tomoyuki Sugano",
+      "umpire": "Andy Fletcher",
+      "p_top": 0.3849,
+      "p_bot": 0.3144,
+      "p_raw": 0.5783,
+      "p_cal": 0.667,
+      "mkt_y_fair": 0.5728,
+      "mkt_n_fair": 0.4272,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0943,
+      "bet_kelly": 0.0369,
+      "bet_odds": -156.0,
+      "open_odds": -156.0,
+      "bet_dec": 1.641,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 33.34,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 62,
+        "humidity": 21,
+        "wind_mph": 5,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823238,
+      "date": "2026-04-05",
+      "away_team": "NYM",
+      "home_team": "SFG",
+      "away_starter": "Kodai Senga",
+      "home_starter": "Logan Webb",
+      "umpire": "Edwin Jimenez",
+      "p_top": 0.3561,
+      "p_bot": 0.1992,
+      "p_raw": 0.4844,
+      "p_cal": 0.4498,
+      "mkt_y_fair": 0.4401,
+      "mkt_n_fair": 0.5599,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0098,
+      "bet_kelly": 0.0,
+      "bet_odds": 115.0,
+      "open_odds": 110.0,
+      "bet_dec": 2.15,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 78,
+        "humidity": 31,
+        "wind_mph": 4,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -350,13 +446,45 @@
       "stake": 45.18,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 824379,
+      "date": "2026-04-05",
+      "away_team": "PHI",
+      "home_team": "COL",
+      "away_starter": "Taijuan Walker",
+      "home_starter": "Tomoyuki Sugano",
+      "umpire": "Andy Fletcher",
+      "p_top": 0.3849,
+      "p_bot": 0.3144,
+      "p_raw": 0.5783,
+      "p_cal": 0.667,
+      "mkt_y_fair": 0.5728,
+      "mkt_n_fair": 0.4272,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0943,
+      "bet_kelly": 0.0369,
+      "bet_odds": -156.0,
+      "open_odds": -156.0,
+      "bet_dec": 1.641,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 33.34,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 62,
+        "humidity": 21,
+        "wind_mph": 5,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 8,
-    "total_bets": 3,
-    "yrfi_bets": 2,
+    "total_games": 11,
+    "total_bets": 4,
+    "yrfi_bets": 3,
     "nrfi_bets": 1,
-    "total_exposure": 80.11
+    "total_exposure": 113.45
   }
 }
