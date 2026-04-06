@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1033.78,
-  "generated_at": "2026-04-06T19:17:09.576420+00:00",
+  "generated_at": "2026-04-06T20:02:42.879244+00:00",
   "games": [
     {
       "game_pk": 823002,
@@ -129,6 +129,70 @@
         "wind_mph": 10,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824783,
+      "date": "2026-04-06",
+      "away_team": "MIL",
+      "home_team": "BOS",
+      "away_starter": "Brandon Woodruff",
+      "home_starter": "Brayan Bello",
+      "umpire": "Chris Conroy",
+      "p_top": 0.5284,
+      "p_bot": 0.3153,
+      "p_raw": 0.6771,
+      "p_cal": 0.6466,
+      "mkt_y_fair": 0.4669,
+      "mkt_n_fair": 0.5331,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1797,
+      "bet_kelly": 0.0733,
+      "bet_odds": 100.0,
+      "open_odds": 100.0,
+      "bet_dec": 2.0,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.69,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 47,
+        "humidity": 32,
+        "wind_mph": 15,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 822832,
+      "date": "2026-04-06",
+      "away_team": "LAD",
+      "home_team": "TOR",
+      "away_starter": "Justin Wrobleski",
+      "home_starter": "Max Scherzer",
+      "umpire": "Shane Livensparger",
+      "p_top": 0.4365,
+      "p_bot": 0.3361,
+      "p_raw": 0.6259,
+      "p_cal": 0.6459,
+      "mkt_y_fair": 0.5123,
+      "mkt_n_fair": 0.4877,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1336,
+      "bet_kelly": 0.0553,
+      "bet_odds": -120.0,
+      "open_odds": -130.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.69,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 40,
+        "humidity": 70,
+        "wind_mph": 5,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -190,13 +254,77 @@
       "stake": 51.69,
       "n_books": 5,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 824783,
+      "date": "2026-04-06",
+      "away_team": "MIL",
+      "home_team": "BOS",
+      "away_starter": "Brandon Woodruff",
+      "home_starter": "Brayan Bello",
+      "umpire": "Chris Conroy",
+      "p_top": 0.5284,
+      "p_bot": 0.3153,
+      "p_raw": 0.6771,
+      "p_cal": 0.6466,
+      "mkt_y_fair": 0.4669,
+      "mkt_n_fair": 0.5331,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1797,
+      "bet_kelly": 0.0733,
+      "bet_odds": 100.0,
+      "open_odds": 100.0,
+      "bet_dec": 2.0,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.69,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 47,
+        "humidity": 32,
+        "wind_mph": 15,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 822832,
+      "date": "2026-04-06",
+      "away_team": "LAD",
+      "home_team": "TOR",
+      "away_starter": "Justin Wrobleski",
+      "home_starter": "Max Scherzer",
+      "umpire": "Shane Livensparger",
+      "p_top": 0.4365,
+      "p_bot": 0.3361,
+      "p_raw": 0.6259,
+      "p_cal": 0.6459,
+      "mkt_y_fair": 0.5123,
+      "mkt_n_fair": 0.4877,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1336,
+      "bet_kelly": 0.0553,
+      "bet_odds": -120.0,
+      "open_odds": -130.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.69,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 40,
+        "humidity": 70,
+        "wind_mph": 5,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 4,
-    "total_bets": 2,
-    "yrfi_bets": 2,
+    "total_games": 6,
+    "total_bets": 4,
+    "yrfi_bets": 4,
     "nrfi_bets": 0,
-    "total_exposure": 103.38
+    "total_exposure": 206.76
   }
 }
