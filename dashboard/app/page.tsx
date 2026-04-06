@@ -432,7 +432,7 @@ function StatCard({
   );
 }
 
-function BetCard({ bet }: { bet: Bet }) {
+function BetCard({ bet, isLive }: { bet: Bet; isLive?: boolean }) {
   const isYrfi = bet.bet_side === "YRFI";
   const modelPct = isYrfi ? bet.p_cal * 100 : (1 - bet.p_cal) * 100;
   const mktPct = isYrfi ? bet.mkt_y_fair * 100 : bet.mkt_n_fair * 100;
@@ -492,6 +492,10 @@ function BetCard({ bet }: { bet: Bet }) {
                 </div>
               )}
             </div>
+          ) : isLive ? (
+            <span className="rounded bg-yellow-900/40 px-2 py-0.5 text-xs text-yellow-300 animate-pulse">
+              LIVE
+            </span>
           ) : (
             <span className="rounded bg-yellow-900/40 px-2 py-0.5 text-xs text-yellow-300">
               PENDING
@@ -1663,7 +1667,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (activeTab !== "games" && activeTab !== "breakeven") return;
+    if (activeTab !== "games" && activeTab !== "breakeven" && activeTab !== "predictions") return;
     loadGames();
 
     // Auto-refresh every 5 minutes
@@ -1671,19 +1675,37 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [activeTab, loadGames]);
 
+  // Build a map of live first-inning scores from the Games tab data
+  const liveFirstInning = new Map(
+    games.map((g) => [g.gamePk, { away: g.firstInningAway, home: g.firstInningHome, inning: g.currentInning, status: g.status }])
+  );
+
   // Merge results into predictions if available
   const betsWithResults: Bet[] = (() => {
     if (!predictions) return [];
     const bets = predictions.bets || [];
-    if (!results?.daily?.[selectedDate]) return bets;
-
-    const scored = results.daily[selectedDate].bets;
-    const scoredMap = new Map(scored.map((b) => [b.game_pk, b]));
+    const scored = results?.daily?.[selectedDate]?.bets;
+    const scoredMap = scored ? new Map(scored.map((b) => [b.game_pk, b])) : new Map();
 
     return bets.map((b) => {
       const s = scoredMap.get(b.game_pk);
       if (s && (s.result === "W" || s.result === "L")) {
         return { ...b, ...s };
+      }
+      // Use live game data for unscored bets
+      const live = liveFirstInning.get(b.game_pk);
+      if (live && live.away !== null && live.home !== null) {
+        const totalFirst = live.away + live.home;
+        const isYrfi = b.bet_side === "YRFI";
+        const won = isYrfi ? totalFirst > 0 : totalFirst === 0;
+        return {
+          ...b,
+          result: won ? "W" as const : "L" as const,
+          pnl: won ? (b.bet_dec - 1) * b.stake : -b.stake,
+          away_1st_runs: live.away,
+          home_1st_runs: live.home,
+          total_1st_runs: totalFirst,
+        };
       }
       return b;
     });
@@ -1981,9 +2003,11 @@ export default function Home() {
                   )}
                 </div>
                 <div className="grid gap-3">
-                  {betsWithResults.map((b) => (
-                    <BetCard key={b.game_pk} bet={b} />
-                  ))}
+                  {betsWithResults.map((b) => {
+                    const live = liveFirstInning.get(b.game_pk);
+                    const gameIsLive = !b.result && live?.status === "Live";
+                    return <BetCard key={b.game_pk} bet={b} isLive={gameIsLive} />;
+                  })}
                 </div>
               </div>
             );
