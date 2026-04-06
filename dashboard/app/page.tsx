@@ -1677,7 +1677,7 @@ export default function Home() {
 
   // Build a map of live first-inning scores from the Games tab data
   const liveFirstInning = new Map(
-    games.map((g) => [g.gamePk, { away: g.firstInningAway, home: g.firstInningHome, inning: g.currentInning, status: g.status }])
+    games.map((g) => [g.gamePk, { away: g.firstInningAway, home: g.firstInningHome, inning: g.currentInning, gameState: g.gameState }])
   );
 
   // Merge results into predictions if available
@@ -2005,7 +2005,7 @@ export default function Home() {
                 <div className="grid gap-3">
                   {betsWithResults.map((b) => {
                     const live = liveFirstInning.get(b.game_pk);
-                    const gameIsLive = !b.result && live?.status === "Live";
+                    const gameIsLive = !b.result && live?.gameState === "Live";
                     return <BetCard key={b.game_pk} bet={b} isLive={gameIsLive} />;
                   })}
                 </div>
