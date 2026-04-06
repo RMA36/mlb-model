@@ -1,0 +1,84 @@
+{
+  "date": "2026-04-06",
+  "model": "v4-lgb-two-model",
+  "calibration_k": 0.9,
+  "model_mean": 0.47747324785513984,
+  "bankroll": 1000.0,
+  "bankroll_current": 1033.78,
+  "generated_at": "2026-04-06T17:04:35.020623+00:00",
+  "games": [
+    {
+      "game_pk": 823002,
+      "date": "2026-04-06",
+      "away_team": "CHC",
+      "home_team": "TBR",
+      "away_starter": "Jameson Taillon",
+      "home_starter": "Shane McClanahan",
+      "umpire": "Brian Walsh",
+      "p_top": 0.3921,
+      "p_bot": 0.5181,
+      "p_raw": 0.707,
+      "p_cal": 0.676,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.2066,
+      "bet_kelly": 0.088,
+      "bet_odds": 100.0,
+      "open_odds": 100.0,
+      "bet_dec": 2.0,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.69,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 82,
+        "humidity": 56,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
+    }
+  ],
+  "bets": [
+    {
+      "game_pk": 823002,
+      "date": "2026-04-06",
+      "away_team": "CHC",
+      "home_team": "TBR",
+      "away_starter": "Jameson Taillon",
+      "home_starter": "Shane McClanahan",
+      "umpire": "Brian Walsh",
+      "p_top": 0.3921,
+      "p_bot": 0.5181,
+      "p_raw": 0.707,
+      "p_cal": 0.676,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.2066,
+      "bet_kelly": 0.088,
+      "bet_odds": 100.0,
+      "open_odds": 100.0,
+      "bet_dec": 2.0,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.69,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 82,
+        "humidity": 56,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
+    }
+  ],
+  "summary": {
+    "total_games": 1,
+    "total_bets": 1,
+    "yrfi_bets": 1,
+    "nrfi_bets": 0,
+    "total_exposure": 51.69
+  }
+}
