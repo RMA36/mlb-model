@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1038.41,
-  "generated_at": "2026-04-07T21:28:29.486744+00:00",
+  "generated_at": "2026-04-07T22:21:04.261562+00:00",
   "games": [
     {
       "game_pk": 824457,
@@ -380,6 +380,70 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824375,
+      "date": "2026-04-07",
+      "away_team": "HOU",
+      "home_team": "COL",
+      "away_starter": "Mike Burrows",
+      "home_starter": "Kyle Freeland",
+      "umpire": "Charlie Ramos",
+      "p_top": 0.1835,
+      "p_bot": 0.3356,
+      "p_raw": 0.4575,
+      "p_cal": 0.5344,
+      "mkt_y_fair": 0.5524,
+      "mkt_n_fair": 0.4476,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.018,
+      "bet_kelly": 0.0,
+      "bet_odds": 110.0,
+      "open_odds": 107.5,
+      "bet_dec": 2.1,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 4,
+      "forecast_weather": {
+        "temp": 71,
+        "humidity": 13,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 824051,
+      "date": "2026-04-07",
+      "away_team": "ATL",
+      "home_team": "LAA",
+      "away_starter": "Reynaldo L\u00f3pez",
+      "home_starter": "Yusei Kikuchi",
+      "umpire": "Edwin Moscoso",
+      "p_top": 0.4426,
+      "p_bot": 0.2208,
+      "p_raw": 0.5657,
+      "p_cal": 0.5773,
+      "mkt_y_fair": 0.498,
+      "mkt_n_fair": 0.502,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0794,
+      "bet_kelly": 0.0249,
+      "bet_odds": -113.0,
+      "open_odds": -110.0,
+      "bet_dec": 1.885,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 72,
+        "humidity": 58,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -513,7 +577,7 @@
     }
   ],
   "summary": {
-    "total_games": 12,
+    "total_games": 14,
     "total_bets": 4,
     "yrfi_bets": 2,
     "nrfi_bets": 2,
