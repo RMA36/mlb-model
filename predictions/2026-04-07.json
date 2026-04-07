@@ -1,0 +1,51 @@
+{
+  "date": "2026-04-07",
+  "model": "v4-lgb-two-model",
+  "calibration_k": 0.9,
+  "model_mean": 0.47747324785513984,
+  "bankroll": 1000.0,
+  "bankroll_current": 1038.41,
+  "generated_at": "2026-04-07T14:49:18.246526+00:00",
+  "games": [
+    {
+      "game_pk": 824457,
+      "date": "2026-04-07",
+      "away_team": "KCR",
+      "home_team": "CLE",
+      "away_starter": "Noah Cameron",
+      "home_starter": "Gavin Williams",
+      "umpire": "Ben May",
+      "p_top": 0.2388,
+      "p_bot": 0.3302,
+      "p_raw": 0.4902,
+      "p_cal": 0.4363,
+      "mkt_y_fair": 0.4248,
+      "mkt_n_fair": 0.5752,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0114,
+      "bet_kelly": 0.0,
+      "bet_odds": 120.0,
+      "open_odds": 120.0,
+      "bet_dec": 2.2,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 31,
+        "humidity": 55,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
+    }
+  ],
+  "bets": [],
+  "summary": {
+    "total_games": 1,
+    "total_bets": 0,
+    "yrfi_bets": 0,
+    "nrfi_bets": 0,
+    "total_exposure": 0
+  }
+}
