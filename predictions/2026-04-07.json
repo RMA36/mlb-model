@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1038.41,
-  "generated_at": "2026-04-07T22:21:04.261562+00:00",
+  "generated_at": "2026-04-07T23:05:14.885089+00:00",
   "games": [
     {
       "game_pk": 824457,
@@ -444,6 +444,38 @@
         "wind_mph": 7,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823235,
+      "date": "2026-04-07",
+      "away_team": "PHI",
+      "home_team": "SFG",
+      "away_starter": "Cristopher S\u00e1nchez",
+      "home_starter": "Robbie Ray",
+      "umpire": "Clint Vondrak",
+      "p_top": 0.2695,
+      "p_bot": 0.208,
+      "p_raw": 0.4214,
+      "p_cal": 0.3689,
+      "mkt_y_fair": 0.4194,
+      "mkt_n_fair": 0.5806,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0504,
+      "bet_kelly": 0.0102,
+      "bet_odds": -160.0,
+      "open_odds": -156.0,
+      "bet_dec": 1.625,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 59,
+        "humidity": 66,
+        "wind_mph": 15,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -577,7 +609,7 @@
     }
   ],
   "summary": {
-    "total_games": 14,
+    "total_games": 15,
     "total_bets": 4,
     "yrfi_bets": 2,
     "nrfi_bets": 2,
