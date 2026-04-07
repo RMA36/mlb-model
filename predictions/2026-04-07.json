@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1038.41,
-  "generated_at": "2026-04-07T20:24:00.521409+00:00",
+  "generated_at": "2026-04-07T21:28:29.486744+00:00",
   "games": [
     {
       "game_pk": 824457,
@@ -316,6 +316,70 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823727,
+      "date": "2026-04-07",
+      "away_team": "DET",
+      "home_team": "MIN",
+      "away_starter": "Tarik Skubal",
+      "home_starter": "Taj Bradley",
+      "umpire": "Quinn Wolcott",
+      "p_top": 0.3552,
+      "p_bot": 0.2849,
+      "p_raw": 0.5389,
+      "p_cal": 0.456,
+      "mkt_y_fair": 0.4007,
+      "mkt_n_fair": 0.5993,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0553,
+      "bet_kelly": 0.0133,
+      "bet_odds": 135.0,
+      "open_odds": 144.0,
+      "bet_dec": 2.35,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 44,
+        "humidity": 38,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 822916,
+      "date": "2026-04-07",
+      "away_team": "SEA",
+      "home_team": "TEX",
+      "away_starter": "George Kirby",
+      "home_starter": "Nathan Eovaldi",
+      "umpire": "Alan Porter",
+      "p_top": 0.1686,
+      "p_bot": 0.1783,
+      "p_raw": 0.3169,
+      "p_cal": 0.3147,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1445,
+      "bet_kelly": 0.0651,
+      "bet_odds": -135.0,
+      "open_odds": -135.0,
+      "bet_dec": 1.741,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.92,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 71,
+        "humidity": 27,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -414,13 +478,45 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 822916,
+      "date": "2026-04-07",
+      "away_team": "SEA",
+      "home_team": "TEX",
+      "away_starter": "George Kirby",
+      "home_starter": "Nathan Eovaldi",
+      "umpire": "Alan Porter",
+      "p_top": 0.1686,
+      "p_bot": 0.1783,
+      "p_raw": 0.3169,
+      "p_cal": 0.3147,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1445,
+      "bet_kelly": 0.0651,
+      "bet_odds": -135.0,
+      "open_odds": -135.0,
+      "bet_dec": 1.741,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.92,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 71,
+        "humidity": 27,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 10,
-    "total_bets": 3,
+    "total_games": 12,
+    "total_bets": 4,
     "yrfi_bets": 2,
-    "nrfi_bets": 1,
-    "total_exposure": 90.83000000000001
+    "nrfi_bets": 2,
+    "total_exposure": 142.75
   }
 }
