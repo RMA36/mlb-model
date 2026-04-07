@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1038.41,
-  "generated_at": "2026-04-07T19:35:27.900665+00:00",
+  "generated_at": "2026-04-07T20:24:00.521409+00:00",
   "games": [
     {
       "game_pk": 824457,
@@ -220,6 +220,102 @@
         "wind_mph": 14,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823402,
+      "date": "2026-04-07",
+      "away_team": "SDP",
+      "home_team": "PIT",
+      "away_starter": "Nick Pivetta",
+      "home_starter": "Paul Skenes",
+      "umpire": "Ryan Blakney",
+      "p_top": 0.2917,
+      "p_bot": 0.2457,
+      "p_raw": 0.4657,
+      "p_cal": 0.3827,
+      "mkt_y_fair": 0.3933,
+      "mkt_n_fair": 0.6067,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0106,
+      "bet_kelly": 0.0,
+      "bet_odds": -180.0,
+      "open_odds": -180.0,
+      "bet_dec": 1.556,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 40,
+        "humidity": 38,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 822999,
+      "date": "2026-04-07",
+      "away_team": "CHC",
+      "home_team": "TBR",
+      "away_starter": "Javier Assad",
+      "home_starter": "Mason Englert",
+      "umpire": "Chad Fairchild",
+      "p_top": 0.313,
+      "p_bot": 0.2602,
+      "p_raw": 0.4917,
+      "p_cal": 0.4925,
+      "mkt_y_fair": 0.4797,
+      "mkt_n_fair": 0.5203,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0128,
+      "bet_kelly": 0.0,
+      "bet_odds": -105.0,
+      "open_odds": -103.0,
+      "bet_dec": 1.952,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 66,
+        "humidity": 85,
+        "wind_mph": 16,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 822831,
+      "date": "2026-04-07",
+      "away_team": "LAD",
+      "home_team": "TOR",
+      "away_starter": "Yoshinobu Yamamoto",
+      "home_starter": "Kevin Gausman",
+      "umpire": "Dan Merzel",
+      "p_top": 0.2052,
+      "p_bot": 0.2189,
+      "p_raw": 0.3791,
+      "p_cal": 0.3809,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0885,
+      "bet_kelly": 0.031,
+      "bet_odds": -130.0,
+      "open_odds": -130.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 32.18,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 30,
+        "humidity": 48,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -286,13 +382,45 @@
         "wind_mph": 14,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 822831,
+      "date": "2026-04-07",
+      "away_team": "LAD",
+      "home_team": "TOR",
+      "away_starter": "Yoshinobu Yamamoto",
+      "home_starter": "Kevin Gausman",
+      "umpire": "Dan Merzel",
+      "p_top": 0.2052,
+      "p_bot": 0.2189,
+      "p_raw": 0.3791,
+      "p_cal": 0.3809,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0885,
+      "bet_kelly": 0.031,
+      "bet_odds": -130.0,
+      "open_odds": -130.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 32.18,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 30,
+        "humidity": 48,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 7,
-    "total_bets": 2,
+    "total_games": 10,
+    "total_bets": 3,
     "yrfi_bets": 2,
-    "nrfi_bets": 0,
-    "total_exposure": 58.650000000000006
+    "nrfi_bets": 1,
+    "total_exposure": 90.83000000000001
   }
 }
