@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1008.23,
-  "generated_at": "2026-04-08T19:52:48.026091+00:00",
+  "generated_at": "2026-04-08T20:42:07.151336+00:00",
   "games": [
     {
       "game_pk": 823403,
@@ -412,6 +412,70 @@
         "wind_mph": 10,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823000,
+      "date": "2026-04-08",
+      "away_team": "CHC",
+      "home_team": "TBR",
+      "away_starter": "Colin Rea",
+      "home_starter": "Joe Boyle",
+      "umpire": "Chad Whitson",
+      "p_top": 0.2747,
+      "p_bot": 0.2832,
+      "p_raw": 0.4801,
+      "p_cal": 0.4867,
+      "mkt_y_fair": 0.4843,
+      "mkt_n_fair": 0.5157,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0024,
+      "bet_kelly": 0.0,
+      "bet_odds": -105.0,
+      "open_odds": -105.0,
+      "bet_dec": 1.952,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 69,
+        "humidity": 78,
+        "wind_mph": 20,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823726,
+      "date": "2026-04-08",
+      "away_team": "DET",
+      "home_team": "MIN",
+      "away_starter": "Framber Valdez",
+      "home_starter": "Bailey Ober",
+      "umpire": "Steven Jaschinski",
+      "p_top": 0.428,
+      "p_bot": 0.2889,
+      "p_raw": 0.5933,
+      "p_cal": 0.5537,
+      "mkt_y_fair": 0.4494,
+      "mkt_n_fair": 0.5506,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1042,
+      "bet_kelly": 0.037,
+      "bet_odds": 110.0,
+      "open_odds": 110.0,
+      "bet_dec": 2.1,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": {
+        "temp": 50,
+        "humidity": 51,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -545,7 +609,7 @@
     }
   ],
   "summary": {
-    "total_games": 13,
+    "total_games": 15,
     "total_bets": 4,
     "yrfi_bets": 2,
     "nrfi_bets": 2,
