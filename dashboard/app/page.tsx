@@ -7,6 +7,33 @@ const BRANCH = "master";
 const RAW = `https://raw.githubusercontent.com/${REPO}/${BRANCH}`;
 const MLB_API = "https://statsapi.mlb.com/api/v1";
 
+// ── Bookmaker display names ──────────────────────────────────────────
+const BOOK_NAME: Record<string, string> = {
+  draftkings: "DraftKings",
+  fanduel: "FanDuel",
+  betmgm: "BetMGM",
+  caesars: "Caesars",
+  pointsbetus: "PointsBet",
+  betonlineag: "BetOnline",
+  bovada: "Bovada",
+  mybookieag: "MyBookie",
+  betrivers: "BetRivers",
+  unibet_us: "Unibet",
+  williamhill_us: "WilliamHill",
+  wynnbet: "WynnBet",
+  superbook: "SuperBook",
+  betparx: "BetParx",
+  espnbet: "ESPN Bet",
+  fliff: "Fliff",
+  pinnacle: "Pinnacle",
+  hardrockbet: "Hard Rock",
+  fanatics: "Fanatics",
+  bet365: "Bet365",
+  betus: "BetUS",
+  lowvig: "LowVig",
+  betanysports: "BetAnySports",
+};
+
 // ── Venue roof types ─────────────────────────────────────────────────
 const VENUE_ROOF: Record<string, "dome" | "retractable" | "open"> = {
   "Tropicana Field": "dome",
@@ -59,6 +86,10 @@ interface Bet {
   open_odds?: number;
   close_odds?: number;
   clv?: number;
+  best_odds?: number;
+  best_book?: string;
+  mkt_y_impl?: number;
+  mkt_n_impl?: number;
 }
 
 interface DayPredictions {
@@ -435,7 +466,9 @@ function StatCard({
 function BetCard({ bet, isLive }: { bet: Bet; isLive?: boolean }) {
   const isYrfi = bet.bet_side === "YRFI";
   const modelPct = isYrfi ? bet.p_cal * 100 : (1 - bet.p_cal) * 100;
-  const mktPct = isYrfi ? bet.mkt_y_fair * 100 : bet.mkt_n_fair * 100;
+  const mktPct = isYrfi
+    ? (bet.mkt_y_impl ?? bet.mkt_y_fair) * 100
+    : (bet.mkt_n_impl ?? bet.mkt_n_fair) * 100;
   const hasResult = bet.result === "W" || bet.result === "L";
 
   return (
@@ -467,6 +500,17 @@ function BetCard({ bet, isLive }: { bet: Bet; isLive?: boolean }) {
               {formatOdds(bet.bet_odds)}
             </span>
           </div>
+          {bet.best_odds != null && bet.best_book && bet.best_odds !== bet.bet_odds && (
+            <div className="mt-0.5 flex items-center gap-1.5 text-xs">
+              <span className="text-[var(--text-muted)]">Best:</span>
+              <span className="font-mono font-medium text-[var(--green)]">
+                {formatOdds(bet.best_odds)}
+              </span>
+              <span className="rounded bg-[var(--card-border)] px-1.5 py-0.5 text-[10px] font-semibold tracking-wide">
+                {BOOK_NAME[bet.best_book] ?? bet.best_book}
+              </span>
+            </div>
+          )}
         </div>
         <div className="text-right">
           {hasResult ? (

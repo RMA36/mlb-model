@@ -196,6 +196,16 @@ def load_daily_odds(date_str):
     yrfi_rows = fi[fi["outcome_name"] == "Over"].copy()
     nrfi_rows = fi[fi["outcome_name"] == "Under"].copy()
 
+    # Best odds per game (highest American odds = best for bettor)
+    yrfi_best = (yrfi_rows.loc[yrfi_rows.groupby("game_id")["close_price"].idxmax()]
+                 [["game_id", "close_price", "bookmaker"]]
+                 .rename(columns={"close_price": "yrfi_best_odds",
+                                  "bookmaker": "yrfi_best_book"}))
+    nrfi_best = (nrfi_rows.loc[nrfi_rows.groupby("game_id")["close_price"].idxmax()]
+                 [["game_id", "close_price", "bookmaker"]]
+                 .rename(columns={"close_price": "nrfi_best_odds",
+                                  "bookmaker": "nrfi_best_book"}))
+
     # Keep commence_time for precise game matching (handles doubleheaders)
     yrfi_agg = (yrfi_rows.groupby(["game_id", "home_team", "away_team", "commence_time"])
                 .agg(yrfi_odds=("close_price", "median"),
@@ -209,6 +219,8 @@ def load_daily_odds(date_str):
 
     result = yrfi_agg.merge(nrfi_agg[["game_id", "nrfi_odds", "nrfi_open"]],
                             on="game_id", how="inner")
+    result = result.merge(yrfi_best, on="game_id", how="left")
+    result = result.merge(nrfi_best, on="game_id", how="left")
 
     result["home_team_abbr"] = result["home_team"].map(FULL_NAME_TO_ABBR)
     result["away_team_abbr"] = result["away_team"].map(FULL_NAME_TO_ABBR)
@@ -226,6 +238,8 @@ def load_daily_odds(date_str):
     result["mkt_n_fair"] = result["mkt_n_impl"] / total
     result["yrfi_dec"] = result["yrfi_odds"].apply(american_to_decimal)
     result["nrfi_dec"] = result["nrfi_odds"].apply(american_to_decimal)
+    result["yrfi_best_dec"] = result["yrfi_best_odds"].apply(american_to_decimal)
+    result["nrfi_best_dec"] = result["nrfi_best_odds"].apply(american_to_decimal)
 
     logger.info("Loaded odds for %d games (%s)", len(result), date_str)
     return result
@@ -1061,15 +1075,24 @@ def main():
             bet_dec = 1.0
             bet_odds = 0
             open_odds = 0
+            best_odds = 0
+            best_book = ""
+            best_dec = 1.0
 
             if edge_y > edge_n and edge_y > 0:
                 bet_side, bet_edge, bet_kelly = "YRFI", edge_y, kelly_y
                 bet_dec, bet_odds = odds_row["yrfi_dec"], odds_row["yrfi_odds"]
                 open_odds = odds_row["yrfi_open"]
+                best_odds = odds_row.get("yrfi_best_odds", bet_odds)
+                best_book = odds_row.get("yrfi_best_book", "")
+                best_dec = odds_row.get("yrfi_best_dec", bet_dec)
             elif edge_n > 0:
                 bet_side, bet_edge, bet_kelly = "NRFI", edge_n, kelly_n
                 bet_dec, bet_odds = odds_row["nrfi_dec"], odds_row["nrfi_odds"]
                 open_odds = odds_row["nrfi_open"]
+                best_odds = odds_row.get("nrfi_best_odds", bet_odds)
+                best_book = odds_row.get("nrfi_best_book", "")
+                best_dec = odds_row.get("nrfi_best_dec", bet_dec)
 
             passes = False
             skip = ""
@@ -1114,6 +1137,11 @@ def main():
                 "skip_reason": skip,
                 "stake": stake,
                 "n_books": int(odds_row["n_books"]),
+                "best_odds": int(best_odds) if pd.notna(best_odds) else bet_odds,
+                "best_book": str(best_book) if pd.notna(best_book) else "",
+                "best_dec": round(float(best_dec), 3) if pd.notna(best_dec) else round(bet_dec, 3),
+                "mkt_y_impl": round(float(odds_row["mkt_y_impl"]), 4),
+                "mkt_n_impl": round(float(odds_row["mkt_n_impl"]), 4),
                 "forecast_weather": {
                     "temp": round(wx.get("hourly_temp", wx.get("temp_max", 72))),
                     "humidity": round(wx.get("hourly_humidity", 50)),
