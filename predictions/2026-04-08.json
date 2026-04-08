@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1008.23,
-  "generated_at": "2026-04-08T17:20:21.849957+00:00",
+  "generated_at": "2026-04-08T18:45:53.445864+00:00",
   "games": [
     {
       "game_pk": 823403,
@@ -353,6 +353,33 @@
         "wind_mph": 6,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823885,
+      "date": "2026-04-08",
+      "away_team": "CIN",
+      "home_team": "MIA",
+      "away_starter": "Brady Singer",
+      "home_starter": "Eury P\u00e9rez",
+      "umpire": "D.J. Reyburn",
+      "p_top": 0.2978,
+      "p_bot": 0.2477,
+      "p_raw": 0.4717,
+      "p_cal": 0.4483,
+      "mkt_y_fair": 0.4535,
+      "mkt_n_fair": 0.5465,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0052,
+      "bet_kelly": 0.0,
+      "bet_odds": -141.0,
+      "open_odds": -141.0,
+      "bet_dec": 1.709,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -454,7 +481,7 @@
     }
   ],
   "summary": {
-    "total_games": 11,
+    "total_games": 12,
     "total_bets": 3,
     "yrfi_bets": 1,
     "nrfi_bets": 2,
