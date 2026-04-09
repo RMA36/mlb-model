@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1100.5,
-  "generated_at": "2026-04-09T18:57:12.730029+00:00",
+  "generated_at": "2026-04-09T20:07:19.489883+00:00",
   "games": [
     {
       "game_pk": 823884,
@@ -149,6 +149,43 @@
         "wind_mph": 10,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824130,
+      "date": "2026-04-09",
+      "away_team": "CHW",
+      "home_team": "KCR",
+      "away_starter": "Anthony Kay",
+      "home_starter": "Seth Lugo",
+      "umpire": "Marvin Hudson",
+      "p_top": 0.2666,
+      "p_bot": 0.2572,
+      "p_raw": 0.4553,
+      "p_cal": 0.48,
+      "mkt_y_fair": 0.5,
+      "mkt_n_fair": 0.5,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.02,
+      "bet_kelly": 0.0,
+      "bet_odds": -115.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.87,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -102,
+      "best_book": "betmgm",
+      "best_dec": 1.98,
+      "mkt_y_impl": 0.5349,
+      "mkt_n_impl": 0.5349,
+      "forecast_weather": {
+        "temp": 78,
+        "humidity": 34,
+        "wind_mph": 16,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -191,7 +228,7 @@
     }
   ],
   "summary": {
-    "total_games": 4,
+    "total_games": 5,
     "total_bets": 1,
     "yrfi_bets": 1,
     "nrfi_bets": 0,
