@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1100.5,
-  "generated_at": "2026-04-09T14:59:23.671590+00:00",
+  "generated_at": "2026-04-09T18:57:12.730029+00:00",
   "games": [
     {
       "game_pk": 823884,
@@ -112,6 +112,43 @@
         "wind_mph": 9,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823645,
+      "date": "2026-04-09",
+      "away_team": "ARI",
+      "home_team": "NYM",
+      "away_starter": "Eduardo Rodriguez",
+      "home_starter": "Nolan McLean",
+      "umpire": "Erich Bacchus",
+      "p_top": 0.2029,
+      "p_bot": 0.4807,
+      "p_raw": 0.5861,
+      "p_cal": 0.5378,
+      "mkt_y_fair": 0.4401,
+      "mkt_n_fair": 0.5599,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0977,
+      "bet_kelly": 0.034,
+      "bet_odds": 115.0,
+      "open_odds": 110.0,
+      "bet_dec": 2.15,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": 120,
+      "best_book": "bovada",
+      "best_dec": 2.2,
+      "mkt_y_impl": 0.4651,
+      "mkt_n_impl": 0.5918,
+      "forecast_weather": {
+        "temp": 44,
+        "humidity": 75,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -154,7 +191,7 @@
     }
   ],
   "summary": {
-    "total_games": 3,
+    "total_games": 4,
     "total_bets": 1,
     "yrfi_bets": 1,
     "nrfi_bets": 0,
