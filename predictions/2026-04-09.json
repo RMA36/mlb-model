@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1100.5,
-  "generated_at": "2026-04-09T20:07:19.489883+00:00",
+  "generated_at": "2026-04-09T22:58:48.686637+00:00",
   "games": [
     {
       "game_pk": 823884,
@@ -186,6 +186,43 @@
         "wind_mph": 16,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823319,
+      "date": "2026-04-09",
+      "away_team": "COL",
+      "home_team": "SDP",
+      "away_starter": "Jimmy Herget",
+      "home_starter": "Randy V\u00e1squez",
+      "umpire": "Nic Lentz",
+      "p_top": 0.4303,
+      "p_bot": 0.341,
+      "p_raw": 0.6246,
+      "p_cal": 0.6085,
+      "mkt_y_fair": 0.4761,
+      "mkt_n_fair": 0.5239,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1324,
+      "bet_kelly": 0.0523,
+      "bet_odds": -102.0,
+      "open_odds": -105.0,
+      "bet_dec": 1.98,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 55.03,
+      "n_books": 5,
+      "best_odds": 100,
+      "best_book": "betonlineag",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.505,
+      "mkt_n_impl": 0.5556,
+      "forecast_weather": {
+        "temp": 68,
+        "humidity": 84,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -225,13 +262,50 @@
         "wind_mph": 9,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823319,
+      "date": "2026-04-09",
+      "away_team": "COL",
+      "home_team": "SDP",
+      "away_starter": "Jimmy Herget",
+      "home_starter": "Randy V\u00e1squez",
+      "umpire": "Nic Lentz",
+      "p_top": 0.4303,
+      "p_bot": 0.341,
+      "p_raw": 0.6246,
+      "p_cal": 0.6085,
+      "mkt_y_fair": 0.4761,
+      "mkt_n_fair": 0.5239,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1324,
+      "bet_kelly": 0.0523,
+      "bet_odds": -102.0,
+      "open_odds": -105.0,
+      "bet_dec": 1.98,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 55.03,
+      "n_books": 5,
+      "best_odds": 100,
+      "best_book": "betonlineag",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.505,
+      "mkt_n_impl": 0.5556,
+      "forecast_weather": {
+        "temp": 68,
+        "humidity": 84,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 5,
-    "total_bets": 1,
-    "yrfi_bets": 1,
+    "total_games": 6,
+    "total_bets": 2,
+    "yrfi_bets": 2,
     "nrfi_bets": 0,
-    "total_exposure": 17.55
+    "total_exposure": 72.58
   }
 }
