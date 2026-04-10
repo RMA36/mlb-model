@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1027.92,
-  "generated_at": "2026-04-10T19:59:14.562024+00:00",
+  "generated_at": "2026-04-10T20:53:25.694361+00:00",
   "games": [
     {
       "game_pk": 824695,
@@ -339,6 +339,80 @@
         "wind_mph": 8,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 822997,
+      "date": "2026-04-10",
+      "away_team": "NYY",
+      "home_team": "TBR",
+      "away_starter": "Luis Gil",
+      "home_starter": "Steven Matz",
+      "umpire": "Mark Ripperger",
+      "p_top": 0.1814,
+      "p_bot": 0.2915,
+      "p_raw": 0.42,
+      "p_cal": 0.4382,
+      "mkt_y_fair": 0.4899,
+      "mkt_n_fair": 0.5101,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0517,
+      "bet_kelly": 0.009,
+      "bet_odds": -120.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -111,
+      "best_book": "fanduel",
+      "best_dec": 1.901,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": {
+        "temp": 78,
+        "humidity": 48,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823076,
+      "date": "2026-04-10",
+      "away_team": "BOS",
+      "home_team": "STL",
+      "away_starter": "Connelly Early",
+      "home_starter": "Dustin May",
+      "umpire": "Bill Miller",
+      "p_top": 0.2125,
+      "p_bot": 0.1876,
+      "p_raw": 0.3602,
+      "p_cal": 0.3573,
+      "mkt_y_fair": 0.4628,
+      "mkt_n_fair": 0.5372,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1055,
+      "bet_kelly": 0.0428,
+      "bet_odds": -132.0,
+      "open_odds": -128.0,
+      "bet_dec": 1.758,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.97,
+      "n_books": 5,
+      "best_odds": -127,
+      "best_book": "betonlineag",
+      "best_dec": 1.787,
+      "mkt_y_impl": 0.4902,
+      "mkt_n_impl": 0.569,
+      "forecast_weather": {
+        "temp": 64,
+        "humidity": 64,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -526,13 +600,50 @@
         "wind_mph": 4,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823076,
+      "date": "2026-04-10",
+      "away_team": "BOS",
+      "home_team": "STL",
+      "away_starter": "Connelly Early",
+      "home_starter": "Dustin May",
+      "umpire": "Bill Miller",
+      "p_top": 0.2125,
+      "p_bot": 0.1876,
+      "p_raw": 0.3602,
+      "p_cal": 0.3573,
+      "mkt_y_fair": 0.4628,
+      "mkt_n_fair": 0.5372,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1055,
+      "bet_kelly": 0.0428,
+      "bet_odds": -132.0,
+      "open_odds": -128.0,
+      "bet_dec": 1.758,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.97,
+      "n_books": 5,
+      "best_odds": -127,
+      "best_book": "betonlineag",
+      "best_dec": 1.787,
+      "mkt_y_impl": 0.4902,
+      "mkt_n_impl": 0.569,
+      "forecast_weather": {
+        "temp": 64,
+        "humidity": 64,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 9,
-    "total_bets": 5,
+    "total_games": 11,
+    "total_bets": 6,
     "yrfi_bets": 4,
-    "nrfi_bets": 1,
-    "total_exposure": 166.31
+    "nrfi_bets": 2,
+    "total_exposure": 210.28
   }
 }
