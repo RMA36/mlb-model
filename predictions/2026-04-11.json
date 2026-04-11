@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 948.25,
-  "generated_at": "2026-04-11T16:02:06.424057+00:00",
+  "generated_at": "2026-04-11T16:53:23.501351+00:00",
   "games": [
     {
       "game_pk": 823480,
@@ -154,6 +154,80 @@
         "wind_mph": 12,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824697,
+      "date": "2026-04-11",
+      "away_team": "PIT",
+      "home_team": "CHC",
+      "away_starter": "Braxton Ashcraft",
+      "home_starter": "Edward Cabrera",
+      "umpire": "Alex MacKay",
+      "p_top": 0.2648,
+      "p_bot": 0.2106,
+      "p_raw": 0.4196,
+      "p_cal": 0.3387,
+      "mkt_y_fair": 0.3908,
+      "mkt_n_fair": 0.6092,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0521,
+      "bet_kelly": 0.0172,
+      "bet_odds": -175.0,
+      "open_odds": -165.0,
+      "bet_dec": 1.571,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -170,
+      "best_book": "williamhill_us",
+      "best_dec": 1.588,
+      "mkt_y_impl": 0.4082,
+      "mkt_n_impl": 0.6364,
+      "forecast_weather": {
+        "temp": 48,
+        "humidity": 69,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 824535,
+      "date": "2026-04-11",
+      "away_team": "LAA",
+      "home_team": "CIN",
+      "away_starter": "George Klassen",
+      "home_starter": "Brandon Williamson",
+      "umpire": "Adam Beck",
+      "p_top": 0.3754,
+      "p_bot": 0.3952,
+      "p_raw": 0.6223,
+      "p_cal": 0.6404,
+      "mkt_y_fair": 0.5101,
+      "mkt_n_fair": 0.4899,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1303,
+      "bet_kelly": 0.0522,
+      "bet_odds": -120.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.41,
+      "n_books": 5,
+      "best_odds": -106,
+      "best_book": "fanduel",
+      "best_dec": 1.943,
+      "mkt_y_impl": 0.5455,
+      "mkt_n_impl": 0.5238,
+      "forecast_weather": {
+        "temp": 68,
+        "humidity": 35,
+        "wind_mph": 5,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -267,13 +341,50 @@
         "wind_mph": 12,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824535,
+      "date": "2026-04-11",
+      "away_team": "LAA",
+      "home_team": "CIN",
+      "away_starter": "George Klassen",
+      "home_starter": "Brandon Williamson",
+      "umpire": "Adam Beck",
+      "p_top": 0.3754,
+      "p_bot": 0.3952,
+      "p_raw": 0.6223,
+      "p_cal": 0.6404,
+      "mkt_y_fair": 0.5101,
+      "mkt_n_fair": 0.4899,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1303,
+      "bet_kelly": 0.0522,
+      "bet_odds": -120.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.41,
+      "n_books": 5,
+      "best_odds": -106,
+      "best_book": "fanduel",
+      "best_dec": 1.943,
+      "mkt_y_impl": 0.5455,
+      "mkt_n_impl": 0.5238,
+      "forecast_weather": {
+        "temp": 68,
+        "humidity": 35,
+        "wind_mph": 5,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 4,
-    "total_bets": 3,
-    "yrfi_bets": 3,
+    "total_games": 6,
+    "total_bets": 4,
+    "yrfi_bets": 4,
     "nrfi_bets": 0,
-    "total_exposure": 87.5
+    "total_exposure": 134.91
   }
 }
