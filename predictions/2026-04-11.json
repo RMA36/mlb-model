@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 948.25,
-  "generated_at": "2026-04-11T20:55:43.071244+00:00",
+  "generated_at": "2026-04-11T21:47:23.920675+00:00",
   "games": [
     {
       "game_pk": 823480,
@@ -450,6 +450,43 @@
         "wind_mph": 7,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823316,
+      "date": "2026-04-11",
+      "away_team": "COL",
+      "home_team": "SDP",
+      "away_starter": "Ryan Feltner",
+      "home_starter": "Germ\u00e1n M\u00e1rquez",
+      "umpire": "Edwin Moscoso",
+      "p_top": 0.4911,
+      "p_bot": 0.3374,
+      "p_raw": 0.6628,
+      "p_cal": 0.6769,
+      "mkt_y_fair": 0.5101,
+      "mkt_n_fair": 0.4899,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1668,
+      "bet_kelly": 0.0723,
+      "bet_odds": -120.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.41,
+      "n_books": 5,
+      "best_odds": -110,
+      "best_book": "betmgm",
+      "best_dec": 1.909,
+      "mkt_y_impl": 0.5455,
+      "mkt_n_impl": 0.5238,
+      "forecast_weather": {
+        "temp": 69,
+        "humidity": 60,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -674,13 +711,50 @@
         "wind_mph": 7,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823316,
+      "date": "2026-04-11",
+      "away_team": "COL",
+      "home_team": "SDP",
+      "away_starter": "Ryan Feltner",
+      "home_starter": "Germ\u00e1n M\u00e1rquez",
+      "umpire": "Edwin Moscoso",
+      "p_top": 0.4911,
+      "p_bot": 0.3374,
+      "p_raw": 0.6628,
+      "p_cal": 0.6769,
+      "mkt_y_fair": 0.5101,
+      "mkt_n_fair": 0.4899,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1668,
+      "bet_kelly": 0.0723,
+      "bet_odds": -120.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.41,
+      "n_books": 5,
+      "best_odds": -110,
+      "best_book": "betmgm",
+      "best_dec": 1.909,
+      "mkt_y_impl": 0.5455,
+      "mkt_n_impl": 0.5238,
+      "forecast_weather": {
+        "temp": 69,
+        "humidity": 60,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 12,
-    "total_bets": 6,
-    "yrfi_bets": 6,
+    "total_games": 13,
+    "total_bets": 7,
+    "yrfi_bets": 7,
     "nrfi_bets": 0,
-    "total_exposure": 225.38
+    "total_exposure": 272.78999999999996
   }
 }
