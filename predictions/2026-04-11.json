@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 948.25,
-  "generated_at": "2026-04-11T19:48:13.950328+00:00",
+  "generated_at": "2026-04-11T20:55:43.071244+00:00",
   "games": [
     {
       "game_pk": 823480,
@@ -376,6 +376,80 @@
         "wind_mph": 5,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823805,
+      "date": "2026-04-11",
+      "away_team": "WSN",
+      "home_team": "MIL",
+      "away_starter": "Foster Griffin",
+      "home_starter": "Kyle Harrison",
+      "umpire": "Bruce Dreckman",
+      "p_top": 0.2315,
+      "p_bot": 0.2953,
+      "p_raw": 0.4584,
+      "p_cal": 0.4652,
+      "mkt_y_fair": 0.4824,
+      "mkt_n_fair": 0.5176,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0172,
+      "bet_kelly": 0.0,
+      "bet_odds": -122.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.82,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -120,
+      "best_book": "betmgm",
+      "best_dec": 1.833,
+      "mkt_y_impl": 0.5122,
+      "mkt_n_impl": 0.5495,
+      "forecast_weather": {
+        "temp": 47,
+        "humidity": 61,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 824857,
+      "date": "2026-04-11",
+      "away_team": "SFG",
+      "home_team": "BAL",
+      "away_starter": "Logan Webb",
+      "home_starter": "Chris Bassitt",
+      "umpire": "Brian O'Nora",
+      "p_top": 0.4419,
+      "p_bot": 0.3136,
+      "p_raw": 0.6169,
+      "p_cal": 0.5713,
+      "mkt_y_fair": 0.4459,
+      "mkt_n_fair": 0.5541,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1255,
+      "bet_kelly": 0.0454,
+      "bet_odds": 110.0,
+      "open_odds": 110.0,
+      "bet_dec": 2.1,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.06,
+      "n_books": 5,
+      "best_odds": 119,
+      "best_book": "betonlineag",
+      "best_dec": 2.19,
+      "mkt_y_impl": 0.4762,
+      "mkt_n_impl": 0.5918,
+      "forecast_weather": {
+        "temp": 66,
+        "humidity": 27,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -563,13 +637,50 @@
         "wind_mph": 5,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824857,
+      "date": "2026-04-11",
+      "away_team": "SFG",
+      "home_team": "BAL",
+      "away_starter": "Logan Webb",
+      "home_starter": "Chris Bassitt",
+      "umpire": "Brian O'Nora",
+      "p_top": 0.4419,
+      "p_bot": 0.3136,
+      "p_raw": 0.6169,
+      "p_cal": 0.5713,
+      "mkt_y_fair": 0.4459,
+      "mkt_n_fair": 0.5541,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1255,
+      "bet_kelly": 0.0454,
+      "bet_odds": 110.0,
+      "open_odds": 110.0,
+      "bet_dec": 2.1,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.06,
+      "n_books": 5,
+      "best_odds": 119,
+      "best_book": "betonlineag",
+      "best_dec": 2.19,
+      "mkt_y_impl": 0.4762,
+      "mkt_n_impl": 0.5918,
+      "forecast_weather": {
+        "temp": 66,
+        "humidity": 27,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 10,
-    "total_bets": 5,
-    "yrfi_bets": 5,
+    "total_games": 12,
+    "total_bets": 6,
+    "yrfi_bets": 6,
     "nrfi_bets": 0,
-    "total_exposure": 182.32
+    "total_exposure": 225.38
   }
 }
