@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 948.25,
-  "generated_at": "2026-04-11T15:33:28.034540+00:00",
+  "generated_at": "2026-04-11T16:02:06.424057+00:00",
   "games": [
     {
       "game_pk": 823480,
@@ -117,6 +117,43 @@
         "wind_mph": 7,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824129,
+      "date": "2026-04-11",
+      "away_team": "CHW",
+      "home_team": "KCR",
+      "away_starter": "Erick Fedde",
+      "home_starter": "Michael Wacha",
+      "umpire": "Ryan Blakney",
+      "p_top": 0.331,
+      "p_bot": 0.3477,
+      "p_raw": 0.5636,
+      "p_cal": 0.5876,
+      "mkt_y_fair": 0.5101,
+      "mkt_n_fair": 0.4899,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0775,
+      "bet_kelly": 0.0232,
+      "bet_odds": -120.0,
+      "open_odds": -125.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 22.0,
+      "n_books": 5,
+      "best_odds": -113,
+      "best_book": "fanduel",
+      "best_dec": 1.885,
+      "mkt_y_impl": 0.5455,
+      "mkt_n_impl": 0.5238,
+      "forecast_weather": {
+        "temp": 73,
+        "humidity": 74,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -193,13 +230,50 @@
         "wind_mph": 7,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824129,
+      "date": "2026-04-11",
+      "away_team": "CHW",
+      "home_team": "KCR",
+      "away_starter": "Erick Fedde",
+      "home_starter": "Michael Wacha",
+      "umpire": "Ryan Blakney",
+      "p_top": 0.331,
+      "p_bot": 0.3477,
+      "p_raw": 0.5636,
+      "p_cal": 0.5876,
+      "mkt_y_fair": 0.5101,
+      "mkt_n_fair": 0.4899,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0775,
+      "bet_kelly": 0.0232,
+      "bet_odds": -120.0,
+      "open_odds": -125.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 22.0,
+      "n_books": 5,
+      "best_odds": -113,
+      "best_book": "fanduel",
+      "best_dec": 1.885,
+      "mkt_y_impl": 0.5455,
+      "mkt_n_impl": 0.5238,
+      "forecast_weather": {
+        "temp": 73,
+        "humidity": 74,
+        "wind_mph": 12,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 3,
-    "total_bets": 2,
-    "yrfi_bets": 2,
+    "total_games": 4,
+    "total_bets": 3,
+    "yrfi_bets": 3,
     "nrfi_bets": 0,
-    "total_exposure": 65.5
+    "total_exposure": 87.5
   }
 }
