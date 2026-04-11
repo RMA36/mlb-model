@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 948.25,
-  "generated_at": "2026-04-11T21:47:23.920675+00:00",
+  "generated_at": "2026-04-11T22:18:36.682379+00:00",
   "games": [
     {
       "game_pk": 823480,
@@ -487,6 +487,38 @@
         "wind_mph": 10,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823967,
+      "date": "2026-04-11",
+      "away_team": "TEX",
+      "home_team": "LAD",
+      "away_starter": "Jack Leiter",
+      "home_starter": "Emmet Sheehan",
+      "umpire": "Nestor Ceja",
+      "p_top": 0.2864,
+      "p_bot": 0.1274,
+      "p_raw": 0.3773,
+      "p_cal": 0.42,
+      "mkt_y_fair": 0.5101,
+      "mkt_n_fair": 0.4899,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0901,
+      "bet_kelly": 0.0295,
+      "bet_odds": -110.0,
+      "open_odds": -110.0,
+      "bet_dec": 1.909,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -102,
+      "best_book": "fanduel",
+      "best_dec": 1.98,
+      "mkt_y_impl": 0.5455,
+      "mkt_n_impl": 0.5238,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -751,7 +783,7 @@
     }
   ],
   "summary": {
-    "total_games": 13,
+    "total_games": 14,
     "total_bets": 7,
     "yrfi_bets": 7,
     "nrfi_bets": 0,
