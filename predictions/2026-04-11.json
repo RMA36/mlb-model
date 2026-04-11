@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 948.25,
-  "generated_at": "2026-04-11T22:18:36.682379+00:00",
+  "generated_at": "2026-04-11T22:57:28.578603+00:00",
   "games": [
     {
       "game_pk": 823480,
@@ -519,6 +519,43 @@
       "mkt_y_impl": 0.5455,
       "mkt_n_impl": 0.5238,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823155,
+      "date": "2026-04-11",
+      "away_team": "HOU",
+      "home_team": "SEA",
+      "away_starter": "Lance McCullers Jr.",
+      "home_starter": "Luis Castillo",
+      "umpire": "Adam Hamari",
+      "p_top": 0.2241,
+      "p_bot": 0.2568,
+      "p_raw": 0.4233,
+      "p_cal": 0.417,
+      "mkt_y_fair": 0.4657,
+      "mkt_n_fair": 0.5343,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0487,
+      "bet_kelly": 0.0071,
+      "bet_odds": -133.0,
+      "open_odds": -125.0,
+      "bet_dec": 1.752,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -130,
+      "best_book": "betmgm",
+      "best_dec": 1.769,
+      "mkt_y_impl": 0.4975,
+      "mkt_n_impl": 0.5708,
+      "forecast_weather": {
+        "temp": 56,
+        "humidity": 80,
+        "wind_mph": 4,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -783,7 +820,7 @@
     }
   ],
   "summary": {
-    "total_games": 14,
+    "total_games": 15,
     "total_bets": 7,
     "yrfi_bets": 7,
     "nrfi_bets": 0,
