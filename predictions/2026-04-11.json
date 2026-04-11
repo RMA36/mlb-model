@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 948.25,
-  "generated_at": "2026-04-11T16:53:23.501351+00:00",
+  "generated_at": "2026-04-11T17:32:28.976035+00:00",
   "games": [
     {
       "game_pk": 823480,
@@ -228,6 +228,43 @@
         "wind_mph": 5,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823644,
+      "date": "2026-04-11",
+      "away_team": "OAK",
+      "home_team": "NYM",
+      "away_starter": "Jacob Lopez",
+      "home_starter": "Kodai Senga",
+      "umpire": "James Hoye",
+      "p_top": 0.2398,
+      "p_bot": 0.3884,
+      "p_raw": 0.5351,
+      "p_cal": 0.5254,
+      "mkt_y_fair": 0.4735,
+      "mkt_n_fair": 0.5265,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0518,
+      "bet_kelly": 0.0103,
+      "bet_odds": -102.0,
+      "open_odds": -105.0,
+      "bet_dec": 1.98,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": 105,
+      "best_book": "betmgm",
+      "best_dec": 2.05,
+      "mkt_y_impl": 0.505,
+      "mkt_n_impl": 0.5614,
+      "forecast_weather": {
+        "temp": 62,
+        "humidity": 30,
+        "wind_mph": 15,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -381,7 +418,7 @@
     }
   ],
   "summary": {
-    "total_games": 6,
+    "total_games": 7,
     "total_bets": 4,
     "yrfi_bets": 4,
     "nrfi_bets": 0,
