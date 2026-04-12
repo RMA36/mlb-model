@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1102.47,
-  "generated_at": "2026-04-12T15:50:11.864040+00:00",
+  "generated_at": "2026-04-12T16:28:55.929246+00:00",
   "games": [
     {
       "game_pk": 823479,
@@ -265,6 +265,80 @@
         "wind_mph": 14,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 824859,
+      "date": "2026-04-12",
+      "away_team": "SFG",
+      "home_team": "BAL",
+      "away_starter": "Adrian Houser",
+      "home_starter": "Cade Povich",
+      "umpire": "Chris Segal",
+      "p_top": 0.386,
+      "p_bot": 0.286,
+      "p_raw": 0.5616,
+      "p_cal": 0.5656,
+      "mkt_y_fair": 0.4899,
+      "mkt_n_fair": 0.5101,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0757,
+      "bet_kelly": 0.0219,
+      "bet_odds": -110.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.909,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": 100,
+      "best_book": "betonlineag",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": {
+        "temp": 66,
+        "humidity": 39,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
+    },
+    {
+      "game_pk": 823804,
+      "date": "2026-04-12",
+      "away_team": "WSN",
+      "home_team": "MIL",
+      "away_starter": "Zack Littell",
+      "home_starter": "Brandon Woodruff",
+      "umpire": "Carlos Torres",
+      "p_top": 0.2148,
+      "p_bot": 0.2478,
+      "p_raw": 0.4093,
+      "p_cal": 0.3979,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0614,
+      "bet_kelly": 0.0163,
+      "bet_odds": -135.0,
+      "open_odds": -131.5,
+      "bet_dec": 1.741,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 17.92,
+      "n_books": 4,
+      "best_odds": -130,
+      "best_book": "fanduel",
+      "best_dec": 1.769,
+      "mkt_y_impl": 0.4878,
+      "mkt_n_impl": 0.5745,
+      "forecast_weather": {
+        "temp": 68,
+        "humidity": 78,
+        "wind_mph": 14,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -378,13 +452,50 @@
         "wind_mph": 15,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823804,
+      "date": "2026-04-12",
+      "away_team": "WSN",
+      "home_team": "MIL",
+      "away_starter": "Zack Littell",
+      "home_starter": "Brandon Woodruff",
+      "umpire": "Carlos Torres",
+      "p_top": 0.2148,
+      "p_bot": 0.2478,
+      "p_raw": 0.4093,
+      "p_cal": 0.3979,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0614,
+      "bet_kelly": 0.0163,
+      "bet_odds": -135.0,
+      "open_odds": -131.5,
+      "bet_dec": 1.741,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 17.92,
+      "n_books": 4,
+      "best_odds": -130,
+      "best_book": "fanduel",
+      "best_dec": 1.769,
+      "mkt_y_impl": 0.4878,
+      "mkt_n_impl": 0.5745,
+      "forecast_weather": {
+        "temp": 68,
+        "humidity": 78,
+        "wind_mph": 14,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 7,
-    "total_bets": 3,
+    "total_games": 9,
+    "total_bets": 4,
     "yrfi_bets": 1,
-    "nrfi_bets": 2,
-    "total_exposure": 135.62
+    "nrfi_bets": 3,
+    "total_exposure": 153.54000000000002
   }
 }
