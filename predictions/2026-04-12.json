@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1102.47,
-  "generated_at": "2026-04-12T17:08:43.675176+00:00",
+  "generated_at": "2026-04-12T19:06:22.686111+00:00",
   "games": [
     {
       "game_pk": 823479,
@@ -445,6 +445,43 @@
       "mkt_y_impl": 0.5261,
       "mkt_n_impl": 0.537,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823154,
+      "date": "2026-04-12",
+      "away_team": "HOU",
+      "home_team": "SEA",
+      "away_starter": "Cody Bolton",
+      "home_starter": "Logan Gilbert",
+      "umpire": "Clint Vondrak",
+      "p_top": 0.2147,
+      "p_bot": 0.168,
+      "p_raw": 0.3466,
+      "p_cal": 0.3541,
+      "mkt_y_fair": 0.4718,
+      "mkt_n_fair": 0.5282,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1178,
+      "bet_kelly": 0.0464,
+      "bet_odds": -130.0,
+      "open_odds": -130.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.15,
+      "n_books": 5,
+      "best_odds": -120,
+      "best_book": "bovada",
+      "best_dec": 1.833,
+      "mkt_y_impl": 0.505,
+      "mkt_n_impl": 0.5652,
+      "forecast_weather": {
+        "temp": 54,
+        "humidity": 83,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -632,13 +669,50 @@
         "wind_mph": 15,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823154,
+      "date": "2026-04-12",
+      "away_team": "HOU",
+      "home_team": "SEA",
+      "away_starter": "Cody Bolton",
+      "home_starter": "Logan Gilbert",
+      "umpire": "Clint Vondrak",
+      "p_top": 0.2147,
+      "p_bot": 0.168,
+      "p_raw": 0.3466,
+      "p_cal": 0.3541,
+      "mkt_y_fair": 0.4718,
+      "mkt_n_fair": 0.5282,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1178,
+      "bet_kelly": 0.0464,
+      "bet_odds": -130.0,
+      "open_odds": -130.0,
+      "bet_dec": 1.769,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 51.15,
+      "n_books": 5,
+      "best_odds": -120,
+      "best_book": "bovada",
+      "best_dec": 1.833,
+      "mkt_y_impl": 0.505,
+      "mkt_n_impl": 0.5652,
+      "forecast_weather": {
+        "temp": 54,
+        "humidity": 83,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      }
     }
   ],
   "summary": {
-    "total_games": 12,
-    "total_bets": 5,
+    "total_games": 13,
+    "total_bets": 6,
     "yrfi_bets": 2,
-    "nrfi_bets": 3,
-    "total_exposure": 188.67000000000002
+    "nrfi_bets": 4,
+    "total_exposure": 239.82000000000002
   }
 }
