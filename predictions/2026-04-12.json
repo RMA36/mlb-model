@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 1102.47,
-  "generated_at": "2026-04-12T14:56:07.670567+00:00",
+  "generated_at": "2026-04-12T15:50:11.864040+00:00",
   "games": [
     {
       "game_pk": 823479,
@@ -191,6 +191,80 @@
         "wind_mph": 18,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 822828,
+      "date": "2026-04-12",
+      "away_team": "MIN",
+      "home_team": "TOR",
+      "away_starter": "Taj Bradley",
+      "home_starter": "Max Scherzer",
+      "umpire": "Derek Thomas",
+      "p_top": 0.1441,
+      "p_bot": 0.3778,
+      "p_raw": 0.4675,
+      "p_cal": 0.4369,
+      "mkt_y_fair": 0.4459,
+      "mkt_n_fair": 0.5541,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.009,
+      "bet_kelly": 0.0,
+      "bet_odds": -145.0,
+      "open_odds": -127.0,
+      "bet_dec": 1.69,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -127,
+      "best_book": "betonlineag",
+      "best_dec": 1.787,
+      "mkt_y_impl": 0.4762,
+      "mkt_n_impl": 0.5918,
+      "forecast_weather": {
+        "temp": 43,
+        "humidity": 79,
+        "wind_mph": 10,
+        "precipitation_mm": 0.4
+      }
+    },
+    {
+      "game_pk": 824533,
+      "date": "2026-04-12",
+      "away_team": "LAA",
+      "home_team": "CIN",
+      "away_starter": "Jos\u00e9 Soriano",
+      "home_starter": "Andrew Abbott",
+      "umpire": "Ben May",
+      "p_top": 0.3609,
+      "p_bot": 0.2472,
+      "p_raw": 0.5188,
+      "p_cal": 0.5116,
+      "mkt_y_fair": 0.4744,
+      "mkt_n_fair": 0.5256,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0372,
+      "bet_kelly": 0.0034,
+      "bet_odds": -102.0,
+      "open_odds": -105.0,
+      "bet_dec": 1.98,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": 105,
+      "best_book": "bovada",
+      "best_dec": 2.05,
+      "mkt_y_impl": 0.505,
+      "mkt_n_impl": 0.5595,
+      "forecast_weather": {
+        "temp": 81,
+        "humidity": 37,
+        "wind_mph": 14,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -307,7 +381,7 @@
     }
   ],
   "summary": {
-    "total_games": 5,
+    "total_games": 7,
     "total_bets": 3,
     "yrfi_bets": 1,
     "nrfi_bets": 2,
