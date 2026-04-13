@@ -1,0 +1,56 @@
+{
+  "date": "2026-04-13",
+  "model": "v4-lgb-two-model",
+  "calibration_k": 0.9,
+  "model_mean": 0.47747324785513984,
+  "bankroll": 1000.0,
+  "bankroll_current": 947.98,
+  "generated_at": "2026-04-13T17:37:14.359899+00:00",
+  "games": [
+    {
+      "game_pk": 823153,
+      "date": "2026-04-13",
+      "away_team": "HOU",
+      "home_team": "SEA",
+      "away_starter": "Mike Burrows",
+      "home_starter": "George Kirby",
+      "umpire": "Todd Tichenor",
+      "p_top": 0.2679,
+      "p_bot": 0.1989,
+      "p_raw": 0.4136,
+      "p_cal": 0.4106,
+      "mkt_y_fair": 0.4681,
+      "mkt_n_fair": 0.5319,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0575,
+      "bet_kelly": 0.0123,
+      "bet_odds": -131.5,
+      "open_odds": -129.0,
+      "bet_dec": 1.76,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 4,
+      "best_odds": -120,
+      "best_book": "betmgm",
+      "best_dec": 1.833,
+      "mkt_y_impl": 0.5,
+      "mkt_n_impl": 0.568,
+      "forecast_weather": {
+        "temp": 50,
+        "humidity": 84,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      }
+    }
+  ],
+  "bets": [],
+  "summary": {
+    "total_games": 1,
+    "total_bets": 0,
+    "yrfi_bets": 0,
+    "nrfi_bets": 0,
+    "total_exposure": 0
+  }
+}
