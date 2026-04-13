@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 947.98,
-  "generated_at": "2026-04-13T22:02:28.565589+00:00",
+  "generated_at": "2026-04-13T23:00:19.658562+00:00",
   "games": [
     {
       "game_pk": 823153,
@@ -297,6 +297,38 @@
       "mkt_y_impl": 0.5238,
       "mkt_n_impl": 0.5402,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 825024,
+      "date": "2026-04-13",
+      "away_team": "TEX",
+      "home_team": "OAK",
+      "away_starter": "Nathan Eovaldi",
+      "home_starter": "Luis Severino",
+      "umpire": "Mike Muchlinski",
+      "p_top": 0.2666,
+      "p_bot": 0.3109,
+      "p_raw": 0.4946,
+      "p_cal": 0.5002,
+      "mkt_y_fair": 0.4848,
+      "mkt_n_fair": 0.5152,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0154,
+      "bet_kelly": 0.0,
+      "bet_odds": -107.5,
+      "open_odds": -108.5,
+      "bet_dec": 1.93,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 4,
+      "best_odds": -102,
+      "best_book": "betmgm",
+      "best_dec": 1.98,
+      "mkt_y_impl": 0.5181,
+      "mkt_n_impl": 0.5506,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -445,7 +477,7 @@
     }
   ],
   "summary": {
-    "total_games": 8,
+    "total_games": 9,
     "total_bets": 4,
     "yrfi_bets": 2,
     "nrfi_bets": 2,
