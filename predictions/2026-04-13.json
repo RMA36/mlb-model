@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 947.98,
-  "generated_at": "2026-04-13T21:07:18.615303+00:00",
+  "generated_at": "2026-04-13T22:02:28.565589+00:00",
   "games": [
     {
       "game_pk": 823153,
@@ -265,6 +265,38 @@
         "wind_mph": 13,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823964,
+      "date": "2026-04-13",
+      "away_team": "NYM",
+      "home_team": "LAD",
+      "away_starter": "David Peterson",
+      "home_starter": "Justin Wrobleski",
+      "umpire": "Nic Lentz",
+      "p_top": 0.431,
+      "p_bot": 0.3392,
+      "p_raw": 0.624,
+      "p_cal": 0.6242,
+      "mkt_y_fair": 0.4923,
+      "mkt_n_fair": 0.5077,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1319,
+      "bet_kelly": 0.0527,
+      "bet_odds": -110.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.909,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.4,
+      "n_books": 4,
+      "best_odds": -110,
+      "best_book": "betmgm",
+      "best_dec": 1.909,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5402,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -378,13 +410,45 @@
         "wind_mph": 13,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 823964,
+      "date": "2026-04-13",
+      "away_team": "NYM",
+      "home_team": "LAD",
+      "away_starter": "David Peterson",
+      "home_starter": "Justin Wrobleski",
+      "umpire": "Nic Lentz",
+      "p_top": 0.431,
+      "p_bot": 0.3392,
+      "p_raw": 0.624,
+      "p_cal": 0.6242,
+      "mkt_y_fair": 0.4923,
+      "mkt_n_fair": 0.5077,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1319,
+      "bet_kelly": 0.0527,
+      "bet_odds": -110.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.909,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.4,
+      "n_books": 4,
+      "best_odds": -110,
+      "best_book": "betmgm",
+      "best_dec": 1.909,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5402,
+      "forecast_weather": null
     }
   ],
   "summary": {
-    "total_games": 7,
-    "total_bets": 3,
-    "yrfi_bets": 1,
+    "total_games": 8,
+    "total_bets": 4,
+    "yrfi_bets": 2,
     "nrfi_bets": 2,
-    "total_exposure": 68.33
+    "total_exposure": 115.72999999999999
   }
 }
