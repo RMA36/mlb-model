@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 948.64,
-  "generated_at": "2026-04-14T22:08:20.899338+00:00",
+  "generated_at": "2026-04-14T23:04:59.207597+00:00",
   "games": [
     {
       "game_pk": 824292,
@@ -509,6 +509,38 @@
       "mkt_y_impl": 0.4619,
       "mkt_n_impl": 0.6,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 825022,
+      "date": "2026-04-14",
+      "away_team": "TEX",
+      "home_team": "OAK",
+      "away_starter": "MacKenzie Gore",
+      "home_starter": "Jeffrey Springs",
+      "umpire": "Gabe Morales",
+      "p_top": 0.4091,
+      "p_bot": 0.387,
+      "p_raw": 0.6377,
+      "p_cal": 0.6341,
+      "mkt_y_fair": 0.4899,
+      "mkt_n_fair": 0.5101,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1442,
+      "bet_kelly": 0.0579,
+      "bet_odds": -110.0,
+      "open_odds": -2.5,
+      "bet_dec": 1.909,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.43,
+      "n_books": 4,
+      "best_odds": 100,
+      "best_book": "betonlineag",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": null
     }
   ],
   "bets": [
@@ -797,13 +829,45 @@
         "wind_mph": 4,
         "precipitation_mm": 0
       }
+    },
+    {
+      "game_pk": 825022,
+      "date": "2026-04-14",
+      "away_team": "TEX",
+      "home_team": "OAK",
+      "away_starter": "MacKenzie Gore",
+      "home_starter": "Jeffrey Springs",
+      "umpire": "Gabe Morales",
+      "p_top": 0.4091,
+      "p_bot": 0.387,
+      "p_raw": 0.6377,
+      "p_cal": 0.6341,
+      "mkt_y_fair": 0.4899,
+      "mkt_n_fair": 0.5101,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1442,
+      "bet_kelly": 0.0579,
+      "bet_odds": -110.0,
+      "open_odds": -2.5,
+      "bet_dec": 1.909,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 47.43,
+      "n_books": 4,
+      "best_odds": 100,
+      "best_book": "betonlineag",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": null
     }
   ],
   "summary": {
-    "total_games": 14,
-    "total_bets": 8,
-    "yrfi_bets": 2,
+    "total_games": 15,
+    "total_bets": 9,
+    "yrfi_bets": 3,
     "nrfi_bets": 6,
-    "total_exposure": 208.12
+    "total_exposure": 255.55
   }
 }
