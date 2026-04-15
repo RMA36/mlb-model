@@ -5,7 +5,7 @@
   "model_mean": 0.47747324785513984,
   "bankroll": 1000.0,
   "bankroll_current": 880.48,
-  "generated_at": "2026-04-15T21:04:15.658098+00:00",
+  "generated_at": "2026-04-15T22:03:03.993801+00:00",
   "games": [
     {
       "game_pk": 823071,
@@ -403,6 +403,43 @@
       "mkt_y_impl": 0.5455,
       "mkt_n_impl": 0.5238,
       "forecast_weather": null
+    },
+    {
+      "game_pk": 823314,
+      "date": "2026-04-15",
+      "away_team": "SEA",
+      "home_team": "SDP",
+      "away_starter": "Emerson Hancock",
+      "home_starter": "Randy V\u00e1squez",
+      "umpire": "Bill Miller",
+      "p_top": 0.2487,
+      "p_bot": 0.3367,
+      "p_raw": 0.5016,
+      "p_cal": 0.4911,
+      "mkt_y_fair": 0.4694,
+      "mkt_n_fair": 0.5306,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0217,
+      "bet_kelly": 0.0,
+      "bet_odds": 100.0,
+      "open_odds": -105.0,
+      "bet_dec": 2.0,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 3,
+      "best_odds": 100,
+      "best_book": "betmgm",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.5,
+      "mkt_n_impl": 0.5652,
+      "forecast_weather": {
+        "temp": 65,
+        "humidity": 75,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      }
     }
   ],
   "bets": [
@@ -556,7 +593,7 @@
     }
   ],
   "summary": {
-    "total_games": 11,
+    "total_games": 12,
     "total_bets": 4,
     "yrfi_bets": 3,
     "nrfi_bets": 1,
