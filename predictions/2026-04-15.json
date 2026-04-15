@@ -1,0 +1,56 @@
+{
+  "date": "2026-04-15",
+  "model": "v4-lgb-two-model",
+  "calibration_k": 0.9,
+  "model_mean": 0.47747324785513984,
+  "bankroll": 1000.0,
+  "bankroll_current": 880.48,
+  "generated_at": "2026-04-15T14:49:55.307351+00:00",
+  "games": [
+    {
+      "game_pk": 823071,
+      "date": "2026-04-15",
+      "away_team": "CLE",
+      "home_team": "STL",
+      "away_starter": "Slade Cecconi",
+      "home_starter": "Dustin May",
+      "umpire": "Alex MacKay",
+      "p_top": 0.282,
+      "p_bot": 0.2908,
+      "p_raw": 0.4908,
+      "p_cal": 0.512,
+      "mkt_y_fair": 0.5,
+      "mkt_n_fair": 0.5,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.012,
+      "bet_kelly": 0.0,
+      "bet_odds": -115.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.87,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 3,
+      "best_odds": -110,
+      "best_book": "williamhill_us",
+      "best_dec": 1.909,
+      "mkt_y_impl": 0.5349,
+      "mkt_n_impl": 0.5349,
+      "forecast_weather": {
+        "temp": 74,
+        "humidity": 78,
+        "wind_mph": 11,
+        "precipitation_mm": 0
+      }
+    }
+  ],
+  "bets": [],
+  "summary": {
+    "total_games": 1,
+    "total_bets": 0,
+    "yrfi_bets": 0,
+    "nrfi_bets": 0,
+    "total_exposure": 0
+  }
+}
