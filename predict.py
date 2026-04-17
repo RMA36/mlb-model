@@ -72,6 +72,7 @@ MLB_API = "https://statsapi.mlb.com"
 ODDS_MASTER_REPO = "RMA36/mlb-odds-tracker-2026"
 ODDS_MASTER_PATH = "data/2026/yrfi_master_2026.parquet"
 ODDS_CACHE = ROOT / ".cache" / "yrfi_master_2026.parquet"
+ODDS_GAME_CACHE_DIR = PREDICTIONS_DIR / ".odds_cache"
 
 # ── Team mappings ──────────────────────────────────────────────────────
 
@@ -240,6 +241,30 @@ def load_daily_odds(date_str):
     result["nrfi_dec"] = result["nrfi_odds"].apply(american_to_decimal)
     result["yrfi_best_dec"] = result["yrfi_best_odds"].apply(american_to_decimal)
     result["nrfi_best_dec"] = result["nrfi_best_odds"].apply(american_to_decimal)
+
+    # ── Odds cache: persist per-date so games don't vanish between runs ──
+    # The odds-tracker parquet can drop games mid-day (e.g. lines pulled close
+    # to game time).  We cache each day's aggregated odds to a committed file
+    # so subsequent CI runs can still find them.
+    ODDS_GAME_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache_path = ODDS_GAME_CACHE_DIR / f"{date_str}.parquet"
+
+    if cache_path.exists():
+        try:
+            cached = pd.read_parquet(cache_path)
+            fresh_ids = set(result["game_id"]) if not result.empty else set()
+            missing = cached[~cached["game_id"].isin(fresh_ids)]
+            if len(missing) > 0:
+                logger.info("Restoring odds for %d games from cache: %s",
+                            len(missing),
+                            ", ".join(missing["away_team_abbr"] + "@" + missing["home_team_abbr"]))
+                result = pd.concat([result, missing], ignore_index=True)
+        except Exception as exc:
+            logger.warning("Could not read odds cache: %s", exc)
+
+    # Write merged result back to cache (fresh + restored)
+    if not result.empty:
+        result.to_parquet(cache_path, index=False)
 
     logger.info("Loaded odds for %d games (%s)", len(result), date_str)
     return result
