@@ -1,6 +1,6 @@
 {
   "model": "v4-lgb-two-model",
-  "updated_at": "2026-04-17T09:05:02.076076+00:00",
+  "updated_at": "2026-04-17T20:33:36.813322+00:00",
   "bankroll_start": 1000,
   "daily": {
     "2026-03-26": {
@@ -1463,7 +1463,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": -10.86,
-          "dec_odds": 1.909
+          "dec_odds": 1.909,
+          "close_odds": -110.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -1511,7 +1513,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 33.68,
-          "dec_odds": 1.8
+          "dec_odds": 1.8,
+          "close_odds": -130.0,
+          "clv": -0.0097
         },
         {
           "game_pk": 824458,
@@ -1549,7 +1553,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 12.89,
-          "dec_odds": 1.733
+          "dec_odds": 1.733,
+          "close_odds": -140.0,
+          "clv": -0.0062
         },
         {
           "game_pk": 824056,
@@ -1587,7 +1593,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -12.33,
-          "dec_odds": 2.05
+          "dec_odds": 2.05,
+          "close_odds": 105.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -1630,7 +1638,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": -27.05,
-          "dec_odds": 1.769
+          "dec_odds": 1.769,
+          "close_odds": -139.0,
+          "clv": -0.0164
         },
         {
           "game_pk": 825027,
@@ -1663,7 +1673,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 2,
           "pnl": 32.45,
-          "dec_odds": 1.741
+          "dec_odds": 1.741,
+          "close_odds": -132.0,
+          "clv": 0.0055
         },
         {
           "game_pk": 824378,
@@ -1701,7 +1713,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": 21.97,
-          "dec_odds": 1.758
+          "dec_odds": 1.758,
+          "close_odds": -132.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -1749,7 +1763,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -12.51,
-          "dec_odds": 1.87
+          "dec_odds": 1.87,
+          "close_odds": -116.0,
+          "clv": -0.0022
         },
         {
           "game_pk": 824459,
@@ -1787,7 +1803,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 15.73,
-          "dec_odds": 1.702
+          "dec_odds": 1.702,
+          "close_odds": -150.0,
+          "clv": -0.0124
         },
         {
           "game_pk": 824620,
@@ -1820,7 +1838,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 44.29,
-          "dec_odds": 1.98
+          "dec_odds": 1.98,
+          "close_odds": 100.0,
+          "clv": 0.005
         },
         {
           "game_pk": 824379,
@@ -1858,7 +1878,9 @@
           "home_1st_runs": 3,
           "total_1st_runs": 3,
           "pnl": 21.37,
-          "dec_odds": 1.641
+          "dec_odds": 1.641,
+          "close_odds": -155.0,
+          "clv": 0.0015
         },
         {
           "game_pk": 825102,
@@ -1896,7 +1918,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 2,
           "pnl": 37.03,
-          "dec_odds": 1.82
+          "dec_odds": 1.82,
+          "close_odds": -125.0,
+          "clv": -0.006
         },
         {
           "game_pk": 824053,
@@ -1934,7 +1958,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 24.22,
-          "dec_odds": 1.87
+          "dec_odds": 1.87,
+          "close_odds": -110.0,
+          "clv": 0.0111
         }
       ],
       "all_scored": true,
@@ -1982,7 +2008,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -51.69,
-          "dec_odds": 2.0
+          "dec_odds": 2.0,
+          "close_odds": 106.0,
+          "clv": 0.0146
         },
         {
           "game_pk": 823886,
@@ -2015,7 +2043,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -51.69,
-          "dec_odds": 2.0
+          "dec_odds": 2.0,
+          "close_odds": 102.0,
+          "clv": 0.005
         },
         {
           "game_pk": 824783,
@@ -2053,7 +2083,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 51.69,
-          "dec_odds": 2.0
+          "dec_odds": 2.0,
+          "close_odds": 105.0,
+          "clv": 0.0122
         },
         {
           "game_pk": 822832,
@@ -2091,7 +2123,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 3,
           "pnl": 43.08,
-          "dec_odds": 1.833
+          "dec_odds": 1.833,
+          "close_odds": -119.0,
+          "clv": 0.0021
         },
         {
           "game_pk": 823401,
@@ -2129,7 +2163,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -18.88,
-          "dec_odds": 1.901
+          "dec_odds": 1.901,
+          "close_odds": -106.0,
+          "clv": 0.0115
         },
         {
           "game_pk": 823728,
@@ -2167,7 +2203,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -51.69,
-          "dec_odds": 2.2
+          "dec_odds": 2.2,
+          "close_odds": 135.0,
+          "clv": 0.029
         },
         {
           "game_pk": 824619,
@@ -2200,7 +2238,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -38.61,
-          "dec_odds": 2.0
+          "dec_odds": 2.0,
+          "close_odds": 100.0,
+          "clv": 0.0
         },
         {
           "game_pk": 822918,
@@ -2238,7 +2278,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 2,
           "pnl": 28.53,
-          "dec_odds": 2.175
+          "dec_odds": 2.175,
+          "close_odds": 115.0,
+          "clv": -0.0053
         },
         {
           "game_pk": 824376,
@@ -2276,7 +2318,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 2,
           "pnl": 39.76,
-          "dec_odds": 1.769
+          "dec_odds": 1.769,
+          "close_odds": -130.0,
+          "clv": 0.0
         },
         {
           "game_pk": 824052,
@@ -2314,7 +2358,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 2,
           "pnl": 54.13,
-          "dec_odds": 2.1
+          "dec_odds": 2.1,
+          "close_odds": 110.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -2362,7 +2408,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 29.76,
-          "dec_odds": 2.15
+          "dec_odds": 2.15,
+          "close_odds": 109.0,
+          "clv": -0.0134
         },
         {
           "game_pk": 823567,
@@ -2400,7 +2448,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -32.77,
-          "dec_odds": 1.893
+          "dec_odds": 1.893,
+          "close_odds": -110.0,
+          "clv": 0.0045
         },
         {
           "game_pk": 822831,
@@ -2438,7 +2488,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 24.75,
-          "dec_odds": 1.769
+          "dec_odds": 1.769,
+          "close_odds": -135.0,
+          "clv": -0.0093
         },
         {
           "game_pk": 822916,
@@ -2476,7 +2528,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": -51.92,
-          "dec_odds": 1.741
+          "dec_odds": 1.741,
+          "close_odds": -135.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -2524,7 +2578,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 10.2,
-          "dec_odds": 1.676
+          "dec_odds": 1.676,
+          "close_odds": -158.5,
+          "clv": -0.0164
         },
         {
           "game_pk": 822915,
@@ -2562,7 +2618,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 23.56,
-          "dec_odds": 1.752
+          "dec_odds": 1.752,
+          "close_odds": -145.0,
+          "clv": -0.021
         },
         {
           "game_pk": 824374,
@@ -2600,7 +2658,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 33.61,
-          "dec_odds": 1.667
+          "dec_odds": 1.667,
+          "close_odds": -150.0,
+          "clv": 0.0
         },
         {
           "game_pk": 823564,
@@ -2638,7 +2698,9 @@
           "home_1st_runs": 2,
           "total_1st_runs": 2,
           "pnl": 24.9,
-          "dec_odds": 1.952
+          "dec_odds": 1.952,
+          "close_odds": -104.0,
+          "clv": 0.0024
         }
       ],
       "all_scored": true,
@@ -2691,7 +2753,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -17.55,
-          "dec_odds": 2.05
+          "dec_odds": 2.05,
+          "close_odds": 100.0,
+          "clv": -0.0122
         },
         {
           "game_pk": 823319,
@@ -2734,7 +2798,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -55.03,
-          "dec_odds": 1.98
+          "dec_odds": 1.98,
+          "close_odds": -102.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -2787,7 +2853,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 5.99,
-          "dec_odds": 1.562
+          "dec_odds": 1.562,
+          "close_odds": -184.0,
+          "clv": -0.0076
         },
         {
           "game_pk": 822829,
@@ -2830,7 +2898,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 3,
           "pnl": 38.8,
-          "dec_odds": 1.787
+          "dec_odds": 1.787,
+          "close_odds": -115.0,
+          "clv": 0.0246
         },
         {
           "game_pk": 824534,
@@ -2873,7 +2943,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -50.19,
-          "dec_odds": 1.885
+          "dec_odds": 1.885,
+          "close_odds": -105.0,
+          "clv": 0.0183
         },
         {
           "game_pk": 823643,
@@ -2916,7 +2988,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -20.16,
-          "dec_odds": 2.0
+          "dec_odds": 2.0,
+          "close_odds": 100.0,
+          "clv": 0.0
         },
         {
           "game_pk": 824941,
@@ -2959,7 +3033,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -36.02,
-          "dec_odds": 1.909
+          "dec_odds": 1.909,
+          "close_odds": -108.0,
+          "clv": 0.0046
         },
         {
           "game_pk": 823076,
@@ -3002,7 +3078,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 33.31,
-          "dec_odds": 1.758
+          "dec_odds": 1.758,
+          "close_odds": -148.0,
+          "clv": -0.0278
         },
         {
           "game_pk": 823808,
@@ -3045,7 +3123,9 @@
           "home_1st_runs": 3,
           "total_1st_runs": 5,
           "pnl": -51.4,
-          "dec_odds": 1.833
+          "dec_odds": 1.833,
+          "close_odds": -115.0,
+          "clv": 0.0106
         }
       ],
       "all_scored": true,
@@ -3098,7 +3178,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 2,
           "pnl": 37.04,
-          "dec_odds": 1.781
+          "dec_odds": 1.781,
+          "close_odds": -122.5,
+          "clv": 0.0108
         },
         {
           "game_pk": 822830,
@@ -3141,7 +3223,9 @@
           "home_1st_runs": 2,
           "total_1st_runs": 2,
           "pnl": 17.74,
-          "dec_odds": 1.98
+          "dec_odds": 1.98,
+          "close_odds": -102.0,
+          "clv": 0.0
         },
         {
           "game_pk": 824129,
@@ -3184,7 +3268,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 18.33,
-          "dec_odds": 1.833
+          "dec_odds": 1.833,
+          "close_odds": -115.0,
+          "clv": 0.0106
         },
         {
           "game_pk": 824535,
@@ -3227,7 +3313,9 @@
           "home_1st_runs": 4,
           "total_1st_runs": 4,
           "pnl": 39.51,
-          "dec_odds": 1.833
+          "dec_odds": 1.833,
+          "close_odds": -120.0,
+          "clv": 0.0
         },
         {
           "game_pk": 824939,
@@ -3270,7 +3358,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": 45.15,
-          "dec_odds": 1.952
+          "dec_odds": 1.952,
+          "close_odds": -105.0,
+          "clv": 0.0
         },
         {
           "game_pk": 824857,
@@ -3313,7 +3403,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -43.06,
-          "dec_odds": 2.1
+          "dec_odds": 2.1,
+          "close_odds": 114.0,
+          "clv": 0.0089
         },
         {
           "game_pk": 823316,
@@ -3356,7 +3448,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 2,
           "pnl": 39.51,
-          "dec_odds": 1.833
+          "dec_odds": 1.833,
+          "close_odds": -120.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -3409,7 +3503,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -55.12,
-          "dec_odds": 2.05
+          "dec_odds": 2.05,
+          "close_odds": 105.0,
+          "clv": 0.0
         },
         {
           "game_pk": 824293,
@@ -3452,7 +3548,9 @@
           "home_1st_runs": 3,
           "total_1st_runs": 3,
           "pnl": -51.61,
-          "dec_odds": 1.529
+          "dec_odds": 1.529,
+          "close_odds": -194.0,
+          "clv": -0.0059
         },
         {
           "game_pk": 822998,
@@ -3495,7 +3593,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": -28.89,
-          "dec_odds": 1.769
+          "dec_odds": 1.769,
+          "close_odds": -139.0,
+          "clv": -0.0164
         },
         {
           "game_pk": 823804,
@@ -3538,7 +3638,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 13.27,
-          "dec_odds": 1.741
+          "dec_odds": 1.741,
+          "close_odds": -135.0,
+          "clv": 0.0
         },
         {
           "game_pk": 823317,
@@ -3581,7 +3683,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 35.13,
-          "dec_odds": 2.0
+          "dec_odds": 2.0,
+          "close_odds": 110.0,
+          "clv": 0.0238
         },
         {
           "game_pk": 823154,
@@ -3624,7 +3728,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": -51.15,
-          "dec_odds": 1.769
+          "dec_odds": 1.769,
+          "close_odds": -130.0,
+          "clv": 0.0
         },
         {
           "game_pk": 824938,
@@ -3667,7 +3773,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -16.12,
-          "dec_odds": 2.1
+          "dec_odds": 2.1,
+          "close_odds": 110.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -3720,7 +3828,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": 11.91,
-          "dec_odds": 1.851
+          "dec_odds": 1.851,
+          "close_odds": -119.5,
+          "clv": -0.0042
         },
         {
           "game_pk": 823400,
@@ -3763,7 +3873,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": -26.6,
-          "dec_odds": 1.667
+          "dec_odds": 1.667,
+          "close_odds": -155.0,
+          "clv": -0.0078
         },
         {
           "game_pk": 823073,
@@ -3806,7 +3918,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 2,
           "pnl": -27.74,
-          "dec_odds": 1.755
+          "dec_odds": 1.755,
+          "close_odds": -132.5,
+          "clv": 0.0
         },
         {
           "game_pk": 823964,
@@ -3844,7 +3958,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 43.09,
-          "dec_odds": 1.909
+          "dec_odds": 1.909,
+          "close_odds": -110.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,
@@ -3897,7 +4013,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 14.62,
-          "dec_odds": 1.667
+          "dec_odds": 1.667,
+          "close_odds": -144.0,
+          "clv": 0.0098
         },
         {
           "game_pk": 823562,
@@ -3940,7 +4058,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 3,
           "pnl": -47.43,
-          "dec_odds": 1.909
+          "dec_odds": 1.909,
+          "close_odds": 100.0,
+          "clv": 0.0238
         },
         {
           "game_pk": 824935,
@@ -3983,7 +4103,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": -22.75,
-          "dec_odds": 1.847
+          "dec_odds": 1.847,
+          "close_odds": -115.0,
+          "clv": 0.0064
         },
         {
           "game_pk": 824616,
@@ -4021,7 +4143,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 3,
           "pnl": -23.69,
-          "dec_odds": 1.69
+          "dec_odds": 1.69,
+          "close_odds": -132.5,
+          "clv": 0.0219
         },
         {
           "game_pk": 824210,
@@ -4059,7 +4183,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": 16.21,
-          "dec_odds": 1.87
+          "dec_odds": 1.87,
+          "close_odds": -117.5,
+          "clv": -0.0053
         },
         {
           "game_pk": 824853,
@@ -4102,7 +4228,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -20.62,
-          "dec_odds": 1.8
+          "dec_odds": 1.8,
+          "close_odds": -115.0,
+          "clv": 0.0207
         },
         {
           "game_pk": 823723,
@@ -4145,7 +4273,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": -37.37,
-          "dec_odds": 1.787
+          "dec_odds": 1.787,
+          "close_odds": -128.5,
+          "clv": -0.0029
         },
         {
           "game_pk": 823802,
@@ -4188,7 +4318,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 9.75,
-          "dec_odds": 1.621
+          "dec_odds": 1.621,
+          "close_odds": -160.5,
+          "clv": 0.0007
         },
         {
           "game_pk": 825022,
@@ -4226,7 +4358,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 1,
           "pnl": 43.12,
-          "dec_odds": 1.909
+          "dec_odds": 1.909,
+          "close_odds": -107.5,
+          "clv": 0.0057
         }
       ],
       "all_scored": true,
@@ -4279,7 +4413,9 @@
           "home_1st_runs": 2,
           "total_1st_runs": 2,
           "pnl": -35.13,
-          "dec_odds": 1.952
+          "dec_odds": 1.952,
+          "close_odds": -105.0,
+          "clv": 0.0
         },
         {
           "game_pk": 823561,
@@ -4322,7 +4458,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 27.95,
-          "dec_odds": 1.635
+          "dec_odds": 1.635,
+          "close_odds": -148.5,
+          "clv": 0.0141
         },
         {
           "game_pk": 824936,
@@ -4365,7 +4503,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -13.45,
-          "dec_odds": 1.833
+          "dec_odds": 1.833,
+          "close_odds": -122.5,
+          "clv": -0.0051
         },
         {
           "game_pk": 823477,
@@ -4408,7 +4548,9 @@
           "home_1st_runs": 1,
           "total_1st_runs": 1,
           "pnl": 15.45,
-          "dec_odds": 1.909
+          "dec_odds": 1.909,
+          "close_odds": -110.0,
+          "clv": 0.0
         },
         {
           "game_pk": 823963,
@@ -4446,7 +4588,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -13.67,
-          "dec_odds": 2.05
+          "dec_odds": 2.05,
+          "close_odds": 115.0,
+          "clv": 0.0227
         }
       ],
       "all_scored": true,
@@ -4499,7 +4643,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": 9.55,
-          "dec_odds": 1.741
+          "dec_odds": 1.741,
+          "close_odds": -143.5,
+          "clv": -0.0149
         },
         {
           "game_pk": 823801,
@@ -4542,7 +4688,9 @@
           "home_1st_runs": 0,
           "total_1st_runs": 0,
           "pnl": -43.08,
-          "dec_odds": 1.833
+          "dec_odds": 1.833,
+          "close_odds": -120.0,
+          "clv": 0.0
         }
       ],
       "all_scored": true,

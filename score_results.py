@@ -195,6 +195,9 @@ def load_closing_odds(date_str: str) -> dict:
     fi["home_abbr"] = fi["home_team"].map(FULL_NAME_TO_ABBR)
     fi["away_abbr"] = fi["away_team"].map(FULL_NAME_TO_ABBR)
 
+    # Defensive: other markets (e.g. totals_1st_5_innings) also use Over/Under
+    fi = fi[fi["market"] == "totals_1st_1_innings"]
+
     yrfi = fi[fi["outcome_name"] == "Over"]
     nrfi = fi[fi["outcome_name"] == "Under"]
 
@@ -234,12 +237,18 @@ def score_date(date_str: str, results: dict, force: bool = False) -> int:
         logger.info("%s: No bets to score", date_str)
         return 0
 
-    # Check if already scored (skip unless forced)
+    # Check if already scored (skip unless forced).
+    # Exception: if any bet is missing CLV, fall through to try again — close_price
+    # may not have been available at the original scoring time.
     if date_str in results["daily"] and not force:
         existing = results["daily"][date_str]
         if existing.get("all_scored"):
-            logger.info("%s: Already fully scored (%d bets)", date_str, len(existing["bets"]))
-            return 0
+            missing_clv = [b for b in existing["bets"] if b.get("close_odds") is None]
+            if not missing_clv:
+                logger.info("%s: Already fully scored (%d bets)", date_str, len(existing["bets"]))
+                return 0
+            logger.info("%s: Fully scored but %d bets missing CLV — retrying",
+                         date_str, len(missing_clv))
 
     # Load closing odds for CLV calculation
     closing_odds = load_closing_odds(date_str)
