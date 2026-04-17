@@ -56,6 +56,26 @@ interface ForecastWeather {
   precipitation_mm: number;
 }
 
+interface PickFactors {
+  away_fi_runs_per_start: number;
+  home_fi_runs_per_start: number;
+  away_fi_k_rate: number;
+  home_fi_k_rate: number;
+  away_recent_fi_runs: number;
+  home_recent_fi_runs: number;
+  away_avg_velo: number;
+  home_avg_velo: number;
+  away_platoon_k_rate: number;
+  home_platoon_k_rate: number;
+  away_lineup_weighted_score: number;
+  home_lineup_weighted_score: number;
+  away_platoon_lineup_woba: number;
+  home_platoon_lineup_woba: number;
+  umpire_strike_rate: number;
+  park_factor_runs: number;
+  elevation_ft: number;
+}
+
 interface Bet {
   game_pk: number;
   date: string;
@@ -65,6 +85,9 @@ interface Bet {
   home_starter: string;
   umpire: string;
   p_cal: number;
+  p_top?: number;
+  p_bot?: number;
+  p_raw?: number;
   mkt_y_fair: number;
   mkt_n_fair: number;
   agreement: string;
@@ -90,6 +113,7 @@ interface Bet {
   best_book?: string;
   mkt_y_impl?: number;
   mkt_n_impl?: number;
+  pick_factors?: PickFactors;
 }
 
 interface DayPredictions {
@@ -463,13 +487,63 @@ function StatCard({
   );
 }
 
-function BetCard({ bet, isLive }: { bet: Bet; isLive?: boolean }) {
+function BetCard({ bet, isLive, gameTime, gameState }: { bet: Bet; isLive?: boolean; gameTime?: string; gameState?: string }) {
   const isYrfi = bet.bet_side === "YRFI";
   const modelPct = isYrfi ? bet.p_cal * 100 : (1 - bet.p_cal) * 100;
   const mktPct = isYrfi
     ? (bet.mkt_y_impl ?? bet.mkt_y_fair) * 100
     : (bet.mkt_n_impl ?? bet.mkt_n_fair) * 100;
   const hasResult = bet.result === "W" || bet.result === "L";
+  const isFinal = gameState === "Final" || gameState === "Game Over" || gameState === "Completed Early";
+  const isPreGame = gameState && !isFinal && !isLive && gameState !== "Postponed" && gameState !== "Suspended";
+
+  // Build "why this pick" reasons from actual model features
+  const reasons: string[] = [];
+  const f = bet.pick_factors;
+  if (f) {
+    if (isYrfi) {
+      // YRFI: highlight weak pitching, strong lineups, high park factors
+      const awayFiRuns = f.away_fi_runs_per_start;
+      const homeFiRuns = f.home_fi_runs_per_start;
+      if (awayFiRuns >= 0.5) reasons.push(`${bet.away_starter} allows ${awayFiRuns.toFixed(2)} runs/1st inn`);
+      if (homeFiRuns >= 0.5) reasons.push(`${bet.home_starter} allows ${homeFiRuns.toFixed(2)} runs/1st inn`);
+      if (f.away_recent_fi_runs >= 0.6) reasons.push(`${bet.away_starter} trending worse: ${f.away_recent_fi_runs.toFixed(2)} runs/1st inn last 3 starts`);
+      if (f.home_recent_fi_runs >= 0.6) reasons.push(`${bet.home_starter} trending worse: ${f.home_recent_fi_runs.toFixed(2)} runs/1st inn last 3 starts`);
+      if (f.away_fi_k_rate < 0.18) reasons.push(`${bet.away_starter} low 1st-inn K rate (${(f.away_fi_k_rate * 100).toFixed(0)}%)`);
+      if (f.home_fi_k_rate < 0.18) reasons.push(`${bet.home_starter} low 1st-inn K rate (${(f.home_fi_k_rate * 100).toFixed(0)}%)`);
+      if (f.away_lineup_weighted_score >= 0.33) reasons.push(`${bet.away_team} lineup wOBA: ${f.away_lineup_weighted_score.toFixed(3)}`);
+      if (f.home_lineup_weighted_score >= 0.33) reasons.push(`${bet.home_team} lineup wOBA: ${f.home_lineup_weighted_score.toFixed(3)}`);
+      if (f.park_factor_runs >= 105) reasons.push(`Hitter-friendly park (${f.park_factor_runs.toFixed(0)} park factor)`);
+      if (f.elevation_ft >= 4000) reasons.push(`High elevation (${f.elevation_ft.toLocaleString()} ft)`);
+    } else {
+      // NRFI: highlight strong pitching, weak lineups, pitcher-friendly park
+      const awayK = f.away_fi_k_rate;
+      const homeK = f.home_fi_k_rate;
+      if (awayK >= 0.25) reasons.push(`${bet.away_starter} high 1st-inn K rate (${(awayK * 100).toFixed(0)}%)`);
+      if (homeK >= 0.25) reasons.push(`${bet.home_starter} high 1st-inn K rate (${(homeK * 100).toFixed(0)}%)`);
+      if (f.away_fi_runs_per_start <= 0.3) reasons.push(`${bet.away_starter} allows just ${f.away_fi_runs_per_start.toFixed(2)} runs/1st inn`);
+      if (f.home_fi_runs_per_start <= 0.3) reasons.push(`${bet.home_starter} allows just ${f.home_fi_runs_per_start.toFixed(2)} runs/1st inn`);
+      if (f.away_avg_velo >= 95) reasons.push(`${bet.away_starter} throws hard (${f.away_avg_velo.toFixed(1)} mph)`);
+      if (f.home_avg_velo >= 95) reasons.push(`${bet.home_starter} throws hard (${f.home_avg_velo.toFixed(1)} mph)`);
+      if (f.away_platoon_k_rate >= 0.25) reasons.push(`${bet.away_starter} dominant platoon K rate (${(f.away_platoon_k_rate * 100).toFixed(0)}%)`);
+      if (f.home_platoon_k_rate >= 0.25) reasons.push(`${bet.home_starter} dominant platoon K rate (${(f.home_platoon_k_rate * 100).toFixed(0)}%)`);
+      if (f.away_lineup_weighted_score <= 0.30) reasons.push(`${bet.away_team} lineup weak (${f.away_lineup_weighted_score.toFixed(3)} wOBA)`);
+      if (f.home_lineup_weighted_score <= 0.30) reasons.push(`${bet.home_team} lineup weak (${f.home_lineup_weighted_score.toFixed(3)} wOBA)`);
+      if (f.park_factor_runs <= 95) reasons.push(`Pitcher-friendly park (${f.park_factor_runs.toFixed(0)} park factor)`);
+    }
+    if (f.umpire_strike_rate >= 0.35 && isYrfi) reasons.push(`Generous umpire (${(f.umpire_strike_rate * 100).toFixed(1)}% strike rate) — may suppress scoring`);
+    if (f.umpire_strike_rate <= 0.32 && isYrfi) reasons.push(`Tight umpire (${(f.umpire_strike_rate * 100).toFixed(1)}% strike rate) — more walks expected`);
+    if (f.umpire_strike_rate >= 0.35 && !isYrfi) reasons.push(`Generous umpire (${(f.umpire_strike_rate * 100).toFixed(1)}% strike rate) — favors pitchers`);
+    if (f.umpire_strike_rate <= 0.32 && !isYrfi) reasons.push(`Tight umpire (${(f.umpire_strike_rate * 100).toFixed(1)}% strike rate) — but lineups overcome it`);
+  }
+  // Weather factors (available even without pick_factors)
+  if (bet.forecast_weather) {
+    const wx = bet.forecast_weather;
+    if (wx.temp >= 85 && isYrfi) reasons.push(`Hot weather (${wx.temp}°F) — ball carries farther`);
+    if (wx.temp <= 45) reasons.push(`Cold weather (${wx.temp}°F) — affects grip and ball flight`);
+    if (wx.wind_mph >= 15) reasons.push(`Windy conditions (${wx.wind_mph} mph)`);
+    if (wx.precipitation_mm > 0) reasons.push(`Precipitation expected (${wx.precipitation_mm}mm)`);
+  }
 
   return (
     <div
@@ -540,6 +614,10 @@ function BetCard({ bet, isLive }: { bet: Bet; isLive?: boolean }) {
             <span className="rounded bg-yellow-900/40 px-2 py-0.5 text-xs text-yellow-300 animate-pulse">
               LIVE
             </span>
+          ) : isPreGame && gameTime ? (
+            <span className="text-xs text-[var(--text-muted)]">
+              {formatGameTime(gameTime)}
+            </span>
           ) : (
             <span className="rounded bg-yellow-900/40 px-2 py-0.5 text-xs text-yellow-300">
               PENDING
@@ -567,6 +645,19 @@ function BetCard({ bet, isLive }: { bet: Bet; isLive?: boolean }) {
           <span className="text-[var(--text-muted)]">Stake</span>
           <div className="font-mono font-medium">{(bet.bet_kelly * 100).toFixed(1)}%</div>
         </div>
+      </div>
+
+      {/* Why this pick */}
+      <div className="mt-3 border-t border-[var(--card-border)] pt-2">
+        <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1">Why this pick</div>
+        <ul className="space-y-0.5 text-xs text-[var(--text-muted)]">
+          {reasons.map((r, i) => (
+            <li key={i} className="flex gap-1.5">
+              <span className="text-[var(--green)] mt-0.5">•</span>
+              <span>{r}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="mt-2 text-xs text-[var(--text-muted)]">
@@ -1721,7 +1812,7 @@ export default function Home() {
 
   // Build a map of live first-inning scores from the Games tab data
   const liveFirstInning = new Map(
-    games.map((g) => [g.gamePk, { away: g.firstInningAway, home: g.firstInningHome, inning: g.currentInning, gameState: g.gameState }])
+    games.map((g) => [g.gamePk, { away: g.firstInningAway, home: g.firstInningHome, inning: g.currentInning, gameState: g.gameState, gameTime: g.gameTime }])
   );
 
   // Merge results into predictions if available
@@ -1906,10 +1997,14 @@ export default function Home() {
             </div>
           )}
 
-          {analysisGames.length > 0 && (
+          {(analysisGames.length > 0 || games.length > 0) && (() => {
+            const analyzedPks = new Set(analysisGames.map((g) => g.game_pk));
+            const pendingGames = games.filter((g) => !analyzedPks.has(g.gamePk));
+            return (
             <div>
               <div className="mb-3 text-sm text-[var(--text-muted)]">
                 {analysisGames.length} game{analysisGames.length !== 1 ? "s" : ""} analyzed
+                {pendingGames.length > 0 && ` · ${pendingGames.length} pending`}
                 {" · "}
                 {analysisGames.filter((g) => g.passes_filter).length} qualifying bet{analysisGames.filter((g) => g.passes_filter).length !== 1 ? "s" : ""}
               </div>
@@ -1923,9 +2018,26 @@ export default function Home() {
                   .map((g) => (
                     <BreakevenCard key={g.game_pk} game={g} />
                   ))}
+                {pendingGames.map((g) => (
+                  <div key={g.gamePk} className="rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-4 flex items-center justify-between">
+                    <div>
+                      <div className="text-sm font-medium">{g.awayAbbrev} @ {g.homeAbbrev}</div>
+                      <div className="text-xs text-[var(--text-muted)]">
+                        {g.awayStarter?.name ?? "TBD"} vs {g.homeStarter?.name ?? "TBD"}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-[var(--text-muted)]">{formatGameTime(g.gameTime)}</span>
+                      <span className="rounded bg-yellow-900/40 px-2 py-0.5 text-xs text-yellow-300">
+                        PENDING
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          )}
+            );
+          })()}
         </div>
       )}
 
@@ -2049,8 +2161,16 @@ export default function Home() {
                 <div className="grid gap-3">
                   {betsWithResults.map((b) => {
                     const live = liveFirstInning.get(b.game_pk);
-                    const gameIsLive = !b.result && live?.gameState === "Live";
-                    return <BetCard key={b.game_pk} bet={b} isLive={gameIsLive} />;
+                    const gameIsLive = !b.result && (live?.gameState === "In Progress" || live?.gameState === "Manager Challenge");
+                    return (
+                      <BetCard
+                        key={b.game_pk}
+                        bet={b}
+                        isLive={gameIsLive}
+                        gameTime={live?.gameTime}
+                        gameState={live?.gameState}
+                      />
+                    );
                   })}
                 </div>
               </div>

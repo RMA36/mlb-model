@@ -1148,6 +1148,25 @@ def main():
                     "wind_mph": round(wx.get("hourly_wind_mph", 0)),
                     "precipitation_mm": round(wx.get("hourly_precipitation_mm", wx.get("precipitation_mm", 0)), 1),
                 } if wx else None,
+                "pick_factors": {
+                    "away_fi_runs_per_start": round(features.get("away_fi_runs_per_start", 0), 2),
+                    "home_fi_runs_per_start": round(features.get("home_fi_runs_per_start", 0), 2),
+                    "away_fi_k_rate": round(features.get("away_fi_k_rate", 0), 3),
+                    "home_fi_k_rate": round(features.get("home_fi_k_rate", 0), 3),
+                    "away_recent_fi_runs": round(features.get("away_recent_fi_runs", 0), 2),
+                    "home_recent_fi_runs": round(features.get("home_recent_fi_runs", 0), 2),
+                    "away_avg_velo": round(features.get("away_avg_velo", 0), 1),
+                    "home_avg_velo": round(features.get("home_avg_velo", 0), 1),
+                    "away_platoon_k_rate": round(features.get("away_platoon_k_rate", 0), 3),
+                    "home_platoon_k_rate": round(features.get("home_platoon_k_rate", 0), 3),
+                    "away_lineup_weighted_score": round(features.get("away_lineup_weighted_score", 0), 3),
+                    "home_lineup_weighted_score": round(features.get("home_lineup_weighted_score", 0), 3),
+                    "away_platoon_lineup_woba": round(features.get("away_platoon_lineup_woba", 0), 3),
+                    "home_platoon_lineup_woba": round(features.get("home_platoon_lineup_woba", 0), 3),
+                    "umpire_strike_rate": round(features.get("ump_career_strike_rate", 0), 3),
+                    "park_factor_runs": round(features.get("env_park_factor_runs", 100), 1),
+                    "elevation_ft": round(features.get("env_elevation_ft", 0)),
+                },
             })
         except Exception as exc:
             logger.warning("  %d: Error -- %s", gpk, exc)
