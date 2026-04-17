@@ -5,7 +5,7 @@
   "model_mean": 0.47709574108799613,
   "bankroll": 1000.0,
   "bankroll_current": 828.1,
-  "generated_at": "2026-04-17T22:23:17.162575+00:00",
+  "generated_at": "2026-04-17T23:06:43.081343+00:00",
   "games": [
     {
       "game_pk": 824693,
@@ -719,6 +719,62 @@
         "park_factor_runs": 97.0,
         "elevation_ft": 160
       }
+    },
+    {
+      "game_pk": 823152,
+      "date": "2026-04-17",
+      "away_team": "TEX",
+      "home_team": "SEA",
+      "away_starter": "Jacob deGrom",
+      "home_starter": "Logan Gilbert",
+      "umpire": "Jordan Baker",
+      "p_top": 0.1809,
+      "p_bot": 0.2938,
+      "p_raw": 0.4215,
+      "p_cal": 0.3598,
+      "mkt_y_fair": 0.4098,
+      "mkt_n_fair": 0.5902,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.05,
+      "bet_kelly": 0.0094,
+      "bet_odds": -167.5,
+      "open_odds": -167.5,
+      "bet_dec": 1.597,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 4,
+      "best_odds": -160,
+      "best_book": "williamhill_us",
+      "best_dec": 1.625,
+      "mkt_y_impl": 0.4348,
+      "mkt_n_impl": 0.6262,
+      "forecast_weather": {
+        "temp": 53,
+        "humidity": 61,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.49,
+        "home_lineup_weighted_score": 1.475,
+        "away_platoon_lineup_woba": 0.349,
+        "home_platoon_lineup_woba": 0.348,
+        "umpire_strike_rate": 0.332,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "bets": [
@@ -1060,7 +1116,7 @@
     }
   ],
   "summary": {
-    "total_games": 13,
+    "total_games": 14,
     "total_bets": 6,
     "yrfi_bets": 3,
     "nrfi_bets": 3,
