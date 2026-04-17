@@ -2682,20 +2682,17 @@ export default function Home() {
                             </tr>
                           </thead>
                           <tbody>
-                            {bucketData.map((b) => {
-                              const diffColor = Math.abs(b.diff) > 10 ? "text-[var(--red)]" : Math.abs(b.diff) > 5 ? "text-yellow-300" : "text-[var(--green)]";
-                              return (
+                            {bucketData.map((b) => (
                                 <tr key={b.label} className="border-t border-[var(--card-border)]/50">
                                   <td className="py-2 font-medium">{b.label}</td>
                                   <td className="py-2 text-right font-mono">{b.count}</td>
                                   <td className="py-2 text-right font-mono">{b.predicted.toFixed(1)}%</td>
                                   <td className="py-2 text-right font-mono">{b.actual.toFixed(1)}%</td>
-                                  <td className={`py-2 text-right font-mono font-bold ${diffColor}`}>
+                                  <td className="py-2 text-right font-mono font-bold" style={{ color: b.diff >= 0 ? "var(--green)" : "var(--red)" }}>
                                     {b.diff >= 0 ? "+" : ""}{b.diff.toFixed(1)}%
                                   </td>
                                 </tr>
-                              );
-                            })}
+                            ))}
                           </tbody>
                         </table>
                       </div>
