@@ -5,7 +5,7 @@
   "model_mean": 0.47709574108799613,
   "bankroll": 1000.0,
   "bankroll_current": 828.1,
-  "generated_at": "2026-04-17T21:41:55.066950+00:00",
+  "generated_at": "2026-04-17T22:23:17.162575+00:00",
   "games": [
     {
       "game_pk": 824693,
@@ -663,6 +663,62 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 824048,
+      "date": "2026-04-17",
+      "away_team": "SDP",
+      "home_team": "LAA",
+      "away_starter": "Matt Waldron",
+      "home_starter": "Jos\u00e9 Soriano",
+      "umpire": "Mike Muchlinski",
+      "p_top": 0.1768,
+      "p_bot": 0.2854,
+      "p_raw": 0.4118,
+      "p_cal": 0.4255,
+      "mkt_y_fair": 0.4843,
+      "mkt_n_fair": 0.5157,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0588,
+      "bet_kelly": 0.016,
+      "bet_odds": -120.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 13.23,
+      "n_books": 3,
+      "best_odds": -120,
+      "best_book": "betmgm",
+      "best_dec": 1.833,
+      "mkt_y_impl": 0.5122,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": {
+        "temp": 73,
+        "humidity": 50,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.431,
+        "home_lineup_weighted_score": 1.414,
+        "away_platoon_lineup_woba": 0.341,
+        "home_platoon_lineup_woba": 0.324,
+        "umpire_strike_rate": 0.332,
+        "park_factor_runs": 97.0,
+        "elevation_ft": 160
+      }
     }
   ],
   "bets": [
@@ -945,13 +1001,69 @@
         "park_factor_runs": 101.0,
         "elevation_ft": 815
       }
+    },
+    {
+      "game_pk": 824048,
+      "date": "2026-04-17",
+      "away_team": "SDP",
+      "home_team": "LAA",
+      "away_starter": "Matt Waldron",
+      "home_starter": "Jos\u00e9 Soriano",
+      "umpire": "Mike Muchlinski",
+      "p_top": 0.1768,
+      "p_bot": 0.2854,
+      "p_raw": 0.4118,
+      "p_cal": 0.4255,
+      "mkt_y_fair": 0.4843,
+      "mkt_n_fair": 0.5157,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0588,
+      "bet_kelly": 0.016,
+      "bet_odds": -120.0,
+      "open_odds": -120.0,
+      "bet_dec": 1.833,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 13.23,
+      "n_books": 3,
+      "best_odds": -120,
+      "best_book": "betmgm",
+      "best_dec": 1.833,
+      "mkt_y_impl": 0.5122,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": {
+        "temp": 73,
+        "humidity": 50,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.431,
+        "home_lineup_weighted_score": 1.414,
+        "away_platoon_lineup_woba": 0.341,
+        "home_platoon_lineup_woba": 0.324,
+        "umpire_strike_rate": 0.332,
+        "park_factor_runs": 97.0,
+        "elevation_ft": 160
+      }
     }
   ],
   "summary": {
-    "total_games": 12,
-    "total_bets": 5,
+    "total_games": 13,
+    "total_bets": 6,
     "yrfi_bets": 3,
-    "nrfi_bets": 2,
-    "total_exposure": 127.05
+    "nrfi_bets": 3,
+    "total_exposure": 140.28
   }
 }
