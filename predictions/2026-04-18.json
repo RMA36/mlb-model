@@ -5,7 +5,7 @@
   "model_mean": 0.47709574108799613,
   "bankroll": 1000.0,
   "bankroll_current": 892.27,
-  "generated_at": "2026-04-18T21:05:12.604013+00:00",
+  "generated_at": "2026-04-18T22:57:05.222817+00:00",
   "games": [
     {
       "game_pk": 823558,
@@ -775,6 +775,62 @@
         "park_factor_runs": 106.0,
         "elevation_ft": 1100
       }
+    },
+    {
+      "game_pk": 824049,
+      "date": "2026-04-18",
+      "away_team": "SDP",
+      "home_team": "LAA",
+      "away_starter": "Germ\u00e1n M\u00e1rquez",
+      "home_starter": "Yusei Kikuchi",
+      "umpire": "Gabe Morales",
+      "p_top": 0.3359,
+      "p_bot": 0.3063,
+      "p_raw": 0.5393,
+      "p_cal": 0.5968,
+      "mkt_y_fair": 0.5408,
+      "mkt_n_fair": 0.4592,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.056,
+      "bet_kelly": 0.0131,
+      "bet_odds": -135.0,
+      "open_odds": -135.0,
+      "bet_dec": 1.741,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 11.69,
+      "n_books": 5,
+      "best_odds": -130,
+      "best_book": "betmgm",
+      "best_dec": 1.769,
+      "mkt_y_impl": 0.5745,
+      "mkt_n_impl": 0.4878,
+      "forecast_weather": {
+        "temp": 74,
+        "humidity": 41,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.457,
+        "home_lineup_weighted_score": 1.416,
+        "away_platoon_lineup_woba": 0.337,
+        "home_platoon_lineup_woba": 0.325,
+        "umpire_strike_rate": 0.337,
+        "park_factor_runs": 97.0,
+        "elevation_ft": 160
+      }
     }
   ],
   "bets": [
@@ -940,13 +996,69 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 824049,
+      "date": "2026-04-18",
+      "away_team": "SDP",
+      "home_team": "LAA",
+      "away_starter": "Germ\u00e1n M\u00e1rquez",
+      "home_starter": "Yusei Kikuchi",
+      "umpire": "Gabe Morales",
+      "p_top": 0.3359,
+      "p_bot": 0.3063,
+      "p_raw": 0.5393,
+      "p_cal": 0.5968,
+      "mkt_y_fair": 0.5408,
+      "mkt_n_fair": 0.4592,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.056,
+      "bet_kelly": 0.0131,
+      "bet_odds": -135.0,
+      "open_odds": -135.0,
+      "bet_dec": 1.741,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 11.69,
+      "n_books": 5,
+      "best_odds": -130,
+      "best_book": "betmgm",
+      "best_dec": 1.769,
+      "mkt_y_impl": 0.5745,
+      "mkt_n_impl": 0.4878,
+      "forecast_weather": {
+        "temp": 74,
+        "humidity": 41,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.457,
+        "home_lineup_weighted_score": 1.416,
+        "away_platoon_lineup_woba": 0.337,
+        "home_platoon_lineup_woba": 0.325,
+        "umpire_strike_rate": 0.337,
+        "park_factor_runs": 97.0,
+        "elevation_ft": 160
+      }
     }
   ],
   "summary": {
-    "total_games": 14,
-    "total_bets": 3,
-    "yrfi_bets": 1,
+    "total_games": 15,
+    "total_bets": 4,
+    "yrfi_bets": 2,
     "nrfi_bets": 2,
-    "total_exposure": 46.78
+    "total_exposure": 58.47
   }
 }
