@@ -5,7 +5,7 @@
   "model_mean": 0.47709574108799613,
   "bankroll": 1000.0,
   "bankroll_current": 892.27,
-  "generated_at": "2026-04-18T19:27:04.670297+00:00",
+  "generated_at": "2026-04-18T19:57:44.703226+00:00",
   "games": [
     {
       "game_pk": 823558,
@@ -500,6 +500,57 @@
         "park_factor_runs": 106.0,
         "elevation_ft": 20
       }
+    },
+    {
+      "game_pk": 824206,
+      "date": "2026-04-18",
+      "away_team": "STL",
+      "home_team": "HOU",
+      "away_starter": "Andre Pallante",
+      "home_starter": "Lance McCullers Jr.",
+      "umpire": "Willie Traynor",
+      "p_top": 0.2228,
+      "p_bot": 0.3608,
+      "p_raw": 0.5032,
+      "p_cal": 0.5317,
+      "mkt_y_fair": 0.5082,
+      "mkt_n_fair": 0.4918,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0235,
+      "bet_kelly": 0.0,
+      "bet_odds": -118.0,
+      "open_odds": -118.0,
+      "bet_dec": 1.847,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -110,
+      "best_book": "bovada",
+      "best_dec": 1.909,
+      "mkt_y_impl": 0.5413,
+      "mkt_n_impl": 0.5238,
+      "forecast_weather": null,
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.427,
+        "home_lineup_weighted_score": 1.585,
+        "away_platoon_lineup_woba": 0.327,
+        "home_platoon_lineup_woba": 0.348,
+        "umpire_strike_rate": 0.313,
+        "park_factor_runs": 100.0,
+        "elevation_ft": 0
+      }
     }
   ],
   "bets": [
@@ -668,7 +719,7 @@
     }
   ],
   "summary": {
-    "total_games": 9,
+    "total_games": 10,
     "total_bets": 3,
     "yrfi_bets": 1,
     "nrfi_bets": 2,
