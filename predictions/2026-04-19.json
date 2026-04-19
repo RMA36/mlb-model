@@ -5,7 +5,7 @@
   "model_mean": 0.47709574108799613,
   "bankroll": 1000.0,
   "bankroll_current": 925.18,
-  "generated_at": "2026-04-19T17:49:20.844607+00:00",
+  "generated_at": "2026-04-19T19:55:10.031410+00:00",
   "games": [
     {
       "game_pk": 823718,
@@ -775,6 +775,62 @@
         "park_factor_runs": 106.0,
         "elevation_ft": 1100
       }
+    },
+    {
+      "game_pk": 823475,
+      "date": "2026-04-19",
+      "away_team": "ATL",
+      "home_team": "PHI",
+      "away_starter": "Grant Holmes",
+      "home_starter": "Andrew Painter",
+      "umpire": "D.J. Reyburn",
+      "p_top": 0.2857,
+      "p_bot": 0.2977,
+      "p_raw": 0.4984,
+      "p_cal": 0.5085,
+      "mkt_y_fair": 0.4893,
+      "mkt_n_fair": 0.5107,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0192,
+      "bet_kelly": 0.0,
+      "bet_odds": -109.5,
+      "open_odds": -110.0,
+      "bet_dec": 1.913,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 4,
+      "best_odds": -108,
+      "best_book": "fanduel",
+      "best_dec": 1.926,
+      "mkt_y_impl": 0.5227,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": {
+        "temp": 50,
+        "humidity": 56,
+        "wind_mph": 13,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.633,
+        "home_lineup_weighted_score": 1.557,
+        "away_platoon_lineup_woba": 0.366,
+        "home_platoon_lineup_woba": 0.351,
+        "umpire_strike_rate": 0.332,
+        "park_factor_runs": 106.0,
+        "elevation_ft": 20
+      }
     }
   ],
   "bets": [
@@ -1050,7 +1106,7 @@
     }
   ],
   "summary": {
-    "total_games": 14,
+    "total_games": 15,
     "total_bets": 5,
     "yrfi_bets": 2,
     "nrfi_bets": 3,
