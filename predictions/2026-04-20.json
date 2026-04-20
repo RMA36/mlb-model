@@ -5,7 +5,7 @@
   "model_mean": 0.4753715005760658,
   "bankroll": 1000.0,
   "bankroll_current": 888.58,
-  "generated_at": "2026-04-20T19:54:30.593403+00:00",
+  "generated_at": "2026-04-20T20:36:39.925169+00:00",
   "games": [
     {
       "game_pk": 824776,
@@ -281,6 +281,62 @@
         "park_factor_runs": 1.0,
         "elevation_ft": 25
       }
+    },
+    {
+      "game_pk": 824125,
+      "date": "2026-04-20",
+      "away_team": "BAL",
+      "home_team": "KCR",
+      "away_starter": "Kyle Bradish",
+      "home_starter": "Seth Lugo",
+      "umpire": "Quinn Wolcott",
+      "p_top": 0.3295,
+      "p_bot": 0.2564,
+      "p_raw": 0.5014,
+      "p_cal": 0.5133,
+      "mkt_y_fair": 0.4899,
+      "mkt_n_fair": 0.5101,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0234,
+      "bet_kelly": 0.0,
+      "bet_odds": -110.0,
+      "open_odds": -110.0,
+      "bet_dec": 1.909,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 5,
+      "best_odds": -104,
+      "best_book": "betonlineag",
+      "best_dec": 1.962,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": {
+        "temp": 74,
+        "humidity": 30,
+        "wind_mph": 15,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.45,
+        "home_lineup_weighted_score": 1.433,
+        "away_platoon_lineup_woba": 0.336,
+        "home_platoon_lineup_woba": 0.342,
+        "umpire_strike_rate": 0.324,
+        "park_factor_runs": 1.0,
+        "elevation_ft": 820
+      }
     }
   ],
   "bets": [
@@ -449,7 +505,7 @@
     }
   ],
   "summary": {
-    "total_games": 5,
+    "total_games": 6,
     "total_bets": 3,
     "yrfi_bets": 1,
     "nrfi_bets": 2,
