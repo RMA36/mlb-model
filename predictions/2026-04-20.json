@@ -5,7 +5,7 @@
   "model_mean": 0.4753715005760658,
   "bankroll": 1000.0,
   "bankroll_current": 888.58,
-  "generated_at": "2026-04-20T22:08:36.746320+00:00",
+  "generated_at": "2026-04-20T23:00:43.457214+00:00",
   "games": [
     {
       "game_pk": 824776,
@@ -505,6 +505,62 @@
         "park_factor_runs": 1.0,
         "elevation_ft": 160
       }
+    },
+    {
+      "game_pk": 823149,
+      "date": "2026-04-20",
+      "away_team": "OAK",
+      "home_team": "SEA",
+      "away_starter": "J.T. Ginn",
+      "home_starter": "Emerson Hancock",
+      "umpire": "Mike Estabrook",
+      "p_top": 0.2356,
+      "p_bot": 0.223,
+      "p_raw": 0.4061,
+      "p_cal": 0.4294,
+      "mkt_y_fair": 0.4918,
+      "mkt_n_fair": 0.5082,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0624,
+      "bet_kelly": 0.016,
+      "bet_odds": -118.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.847,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 14.19,
+      "n_books": 5,
+      "best_odds": -115,
+      "best_book": "williamhill_us",
+      "best_dec": 1.87,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5413,
+      "forecast_weather": {
+        "temp": 66,
+        "humidity": 55,
+        "wind_mph": 0,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.548,
+        "home_lineup_weighted_score": 1.454,
+        "away_platoon_lineup_woba": 0.364,
+        "home_platoon_lineup_woba": 0.337,
+        "umpire_strike_rate": 0.334,
+        "park_factor_runs": 1.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "bets": [
@@ -670,13 +726,69 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 823149,
+      "date": "2026-04-20",
+      "away_team": "OAK",
+      "home_team": "SEA",
+      "away_starter": "J.T. Ginn",
+      "home_starter": "Emerson Hancock",
+      "umpire": "Mike Estabrook",
+      "p_top": 0.2356,
+      "p_bot": 0.223,
+      "p_raw": 0.4061,
+      "p_cal": 0.4294,
+      "mkt_y_fair": 0.4918,
+      "mkt_n_fair": 0.5082,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0624,
+      "bet_kelly": 0.016,
+      "bet_odds": -118.0,
+      "open_odds": -115.0,
+      "bet_dec": 1.847,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 14.19,
+      "n_books": 5,
+      "best_odds": -115,
+      "best_book": "williamhill_us",
+      "best_dec": 1.87,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5413,
+      "forecast_weather": {
+        "temp": 66,
+        "humidity": 55,
+        "wind_mph": 0,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0,
+        "home_fi_runs_per_start": 0,
+        "away_fi_k_rate": 0,
+        "home_fi_k_rate": 0,
+        "away_recent_fi_runs": 0,
+        "home_recent_fi_runs": 0,
+        "away_avg_velo": 0,
+        "home_avg_velo": 0,
+        "away_platoon_k_rate": 0,
+        "home_platoon_k_rate": 0,
+        "away_lineup_weighted_score": 1.548,
+        "home_lineup_weighted_score": 1.454,
+        "away_platoon_lineup_woba": 0.364,
+        "home_platoon_lineup_woba": 0.337,
+        "umpire_strike_rate": 0.334,
+        "park_factor_runs": 1.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "summary": {
-    "total_games": 9,
-    "total_bets": 3,
+    "total_games": 10,
+    "total_bets": 4,
     "yrfi_bets": 1,
-    "nrfi_bets": 2,
-    "total_exposure": 83.5
+    "nrfi_bets": 3,
+    "total_exposure": 97.69
   }
 }
