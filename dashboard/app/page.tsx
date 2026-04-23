@@ -2514,6 +2514,107 @@ export default function Home() {
                   );
                 })()}
 
+                {/* YRFI/NRFI Breakdown by Edge Level */}
+                {(() => {
+                  const allBets: Bet[] = [];
+                  for (const d of dates) {
+                    for (const b of results.daily[d].bets) {
+                      if (b.result === "W" || b.result === "L") allBets.push(b);
+                    }
+                  }
+                  if (allBets.length === 0) return null;
+
+                  const edgeBuckets = [
+                    { label: "1-3%", min: 0.01, max: 0.03 },
+                    { label: "3-5%", min: 0.03, max: 0.05 },
+                    { label: "5-8%", min: 0.05, max: 0.08 },
+                    { label: "8-12%", min: 0.08, max: 0.12 },
+                    { label: "12%+", min: 0.12, max: Infinity },
+                  ];
+
+                  const buildRows = (side: "YRFI" | "NRFI") => {
+                    return edgeBuckets.map(({ label, min, max }) => {
+                      const bets = allBets.filter(
+                        (b) => b.bet_side === side && b.bet_edge >= min && b.bet_edge < max
+                      );
+                      const wins = bets.filter((b) => b.result === "W").length;
+                      const losses = bets.length - wins;
+                      const pnl = bets.reduce((s, b) => s + (b.pnl ?? 0), 0);
+                      const wagered = bets.reduce((s, b) => s + (b.stake ?? 0), 0);
+                      const roi = wagered > 0 ? (pnl / wagered) * 100 : 0;
+                      return { label, count: bets.length, wins, losses, pnl, roi };
+                    }).filter((b) => b.count > 0);
+                  };
+
+                  const yrfiRows = buildRows("YRFI");
+                  const nrfiRows = buildRows("NRFI");
+
+                  const renderTable = (
+                    side: "YRFI" | "NRFI",
+                    rows: ReturnType<typeof buildRows>
+                  ) => {
+                    if (rows.length === 0) return null;
+                    const badgeClass =
+                      side === "YRFI"
+                        ? "bg-red-900/50 text-red-300"
+                        : "bg-blue-900/50 text-blue-300";
+                    return (
+                      <div>
+                        <div className="mb-2 flex items-center gap-2">
+                          <span className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${badgeClass}`}>
+                            {side}
+                          </span>
+                          <span className="text-xs text-[var(--text-muted)]">by edge level</span>
+                        </div>
+                        <table className="w-full text-xs">
+                          <thead>
+                            <tr className="text-[var(--text-muted)] uppercase tracking-wider border-b border-[var(--card-border)]">
+                              <th className="py-2 text-left font-medium">Edge</th>
+                              <th className="py-2 text-right font-medium">Bets</th>
+                              <th className="py-2 text-right font-medium">Record</th>
+                              <th className="py-2 text-right font-medium">Win%</th>
+                              <th className="py-2 text-right font-medium">P&L</th>
+                              <th className="py-2 text-right font-medium">ROI</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {rows.map((b) => (
+                              <tr key={b.label} className="border-t border-[var(--card-border)]/50">
+                                <td className="py-2 font-medium">{b.label}</td>
+                                <td className="py-2 text-right font-mono">{b.count}</td>
+                                <td className="py-2 text-right font-mono">{b.wins}W-{b.losses}L</td>
+                                <td className="py-2 text-right font-mono">
+                                  {((b.wins / b.count) * 100).toFixed(0)}%
+                                </td>
+                                <td className="py-2 text-right font-mono font-bold" style={{ color: b.pnl >= 0 ? "var(--green)" : "var(--red)" }}>
+                                  {b.pnl >= 0 ? "+" : ""}${b.pnl.toFixed(0)}
+                                </td>
+                                <td className="py-2 text-right font-mono" style={{ color: b.roi >= 0 ? "var(--green)" : "var(--red)" }}>
+                                  {b.roi >= 0 ? "+" : ""}{b.roi.toFixed(1)}%
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    );
+                  };
+
+                  if (yrfiRows.length === 0 && nrfiRows.length === 0) return null;
+
+                  return (
+                    <div className="mt-4 rounded-lg border border-[var(--card-border)] bg-[var(--card)] p-4">
+                      <h3 className="mb-3 text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+                        YRFI/NRFI by Edge Level
+                      </h3>
+                      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        {renderTable("YRFI", yrfiRows)}
+                        {renderTable("NRFI", nrfiRows)}
+                      </div>
+                    </div>
+                  );
+                })()}
+
                 {/* CLV Summary */}
                 {(() => {
                   const allBets: Bet[] = [];
