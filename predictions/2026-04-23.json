@@ -5,7 +5,7 @@
   "model_mean": 0.4753715005760658,
   "bankroll": 1000.0,
   "bankroll_current": 883.54,
-  "generated_at": "2026-04-23T19:37:49.416847+00:00",
+  "generated_at": "2026-04-23T20:35:13.209377+00:00",
   "games": [
     {
       "game_pk": 822745,
@@ -398,6 +398,62 @@
         "park_factor_runs": 110.0,
         "elevation_ft": 20
       }
+    },
+    {
+      "game_pk": 823639,
+      "date": "2026-04-23",
+      "away_team": "MIN",
+      "home_team": "NYM",
+      "away_starter": "Joe Ryan",
+      "home_starter": "Christian Scott",
+      "umpire": "Lance Barksdale",
+      "p_top": 0.3795,
+      "p_bot": 0.3436,
+      "p_raw": 0.5927,
+      "p_cal": 0.5648,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1056,
+      "bet_kelly": 0.0376,
+      "bet_odds": 105.0,
+      "open_odds": 105.0,
+      "bet_dec": 2.05,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 33.2,
+      "n_books": 5,
+      "best_odds": 110,
+      "best_book": "bovada",
+      "best_dec": 2.1,
+      "mkt_y_impl": 0.4878,
+      "mkt_n_impl": 0.5745,
+      "forecast_weather": {
+        "temp": 70,
+        "humidity": 21,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.53,
+        "home_fi_runs_per_start": 0.11,
+        "away_fi_k_rate": 0.332,
+        "home_fi_k_rate": 0.281,
+        "away_recent_fi_runs": 0.67,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 93.2,
+        "home_avg_velo": 94.2,
+        "away_platoon_k_rate": 0.292,
+        "home_platoon_k_rate": 0.206,
+        "away_lineup_weighted_score": 1.404,
+        "home_lineup_weighted_score": 1.493,
+        "away_platoon_lineup_woba": 0.33,
+        "home_platoon_lineup_woba": 0.342,
+        "umpire_strike_rate": 0.304,
+        "park_factor_runs": 95.0,
+        "elevation_ft": 10
+      }
     }
   ],
   "bets": [
@@ -624,13 +680,69 @@
         "park_factor_runs": 92.0,
         "elevation_ft": 5
       }
+    },
+    {
+      "game_pk": 823639,
+      "date": "2026-04-23",
+      "away_team": "MIN",
+      "home_team": "NYM",
+      "away_starter": "Joe Ryan",
+      "home_starter": "Christian Scott",
+      "umpire": "Lance Barksdale",
+      "p_top": 0.3795,
+      "p_bot": 0.3436,
+      "p_raw": 0.5927,
+      "p_cal": 0.5648,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1056,
+      "bet_kelly": 0.0376,
+      "bet_odds": 105.0,
+      "open_odds": 105.0,
+      "bet_dec": 2.05,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 33.2,
+      "n_books": 5,
+      "best_odds": 110,
+      "best_book": "bovada",
+      "best_dec": 2.1,
+      "mkt_y_impl": 0.4878,
+      "mkt_n_impl": 0.5745,
+      "forecast_weather": {
+        "temp": 70,
+        "humidity": 21,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.53,
+        "home_fi_runs_per_start": 0.11,
+        "away_fi_k_rate": 0.332,
+        "home_fi_k_rate": 0.281,
+        "away_recent_fi_runs": 0.67,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 93.2,
+        "home_avg_velo": 94.2,
+        "away_platoon_k_rate": 0.292,
+        "home_platoon_k_rate": 0.206,
+        "away_lineup_weighted_score": 1.404,
+        "home_lineup_weighted_score": 1.493,
+        "away_platoon_lineup_woba": 0.33,
+        "home_platoon_lineup_woba": 0.342,
+        "umpire_strike_rate": 0.304,
+        "park_factor_runs": 95.0,
+        "elevation_ft": 10
+      }
     }
   ],
   "summary": {
-    "total_games": 7,
-    "total_bets": 4,
-    "yrfi_bets": 1,
+    "total_games": 8,
+    "total_bets": 5,
+    "yrfi_bets": 2,
     "nrfi_bets": 3,
-    "total_exposure": 126.06
+    "total_exposure": 159.26
   }
 }
