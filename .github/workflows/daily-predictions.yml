@@ -47,6 +47,8 @@ jobs:
           fi
 
       - name: Commit predictions
+        env:
+          TZ: America/New_York
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -55,7 +57,14 @@ jobs:
           if git diff --cached --quiet; then
             echo "No new predictions to commit"
           else
-            DATE=$(ls -t predictions/*.json 2>/dev/null | head -1 | sed 's|predictions/||;s|\.json||' || echo "unknown")
+            # Prefer the explicit input override; otherwise use today's ET date.
+            # The earlier `ls -t predictions/*.json` approach was unreliable
+            # because checkout reset every file's mtime to the run start time,
+            # so the "newest" JSON was effectively random.
+            DATE="${{ github.event.inputs.date || '' }}"
+            if [ -z "$DATE" ]; then
+              DATE=$(date +%Y-%m-%d)
+            fi
             git commit -m "predictions: ${DATE}"
             git push
           fi
