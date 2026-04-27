@@ -1,7 +1,7 @@
 {
   "version": "v4",
-  "trained_on": "2026-04-20T10:15:00",
-  "n_games": 7168,
+  "trained_on": "2026-04-27T11:22:30",
+  "n_games": 7261,
   "year_range": [
     2023,
     2026
@@ -114,9 +114,9 @@
     "ump_consistency",
     "ump_games_count"
   ],
-  "model_mean": 0.4753715005760658,
-  "top_mean": 0.2621860167157432,
-  "bot_mean": 0.288989334236886,
+  "model_mean": 0.4759128403041825,
+  "top_mean": 0.2616290723721867,
+  "bot_mean": 0.2902927559664544,
   "calibration_k": 0.9,
   "lgb_params": {
     "objective": "binary",
@@ -133,130 +133,130 @@
     "verbose": -1,
     "seed": 42
   },
-  "top1_best_iteration": 162,
-  "bot1_best_iteration": 96,
+  "top1_best_iteration": 102,
+  "bot1_best_iteration": 113,
   "top15_features_top1": [
     [
       "away_lineup_weighted_score",
-      2333.121557712555
+      1960.6706609725952
     ],
     [
       "away_platoon_lineup_obp",
-      1828.3740587234497
+      1453.3544690608978
     ],
     [
       "away_platoon_lineup_woba",
-      1587.765555858612
+      1085.1701288223267
     ],
     [
       "ump_games_count",
-      1132.7599182128906
+      921.2134974002838
     ],
     [
       "home_p_fi_k_rate_vs_L",
-      1092.0385899543762
-    ],
-    [
-      "home_p_hr_rate_vs_L",
-      1083.1535604000092
+      761.8560416698456
     ],
     [
       "home_p_avg_velo",
-      1047.0214960575104
+      750.0853819847107
     ],
     [
-      "home_p_whip_approx",
-      947.6135098934174
+      "home_p_hr_rate_vs_L",
+      713.5157594680786
     ],
     [
-      "ump_career_strike_rate",
-      923.2009303569794
-    ],
-    [
-      "home_p_gb_rate",
-      881.8794977664948
-    ],
-    [
-      "home_p_obpa_vs_L",
-      878.2624077796936
+      "home_p_obpa_vs_R",
+      669.4862589836121
     ],
     [
       "home_p_season_k_rate",
-      864.0291242599487
+      663.0569887161255
     ],
     [
-      "home_p_hr_rate_vs_R",
-      812.2928459644318
+      "home_p_whip_approx",
+      641.3827605247498
     ],
     [
-      "home_p_fi_k_rate_vs_R",
-      784.2693769931793
+      "ump_career_strike_rate",
+      631.1539793014526
+    ],
+    [
+      "home_p_obpa_vs_L",
+      578.0371613502502
     ],
     [
       "home_p_bb_rate_vs_R",
-      773.4002199172974
+      570.5199480056763
+    ],
+    [
+      "env_temp_min",
+      523.6561694145203
+    ],
+    [
+      "home_p_hr_rate_vs_R",
+      523.4461097717285
     ]
   ],
   "top15_features_bot1": [
     [
       "home_lineup_weighted_score",
-      2082.242549419403
+      2282.2155706882477
     ],
     [
       "home_platoon_lineup_obp",
-      1639.2363095283508
+      1701.6939270496368
     ],
     [
       "home_platoon_lineup_woba",
-      1385.2869935035706
-    ],
-    [
-      "ump_consistency",
-      703.90869140625
-    ],
-    [
-      "away_p_fi_k_rate_vs_L",
-      699.0101208686829
-    ],
-    [
-      "away_p_whip_approx",
-      656.2132196426392
-    ],
-    [
-      "away_p_fi_k_rate_vs_R",
-      646.603999376297
+      1525.2209694385529
     ],
     [
       "away_p_bb_rate_vs_L",
-      637.8158297538757
+      961.6437005996704
     ],
     [
-      "away_p_obpa_vs_R",
-      605.6510095596313
+      "ump_consistency",
+      764.3947095870972
     ],
     [
-      "away_p_k_rate_vs_L",
-      579.3909740447998
+      "away_p_fi_k_rate_vs_L",
+      744.6668634414673
     ],
     [
-      "ump_career_strike_rate",
-      574.2870988845825
+      "away_p_fi_k_rate_vs_R",
+      696.2129607200623
     ],
     [
       "away_p_career_hr_rate",
-      566.9630932807922
+      692.57466340065
     ],
     [
-      "away_p_season_k_rate",
-      525.879457950592
+      "away_p_whip_approx",
+      679.8902900218964
     ],
     [
       "away_p_obpa_vs_L",
-      498.8219165802002
+      660.3594388961792
+    ],
+    [
+      "away_p_season_k_rate",
+      617.4064297676086
+    ],
+    [
+      "ump_career_strike_rate",
+      613.3839213848114
+    ],
+    [
+      "away_p_hr_rate_vs_L",
+      589.4056599140167
     ],
     [
       "env_wind_mph",
-      485.66399240493774
+      583.0682401657104
+    ],
+    [
+      "away_p_bb_rate_vs_R",
+      582.2867984771729
     ]
   ]
 }
