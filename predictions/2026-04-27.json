@@ -5,7 +5,7 @@
   "model_mean": 0.4759128403041825,
   "bankroll": 1000.0,
   "bankroll_current": 996.14,
-  "generated_at": "2026-04-27T21:15:10.422656+00:00",
+  "generated_at": "2026-04-27T23:07:26.190889+00:00",
   "games": [
     {
       "game_pk": 823395,
@@ -281,6 +281,62 @@
         "park_factor_runs": 101.0,
         "elevation_ft": 545
       }
+    },
+    {
+      "game_pk": 823311,
+      "date": "2026-04-27",
+      "away_team": "CHC",
+      "home_team": "SDP",
+      "away_starter": "Matthew Boyd",
+      "home_starter": "Randy V\u00e1squez",
+      "umpire": "Dan Merzel",
+      "p_top": 0.35,
+      "p_bot": 0.3124,
+      "p_raw": 0.553,
+      "p_cal": 0.5237,
+      "mkt_y_fair": 0.4543,
+      "mkt_n_fair": 0.5457,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0694,
+      "bet_kelly": 0.0201,
+      "bet_odds": 107.5,
+      "open_odds": 0.0,
+      "bet_dec": 2.075,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 20.06,
+      "n_books": 4,
+      "best_odds": 112,
+      "best_book": "fanduel",
+      "best_dec": 2.12,
+      "mkt_y_impl": 0.4819,
+      "mkt_n_impl": 0.5789,
+      "forecast_weather": {
+        "temp": 64,
+        "humidity": 55,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.35,
+        "home_fi_runs_per_start": 0.34,
+        "away_fi_k_rate": 0.279,
+        "home_fi_k_rate": 0.146,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 92.7,
+        "home_avg_velo": 93.9,
+        "away_platoon_k_rate": 0.241,
+        "home_platoon_k_rate": 0.169,
+        "away_lineup_weighted_score": 1.503,
+        "home_lineup_weighted_score": 1.446,
+        "away_platoon_lineup_woba": 0.348,
+        "home_platoon_lineup_woba": 0.335,
+        "umpire_strike_rate": 0.328,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "bets": [
@@ -339,13 +395,69 @@
         "park_factor_runs": 102.0,
         "elevation_ft": 250
       }
+    },
+    {
+      "game_pk": 823311,
+      "date": "2026-04-27",
+      "away_team": "CHC",
+      "home_team": "SDP",
+      "away_starter": "Matthew Boyd",
+      "home_starter": "Randy V\u00e1squez",
+      "umpire": "Dan Merzel",
+      "p_top": 0.35,
+      "p_bot": 0.3124,
+      "p_raw": 0.553,
+      "p_cal": 0.5237,
+      "mkt_y_fair": 0.4543,
+      "mkt_n_fair": 0.5457,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0694,
+      "bet_kelly": 0.0201,
+      "bet_odds": 107.5,
+      "open_odds": 0.0,
+      "bet_dec": 2.075,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 20.06,
+      "n_books": 4,
+      "best_odds": 112,
+      "best_book": "fanduel",
+      "best_dec": 2.12,
+      "mkt_y_impl": 0.4819,
+      "mkt_n_impl": 0.5789,
+      "forecast_weather": {
+        "temp": 64,
+        "humidity": 55,
+        "wind_mph": 10,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.35,
+        "home_fi_runs_per_start": 0.34,
+        "away_fi_k_rate": 0.279,
+        "home_fi_k_rate": 0.146,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 92.7,
+        "home_avg_velo": 93.9,
+        "away_platoon_k_rate": 0.241,
+        "home_platoon_k_rate": 0.169,
+        "away_lineup_weighted_score": 1.503,
+        "home_lineup_weighted_score": 1.446,
+        "away_platoon_lineup_woba": 0.348,
+        "home_platoon_lineup_woba": 0.335,
+        "umpire_strike_rate": 0.328,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "summary": {
-    "total_games": 5,
-    "total_bets": 1,
-    "yrfi_bets": 0,
+    "total_games": 6,
+    "total_bets": 2,
+    "yrfi_bets": 1,
     "nrfi_bets": 1,
-    "total_exposure": 32.64
+    "total_exposure": 52.7
   }
 }
