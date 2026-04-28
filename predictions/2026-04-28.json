@@ -5,7 +5,7 @@
   "model_mean": 0.4759128403041825,
   "bankroll": 1000.0,
   "bankroll_current": 995.58,
-  "generated_at": "2026-04-28T22:12:42.952171+00:00",
+  "generated_at": "2026-04-28T23:11:11.089154+00:00",
   "games": [
     {
       "game_pk": 824447,
@@ -724,6 +724,62 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 823310,
+      "date": "2026-04-28",
+      "away_team": "CHC",
+      "home_team": "SDP",
+      "away_starter": "Edward Cabrera",
+      "home_starter": "Walker Buehler",
+      "umpire": "Dan Bellino",
+      "p_top": 0.439,
+      "p_bot": 0.2918,
+      "p_raw": 0.6027,
+      "p_cal": 0.5969,
+      "mkt_y_fair": 0.4828,
+      "mkt_n_fair": 0.5172,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1141,
+      "bet_kelly": 0.0439,
+      "bet_odds": -104.5,
+      "open_odds": -107.5,
+      "bet_dec": 1.957,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.71,
+      "n_books": 4,
+      "best_odds": 105,
+      "best_book": "betonlineag",
+      "best_dec": 2.05,
+      "mkt_y_impl": 0.511,
+      "mkt_n_impl": 0.5475,
+      "forecast_weather": {
+        "temp": 66,
+        "humidity": 53,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.4,
+        "home_fi_runs_per_start": 0.8,
+        "away_fi_k_rate": 0.296,
+        "home_fi_k_rate": 0.176,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 96.5,
+        "home_avg_velo": 94.3,
+        "away_platoon_k_rate": 0.265,
+        "home_platoon_k_rate": 0.175,
+        "away_lineup_weighted_score": 1.605,
+        "home_lineup_weighted_score": 1.418,
+        "away_platoon_lineup_woba": 0.358,
+        "home_platoon_lineup_woba": 0.334,
+        "umpire_strike_rate": 0.317,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "bets": [
@@ -838,13 +894,69 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 1050
       }
+    },
+    {
+      "game_pk": 823310,
+      "date": "2026-04-28",
+      "away_team": "CHC",
+      "home_team": "SDP",
+      "away_starter": "Edward Cabrera",
+      "home_starter": "Walker Buehler",
+      "umpire": "Dan Bellino",
+      "p_top": 0.439,
+      "p_bot": 0.2918,
+      "p_raw": 0.6027,
+      "p_cal": 0.5969,
+      "mkt_y_fair": 0.4828,
+      "mkt_n_fair": 0.5172,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1141,
+      "bet_kelly": 0.0439,
+      "bet_odds": -104.5,
+      "open_odds": -107.5,
+      "bet_dec": 1.957,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 43.71,
+      "n_books": 4,
+      "best_odds": 105,
+      "best_book": "betonlineag",
+      "best_dec": 2.05,
+      "mkt_y_impl": 0.511,
+      "mkt_n_impl": 0.5475,
+      "forecast_weather": {
+        "temp": 66,
+        "humidity": 53,
+        "wind_mph": 9,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.4,
+        "home_fi_runs_per_start": 0.8,
+        "away_fi_k_rate": 0.296,
+        "home_fi_k_rate": 0.176,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 96.5,
+        "home_avg_velo": 94.3,
+        "away_platoon_k_rate": 0.265,
+        "home_platoon_k_rate": 0.175,
+        "away_lineup_weighted_score": 1.605,
+        "home_lineup_weighted_score": 1.418,
+        "away_platoon_lineup_woba": 0.358,
+        "home_platoon_lineup_woba": 0.334,
+        "umpire_strike_rate": 0.317,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "summary": {
-    "total_games": 13,
-    "total_bets": 2,
-    "yrfi_bets": 0,
+    "total_games": 14,
+    "total_bets": 3,
+    "yrfi_bets": 1,
     "nrfi_bets": 2,
-    "total_exposure": 71.78
+    "total_exposure": 115.49000000000001
   }
 }
