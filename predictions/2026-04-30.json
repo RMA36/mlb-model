@@ -5,7 +5,7 @@
   "model_mean": 0.4759128403041825,
   "bankroll": 1000.0,
   "bankroll_current": 1128.68,
-  "generated_at": "2026-04-30T20:09:10.306938+00:00",
+  "generated_at": "2026-04-30T21:14:46.424769+00:00",
   "games": [
     {
       "game_pk": 824929,
@@ -505,6 +505,62 @@
         "park_factor_runs": 106.0,
         "elevation_ft": 20
       }
+    },
+    {
+      "game_pk": 823714,
+      "date": "2026-04-30",
+      "away_team": "TOR",
+      "home_team": "MIN",
+      "away_starter": "Kevin Gausman",
+      "home_starter": "Bailey Ober",
+      "umpire": "Manny Gonzalez",
+      "p_top": 0.3795,
+      "p_bot": 0.353,
+      "p_raw": 0.5985,
+      "p_cal": 0.5764,
+      "mkt_y_fair": 0.4661,
+      "mkt_n_fair": 0.5339,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1103,
+      "bet_kelly": 0.0393,
+      "bet_odds": 101.0,
+      "open_odds": 101.0,
+      "bet_dec": 2.01,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 44.32,
+      "n_books": 4,
+      "best_odds": 108,
+      "best_book": "fanduel",
+      "best_dec": 2.08,
+      "mkt_y_impl": 0.4975,
+      "mkt_n_impl": 0.5699,
+      "forecast_weather": {
+        "temp": 49,
+        "humidity": 37,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.44,
+        "home_fi_runs_per_start": 0.52,
+        "away_fi_k_rate": 0.267,
+        "home_fi_k_rate": 0.192,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 94.3,
+        "home_avg_velo": 91.0,
+        "away_platoon_k_rate": 0.26,
+        "home_platoon_k_rate": 0.243,
+        "away_lineup_weighted_score": 1.453,
+        "home_lineup_weighted_score": 1.423,
+        "away_platoon_lineup_woba": 0.335,
+        "home_platoon_lineup_woba": 0.33,
+        "umpire_strike_rate": 0.319,
+        "park_factor_runs": 101.0,
+        "elevation_ft": 815
+      }
     }
   ],
   "bets": [
@@ -838,13 +894,69 @@
         "park_factor_runs": 106.0,
         "elevation_ft": 20
       }
+    },
+    {
+      "game_pk": 823714,
+      "date": "2026-04-30",
+      "away_team": "TOR",
+      "home_team": "MIN",
+      "away_starter": "Kevin Gausman",
+      "home_starter": "Bailey Ober",
+      "umpire": "Manny Gonzalez",
+      "p_top": 0.3795,
+      "p_bot": 0.353,
+      "p_raw": 0.5985,
+      "p_cal": 0.5764,
+      "mkt_y_fair": 0.4661,
+      "mkt_n_fair": 0.5339,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.1103,
+      "bet_kelly": 0.0393,
+      "bet_odds": 101.0,
+      "open_odds": 101.0,
+      "bet_dec": 2.01,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 44.32,
+      "n_books": 4,
+      "best_odds": 108,
+      "best_book": "fanduel",
+      "best_dec": 2.08,
+      "mkt_y_impl": 0.4975,
+      "mkt_n_impl": 0.5699,
+      "forecast_weather": {
+        "temp": 49,
+        "humidity": 37,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.44,
+        "home_fi_runs_per_start": 0.52,
+        "away_fi_k_rate": 0.267,
+        "home_fi_k_rate": 0.192,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 94.3,
+        "home_avg_velo": 91.0,
+        "away_platoon_k_rate": 0.26,
+        "home_platoon_k_rate": 0.243,
+        "away_lineup_weighted_score": 1.453,
+        "home_lineup_weighted_score": 1.423,
+        "away_platoon_lineup_woba": 0.335,
+        "home_platoon_lineup_woba": 0.33,
+        "umpire_strike_rate": 0.319,
+        "park_factor_runs": 101.0,
+        "elevation_ft": 815
+      }
     }
   ],
   "summary": {
-    "total_games": 9,
-    "total_bets": 6,
-    "yrfi_bets": 4,
+    "total_games": 10,
+    "total_bets": 7,
+    "yrfi_bets": 5,
     "nrfi_bets": 2,
-    "total_exposure": 180.57
+    "total_exposure": 224.89
   }
 }
