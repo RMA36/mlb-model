@@ -5,7 +5,7 @@
   "model_mean": 0.4759128403041825,
   "bankroll": 1000.0,
   "bankroll_current": 1128.68,
-  "generated_at": "2026-04-30T16:18:45.575700+00:00",
+  "generated_at": "2026-04-30T20:09:10.306938+00:00",
   "games": [
     {
       "game_pk": 824929,
@@ -449,6 +449,62 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 823471,
+      "date": "2026-04-30",
+      "away_team": "SFG",
+      "home_team": "PHI",
+      "away_starter": "Adrian Houser",
+      "home_starter": "Tim Mayza",
+      "umpire": "David Rackley",
+      "p_top": 0.2749,
+      "p_bot": 0.3639,
+      "p_raw": 0.5387,
+      "p_cal": 0.5247,
+      "mkt_y_fair": 0.4681,
+      "mkt_n_fair": 0.5319,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0565,
+      "bet_kelly": 0.0135,
+      "bet_odds": 101.0,
+      "open_odds": 110.0,
+      "bet_dec": 2.01,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 15.26,
+      "n_books": 4,
+      "best_odds": 105,
+      "best_book": "betonlineag",
+      "best_dec": 2.05,
+      "mkt_y_impl": 0.4975,
+      "mkt_n_impl": 0.5652,
+      "forecast_weather": {
+        "temp": 61,
+        "humidity": 60,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.61,
+        "home_fi_runs_per_start": 0.5,
+        "away_fi_k_rate": 0.174,
+        "home_fi_k_rate": 0.204,
+        "away_recent_fi_runs": 2.0,
+        "home_recent_fi_runs": 0.5,
+        "away_avg_velo": 93.4,
+        "home_avg_velo": 93.2,
+        "away_platoon_k_rate": 0.172,
+        "home_platoon_k_rate": 0.21,
+        "away_lineup_weighted_score": 1.397,
+        "home_lineup_weighted_score": 1.546,
+        "away_platoon_lineup_woba": 0.323,
+        "home_platoon_lineup_woba": 0.347,
+        "umpire_strike_rate": 0.327,
+        "park_factor_runs": 106.0,
+        "elevation_ft": 20
+      }
     }
   ],
   "bets": [
@@ -726,13 +782,69 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 823471,
+      "date": "2026-04-30",
+      "away_team": "SFG",
+      "home_team": "PHI",
+      "away_starter": "Adrian Houser",
+      "home_starter": "Tim Mayza",
+      "umpire": "David Rackley",
+      "p_top": 0.2749,
+      "p_bot": 0.3639,
+      "p_raw": 0.5387,
+      "p_cal": 0.5247,
+      "mkt_y_fair": 0.4681,
+      "mkt_n_fair": 0.5319,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0565,
+      "bet_kelly": 0.0135,
+      "bet_odds": 101.0,
+      "open_odds": 110.0,
+      "bet_dec": 2.01,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 15.26,
+      "n_books": 4,
+      "best_odds": 105,
+      "best_book": "betonlineag",
+      "best_dec": 2.05,
+      "mkt_y_impl": 0.4975,
+      "mkt_n_impl": 0.5652,
+      "forecast_weather": {
+        "temp": 61,
+        "humidity": 60,
+        "wind_mph": 7,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.61,
+        "home_fi_runs_per_start": 0.5,
+        "away_fi_k_rate": 0.174,
+        "home_fi_k_rate": 0.204,
+        "away_recent_fi_runs": 2.0,
+        "home_recent_fi_runs": 0.5,
+        "away_avg_velo": 93.4,
+        "home_avg_velo": 93.2,
+        "away_platoon_k_rate": 0.172,
+        "home_platoon_k_rate": 0.21,
+        "away_lineup_weighted_score": 1.397,
+        "home_lineup_weighted_score": 1.546,
+        "away_platoon_lineup_woba": 0.323,
+        "home_platoon_lineup_woba": 0.347,
+        "umpire_strike_rate": 0.327,
+        "park_factor_runs": 106.0,
+        "elevation_ft": 20
+      }
     }
   ],
   "summary": {
-    "total_games": 8,
-    "total_bets": 5,
-    "yrfi_bets": 3,
+    "total_games": 9,
+    "total_bets": 6,
+    "yrfi_bets": 4,
     "nrfi_bets": 2,
-    "total_exposure": 165.31
+    "total_exposure": 180.57
   }
 }
