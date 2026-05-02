@@ -5,7 +5,7 @@
   "model_mean": 0.4759128403041825,
   "bankroll": 1000.0,
   "bankroll_current": 1150.11,
-  "generated_at": "2026-05-02T17:31:58.996735+00:00",
+  "generated_at": "2026-05-02T18:32:17.779007+00:00",
   "games": [
     {
       "game_pk": 823715,
@@ -388,6 +388,62 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 822988,
+      "date": "2026-05-02",
+      "away_team": "SFG",
+      "home_team": "TBR",
+      "away_starter": "Landen Roupp",
+      "home_starter": "Griffin Jax",
+      "umpire": "Hunter Wendelstedt",
+      "p_top": 0.1421,
+      "p_bot": 0.2371,
+      "p_raw": 0.3455,
+      "p_cal": 0.3403,
+      "mkt_y_fair": 0.4577,
+      "mkt_n_fair": 0.5423,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1174,
+      "bet_kelly": 0.0484,
+      "bet_odds": -137.0,
+      "open_odds": -132.5,
+      "bet_dec": 1.73,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 55.66,
+      "n_books": 4,
+      "best_odds": -132,
+      "best_book": "fanduel",
+      "best_dec": 1.758,
+      "mkt_y_impl": 0.4878,
+      "mkt_n_impl": 0.5781,
+      "forecast_weather": {
+        "temp": 74,
+        "humidity": 89,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.34,
+        "home_fi_runs_per_start": 0.5,
+        "away_fi_k_rate": 0.244,
+        "home_fi_k_rate": 0.25,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 93.3,
+        "home_avg_velo": 96.8,
+        "away_platoon_k_rate": 0.207,
+        "home_platoon_k_rate": 0.306,
+        "away_lineup_weighted_score": 1.375,
+        "home_lineup_weighted_score": 1.352,
+        "away_platoon_lineup_woba": 0.333,
+        "home_platoon_lineup_woba": 0.328,
+        "umpire_strike_rate": 0.314,
+        "park_factor_runs": 93.0,
+        "elevation_ft": 45
+      }
     }
   ],
   "bets": [
@@ -502,13 +558,69 @@
         "park_factor_runs": 96.0,
         "elevation_ft": 730
       }
+    },
+    {
+      "game_pk": 822988,
+      "date": "2026-05-02",
+      "away_team": "SFG",
+      "home_team": "TBR",
+      "away_starter": "Landen Roupp",
+      "home_starter": "Griffin Jax",
+      "umpire": "Hunter Wendelstedt",
+      "p_top": 0.1421,
+      "p_bot": 0.2371,
+      "p_raw": 0.3455,
+      "p_cal": 0.3403,
+      "mkt_y_fair": 0.4577,
+      "mkt_n_fair": 0.5423,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.1174,
+      "bet_kelly": 0.0484,
+      "bet_odds": -137.0,
+      "open_odds": -132.5,
+      "bet_dec": 1.73,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 55.66,
+      "n_books": 4,
+      "best_odds": -132,
+      "best_book": "fanduel",
+      "best_dec": 1.758,
+      "mkt_y_impl": 0.4878,
+      "mkt_n_impl": 0.5781,
+      "forecast_weather": {
+        "temp": 74,
+        "humidity": 89,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.34,
+        "home_fi_runs_per_start": 0.5,
+        "away_fi_k_rate": 0.244,
+        "home_fi_k_rate": 0.25,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 93.3,
+        "home_avg_velo": 96.8,
+        "away_platoon_k_rate": 0.207,
+        "home_platoon_k_rate": 0.306,
+        "away_lineup_weighted_score": 1.375,
+        "home_lineup_weighted_score": 1.352,
+        "away_platoon_lineup_woba": 0.333,
+        "home_platoon_lineup_woba": 0.328,
+        "umpire_strike_rate": 0.314,
+        "park_factor_runs": 93.0,
+        "elevation_ft": 45
+      }
     }
   ],
   "summary": {
-    "total_games": 7,
-    "total_bets": 2,
+    "total_games": 8,
+    "total_bets": 3,
     "yrfi_bets": 1,
-    "nrfi_bets": 1,
-    "total_exposure": 103.43
+    "nrfi_bets": 2,
+    "total_exposure": 159.09
   }
 }
