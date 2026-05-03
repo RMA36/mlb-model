@@ -5,7 +5,7 @@
   "model_mean": 0.4759128403041825,
   "bankroll": 1000.0,
   "bankroll_current": 1044.61,
-  "generated_at": "2026-05-03T17:33:25.786797+00:00",
+  "generated_at": "2026-05-03T18:32:56.343992+00:00",
   "games": [
     {
       "game_pk": 823711,
@@ -724,6 +724,62 @@
         "park_factor_runs": 94.0,
         "elevation_ft": 15
       }
+    },
+    {
+      "game_pk": 824043,
+      "date": "2026-05-03",
+      "away_team": "NYM",
+      "home_team": "LAA",
+      "away_starter": "Clay Holmes",
+      "home_starter": "Jack Kochanowicz",
+      "umpire": "Chris Conroy",
+      "p_top": 0.3128,
+      "p_bot": 0.2211,
+      "p_raw": 0.4647,
+      "p_cal": 0.4956,
+      "mkt_y_fair": 0.5057,
+      "mkt_n_fair": 0.4943,
+      "agreement": "MIXED",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0101,
+      "bet_kelly": 0.0,
+      "bet_odds": -111.0,
+      "open_odds": -111.0,
+      "bet_dec": 1.901,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 4,
+      "best_odds": 100,
+      "best_book": "fanduel",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.5381,
+      "mkt_n_impl": 0.5261,
+      "forecast_weather": {
+        "temp": 69,
+        "humidity": 55,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.27,
+        "home_fi_runs_per_start": 0.9,
+        "away_fi_k_rate": 0.216,
+        "home_fi_k_rate": 0.13,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.33,
+        "away_avg_velo": 94.8,
+        "home_avg_velo": 95.7,
+        "away_platoon_k_rate": 0.222,
+        "home_platoon_k_rate": 0.129,
+        "away_lineup_weighted_score": 1.424,
+        "home_lineup_weighted_score": 1.446,
+        "away_platoon_lineup_woba": 0.334,
+        "home_platoon_lineup_woba": 0.33,
+        "umpire_strike_rate": 0.33,
+        "park_factor_runs": 97.0,
+        "elevation_ft": 160
+      }
     }
   ],
   "bets": [
@@ -892,7 +948,7 @@
     }
   ],
   "summary": {
-    "total_games": 13,
+    "total_games": 14,
     "total_bets": 3,
     "yrfi_bets": 2,
     "nrfi_bets": 1,
