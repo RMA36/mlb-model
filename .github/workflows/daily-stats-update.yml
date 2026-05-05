@@ -52,5 +52,5 @@ jobs:
           else
             DATE=$(python -c "from datetime import datetime, timedelta; from zoneinfo import ZoneInfo; print((datetime.now(ZoneInfo('America/New_York')) - timedelta(days=1)).strftime('%Y-%m-%d'))")
             git commit -m "stats: update tallies + lookups for ${DATE}"
-            git push
+            git push || (git pull --rebase origin master && git push)
           fi

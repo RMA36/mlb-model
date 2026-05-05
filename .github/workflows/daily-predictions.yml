@@ -66,5 +66,5 @@ jobs:
               DATE=$(date +%Y-%m-%d)
             fi
             git commit -m "predictions: ${DATE}"
-            git push
+            git push || (git pull --rebase origin master && git push)
           fi
