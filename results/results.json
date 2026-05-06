@@ -1,6 +1,6 @@
 {
   "model": "v4-lgb-two-model",
-  "updated_at": "2026-05-05T09:32:07.118752+00:00",
+  "updated_at": "2026-05-06T10:04:45.264185+00:00",
   "bankroll_start": 1000,
   "daily": {
     "2026-03-26": {
@@ -10136,16 +10136,88 @@
       "pnl": -106.77,
       "wagered": 143.63,
       "roi_pct": -74.3
+    },
+    "2026-05-05": {
+      "bets": [
+        {
+          "game_pk": 823469,
+          "date": "2026-05-05",
+          "away_team": "OAK",
+          "home_team": "PHI",
+          "away_starter": "Luis Severino",
+          "home_starter": "Cristopher S\u00e1nchez",
+          "umpire": "Malachi Moore",
+          "p_top": 0.3739,
+          "p_bot": 0.3063,
+          "p_raw": 0.5657,
+          "p_cal": 0.5798,
+          "mkt_y_fair": 0.499,
+          "mkt_n_fair": 0.501,
+          "agreement": "YRFI",
+          "bet_side": "YRFI",
+          "bet_edge": 0.0808,
+          "bet_kelly": 0.0257,
+          "bet_odds": -113.5,
+          "open_odds": -113.5,
+          "bet_dec": 1.881,
+          "passes_filter": true,
+          "skip_reason": "",
+          "stake": 25.07,
+          "n_books": 4,
+          "best_odds": -110,
+          "best_book": "williamhill_us",
+          "best_dec": 1.909,
+          "mkt_y_impl": 0.5316,
+          "mkt_n_impl": 0.5338,
+          "forecast_weather": {
+            "temp": 82,
+            "humidity": 30,
+            "wind_mph": 17,
+            "precipitation_mm": 0
+          },
+          "pick_factors": {
+            "away_fi_runs_per_start": 0.58,
+            "home_fi_runs_per_start": 0.29,
+            "away_fi_k_rate": 0.236,
+            "home_fi_k_rate": 0.244,
+            "away_recent_fi_runs": 0.33,
+            "home_recent_fi_runs": 0.67,
+            "away_avg_velo": 96.1,
+            "home_avg_velo": 94.4,
+            "away_platoon_k_rate": 0.195,
+            "home_platoon_k_rate": 0.24,
+            "away_lineup_weighted_score": 1.523,
+            "home_lineup_weighted_score": 1.554,
+            "away_platoon_lineup_woba": 0.327,
+            "home_platoon_lineup_woba": 0.352,
+            "umpire_strike_rate": 0.314,
+            "park_factor_runs": 106.0,
+            "elevation_ft": 20
+          },
+          "result": "L",
+          "away_1st_runs": 0,
+          "home_1st_runs": 0,
+          "total_1st_runs": 0,
+          "pnl": -25.07,
+          "dec_odds": 1.881
+        }
+      ],
+      "all_scored": true,
+      "wins": 0,
+      "losses": 1,
+      "pnl": -25.07,
+      "wagered": 25.07,
+      "roi_pct": -100.0
     }
   },
   "cumulative": {
-    "total_bets": 196,
+    "total_bets": 197,
     "wins": 106,
-    "losses": 90,
-    "win_rate_pct": 54.1,
-    "profit": -24.49,
-    "wagered": 6249.26,
-    "roi_pct": -0.4,
+    "losses": 91,
+    "win_rate_pct": 53.8,
+    "profit": -49.56,
+    "wagered": 6274.33,
+    "roi_pct": -0.8,
     "peak_profit": 150.11,
     "max_drawdown": 290.47
   }
