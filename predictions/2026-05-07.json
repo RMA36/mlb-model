@@ -5,7 +5,7 @@
   "model_mean": 0.4759128403041825,
   "bankroll": 1000.0,
   "bankroll_current": 939.06,
-  "generated_at": "2026-05-07T20:16:01.898856+00:00",
+  "generated_at": "2026-05-07T23:12:47.878933+00:00",
   "games": [
     {
       "game_pk": 823551,
@@ -500,6 +500,62 @@
         "park_factor_runs": 110.0,
         "elevation_ft": 20
       }
+    },
+    {
+      "game_pk": 823306,
+      "date": "2026-05-07",
+      "away_team": "STL",
+      "home_team": "SDP",
+      "away_starter": "Matthew Liberatore",
+      "home_starter": "Michael King",
+      "umpire": "Alex Tosi",
+      "p_top": 0.2175,
+      "p_bot": 0.2489,
+      "p_raw": 0.4122,
+      "p_cal": 0.4229,
+      "mkt_y_fair": 0.4803,
+      "mkt_n_fair": 0.5197,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0573,
+      "bet_kelly": 0.0121,
+      "bet_odds": -125.0,
+      "open_odds": -125.0,
+      "bet_dec": 1.8,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 11.35,
+      "n_books": 4,
+      "best_odds": -113,
+      "best_book": "fanduel",
+      "best_dec": 1.885,
+      "mkt_y_impl": 0.5134,
+      "mkt_n_impl": 0.5556,
+      "forecast_weather": {
+        "temp": 63,
+        "humidity": 90,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.6,
+        "home_fi_runs_per_start": 0.32,
+        "away_fi_k_rate": 0.23,
+        "home_fi_k_rate": 0.339,
+        "away_recent_fi_runs": 0.67,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 94.3,
+        "home_avg_velo": 93.5,
+        "away_platoon_k_rate": 0.186,
+        "home_platoon_k_rate": 0.271,
+        "away_lineup_weighted_score": 1.447,
+        "home_lineup_weighted_score": 1.434,
+        "away_platoon_lineup_woba": 0.338,
+        "home_platoon_lineup_woba": 0.347,
+        "umpire_strike_rate": 0.32,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "bets": [
@@ -726,13 +782,69 @@
         "park_factor_runs": 103.0,
         "elevation_ft": 600
       }
+    },
+    {
+      "game_pk": 823306,
+      "date": "2026-05-07",
+      "away_team": "STL",
+      "home_team": "SDP",
+      "away_starter": "Matthew Liberatore",
+      "home_starter": "Michael King",
+      "umpire": "Alex Tosi",
+      "p_top": 0.2175,
+      "p_bot": 0.2489,
+      "p_raw": 0.4122,
+      "p_cal": 0.4229,
+      "mkt_y_fair": 0.4803,
+      "mkt_n_fair": 0.5197,
+      "agreement": "NRFI",
+      "bet_side": "NRFI",
+      "bet_edge": 0.0573,
+      "bet_kelly": 0.0121,
+      "bet_odds": -125.0,
+      "open_odds": -125.0,
+      "bet_dec": 1.8,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 11.35,
+      "n_books": 4,
+      "best_odds": -113,
+      "best_book": "fanduel",
+      "best_dec": 1.885,
+      "mkt_y_impl": 0.5134,
+      "mkt_n_impl": 0.5556,
+      "forecast_weather": {
+        "temp": 63,
+        "humidity": 90,
+        "wind_mph": 6,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.6,
+        "home_fi_runs_per_start": 0.32,
+        "away_fi_k_rate": 0.23,
+        "home_fi_k_rate": 0.339,
+        "away_recent_fi_runs": 0.67,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 94.3,
+        "home_avg_velo": 93.5,
+        "away_platoon_k_rate": 0.186,
+        "home_platoon_k_rate": 0.271,
+        "away_lineup_weighted_score": 1.447,
+        "home_lineup_weighted_score": 1.434,
+        "away_platoon_lineup_woba": 0.338,
+        "home_platoon_lineup_woba": 0.347,
+        "umpire_strike_rate": 0.32,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "summary": {
-    "total_games": 9,
-    "total_bets": 4,
+    "total_games": 10,
+    "total_bets": 5,
     "yrfi_bets": 2,
-    "nrfi_bets": 2,
-    "total_exposure": 128.18
+    "nrfi_bets": 3,
+    "total_exposure": 139.53
   }
 }
