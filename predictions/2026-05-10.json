@@ -5,7 +5,7 @@
   "model_mean": 0.4759128403041825,
   "bankroll": 1000.0,
   "bankroll_current": 742.73,
-  "generated_at": "2026-05-10T18:06:36.103301+00:00",
+  "generated_at": "2026-05-10T19:19:24.233095+00:00",
   "games": [
     {
       "game_pk": 823868,
@@ -719,6 +719,62 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 823305,
+      "date": "2026-05-10",
+      "away_team": "STL",
+      "home_team": "SDP",
+      "away_starter": "Kyle Leahy",
+      "home_starter": "Walker Buehler",
+      "umpire": "Andy Fletcher",
+      "p_top": 0.371,
+      "p_bot": 0.3202,
+      "p_raw": 0.5724,
+      "p_cal": 0.5731,
+      "mkt_y_fair": 0.4863,
+      "mkt_n_fair": 0.5137,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0868,
+      "bet_kelly": 0.028,
+      "bet_odds": -108.0,
+      "open_odds": -108.0,
+      "bet_dec": 1.926,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 20.8,
+      "n_books": 4,
+      "best_odds": 100,
+      "best_book": "williamhill_us",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.5192,
+      "mkt_n_impl": 0.5485,
+      "forecast_weather": {
+        "temp": 70,
+        "humidity": 73,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.12,
+        "home_fi_runs_per_start": 0.81,
+        "away_fi_k_rate": 0.345,
+        "home_fi_k_rate": 0.179,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.67,
+        "away_avg_velo": 95.0,
+        "home_avg_velo": 94.3,
+        "away_platoon_k_rate": 0.194,
+        "home_platoon_k_rate": 0.177,
+        "away_lineup_weighted_score": 1.448,
+        "home_lineup_weighted_score": 1.416,
+        "away_platoon_lineup_woba": 0.336,
+        "home_platoon_lineup_woba": 0.334,
+        "umpire_strike_rate": 0.311,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "bets": [
@@ -889,13 +945,69 @@
         "park_factor_runs": 96.0,
         "elevation_ft": 660
       }
+    },
+    {
+      "game_pk": 823305,
+      "date": "2026-05-10",
+      "away_team": "STL",
+      "home_team": "SDP",
+      "away_starter": "Kyle Leahy",
+      "home_starter": "Walker Buehler",
+      "umpire": "Andy Fletcher",
+      "p_top": 0.371,
+      "p_bot": 0.3202,
+      "p_raw": 0.5724,
+      "p_cal": 0.5731,
+      "mkt_y_fair": 0.4863,
+      "mkt_n_fair": 0.5137,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0868,
+      "bet_kelly": 0.028,
+      "bet_odds": -108.0,
+      "open_odds": -108.0,
+      "bet_dec": 1.926,
+      "passes_filter": true,
+      "skip_reason": "",
+      "stake": 20.8,
+      "n_books": 4,
+      "best_odds": 100,
+      "best_book": "williamhill_us",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.5192,
+      "mkt_n_impl": 0.5485,
+      "forecast_weather": {
+        "temp": 70,
+        "humidity": 73,
+        "wind_mph": 8,
+        "precipitation_mm": 0
+      },
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.12,
+        "home_fi_runs_per_start": 0.81,
+        "away_fi_k_rate": 0.345,
+        "home_fi_k_rate": 0.179,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.67,
+        "away_avg_velo": 95.0,
+        "home_avg_velo": 94.3,
+        "away_platoon_k_rate": 0.194,
+        "home_platoon_k_rate": 0.177,
+        "away_lineup_weighted_score": 1.448,
+        "home_lineup_weighted_score": 1.416,
+        "away_platoon_lineup_woba": 0.336,
+        "home_platoon_lineup_woba": 0.334,
+        "umpire_strike_rate": 0.311,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "summary": {
-    "total_games": 13,
-    "total_bets": 3,
-    "yrfi_bets": 3,
+    "total_games": 14,
+    "total_bets": 4,
+    "yrfi_bets": 4,
     "nrfi_bets": 0,
-    "total_exposure": 75.57
+    "total_exposure": 96.36999999999999
   }
 }
