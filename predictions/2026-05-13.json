@@ -1,0 +1,16 @@
+{
+  "date": "2026-05-13",
+  "model": "v5",
+  "paused": true,
+  "pause_reason": "drawdown_pause: -47.4% from peak",
+  "health": {
+    "kelly_scale": 1.0,
+    "paused": true,
+    "reason": "drawdown_pause: -47.4% from peak",
+    "max_drawdown_pct": 47.4,
+    "avg_clv_14d": null,
+    "n_clv_samples": 0
+  },
+  "games": [],
+  "bets": []
+}
