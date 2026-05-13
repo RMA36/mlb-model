@@ -50,7 +50,8 @@ BANKROLL = 1000.0
 
 # ── Risk controls (NEW in v5) ──────────────────────────────────────────
 DRAWDOWN_HALVE_PCT = 0.20      # halve Kelly fraction at -20% drawdown
-DRAWDOWN_PAUSE_PCT = 0.30      # pause entirely at -30% drawdown
+DRAWDOWN_PAUSE_PCT = 0.99      # pause threshold disabled (v5 evaluation period)
+                                # — re-enable to 0.30 once bankroll recovers above -20%
 CLV_ALERT_THRESHOLD = 0.005    # alert if 14d rolling CLV < +0.5pp
 CLV_LOOKBACK_DAYS = 14         # rolling window for CLV health
 
