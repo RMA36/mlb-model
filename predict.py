@@ -31,21 +31,36 @@ import pandas as pd
 import requests
 
 ROOT = Path(__file__).resolve().parent
-MODEL_DIR = ROOT / "models" / "v4"
+MODEL_VERSION = os.environ.get("MODEL_VERSION", "v5")  # set to "v4" to revert
+MODEL_DIR = ROOT / "models" / MODEL_VERSION
 PREDICTIONS_DIR = ROOT / "predictions"
 
 logger = logging.getLogger(__name__)
 
-# ── v4 Configuration ───────────────────────────────────────────────────
+# ── Configuration (overridden by metadata when available) ──────────────
 
-CALIBRATION_K = 0.90
-DEFAULT_MODEL_MEAN = 0.485
+CALIBRATION_K = 0.50  # v5 default; metadata.calibration_k overrides
+DEFAULT_MODEL_MEAN = 0.476
 
 KELLY_FRACTION = 0.25
 MAX_BET_PCT = 0.05
 MAX_GAME_PCT = 0.08
 MIN_KELLY_PCT = 0.01
 BANKROLL = 1000.0
+
+# ── Risk controls (NEW in v5) ──────────────────────────────────────────
+DRAWDOWN_HALVE_PCT = 0.20      # halve Kelly fraction at -20% drawdown
+DRAWDOWN_PAUSE_PCT = 0.30      # pause entirely at -30% drawdown
+CLV_ALERT_THRESHOLD = 0.005    # alert if 14d rolling CLV < +0.5pp
+CLV_LOOKBACK_DAYS = 14         # rolling window for CLV health
+
+# Defaults for v5 regime features (overridden by metadata.regime_rates)
+DEFAULT_REGIME_YRFI = 0.495
+DEFAULT_REGIME_TOP1 = 0.262
+DEFAULT_REGIME_BOT1 = 0.305
+
+# Module-level cache for regime rates loaded from metadata at startup
+_REGIME_RATES = None
 
 # League averages (fallback for unknown players)
 LEAGUE_AVG_K_RATE = 0.225
@@ -780,6 +795,12 @@ def compute_features(game_info, lookups, date_str=None, weather=None):
     features["env_park_factor_hr"] = park.get("park_factor_hr", 100.0)
     features["env_elevation_ft"] = park.get("elevation_ft", 0)
 
+    # ── Regime features (v5): rolling 30-day league rates, baked into metadata ──
+    rr = _REGIME_RATES or {}
+    features["env_rolling_30d_yrfi"] = rr.get("rolling_30d_yrfi", DEFAULT_REGIME_YRFI)
+    features["env_rolling_30d_top1"] = rr.get("rolling_30d_top1", DEFAULT_REGIME_TOP1)
+    features["env_rolling_30d_bot1"] = rr.get("rolling_30d_bot1", DEFAULT_REGIME_BOT1)
+
     # ── Umpire features ──
     ump = us.get(game_info.get("umpire", "Unknown"), {})
     features["ump_career_strike_rate"] = ump.get("career_strike_rate", LEAGUE_AVG_STRIKE_RATE)
@@ -880,7 +901,9 @@ def _estimate_pa_probs(top3_obp, pitcher_k_rate):
 
 
 def load_models():
-    """Load pre-trained LGB models and metadata."""
+    """Load pre-trained LGB models and metadata. Also populates module-level
+    regime rate cache so compute_features can read it without plumbing."""
+    global _REGIME_RATES
     meta_path = MODEL_DIR / "metadata.json"
     if not meta_path.exists():
         logger.error("metadata.json not found at %s", meta_path)
@@ -891,7 +914,72 @@ def load_models():
 
     top = lgb.Booster(model_file=str(MODEL_DIR / "top1_model.txt"))
     bot = lgb.Booster(model_file=str(MODEL_DIR / "bot1_model.txt"))
+
+    # v5: read regime rates baked into metadata at retrain time
+    _REGIME_RATES = meta.get("regime_rates")
+    if _REGIME_RATES:
+        logger.info("Regime rates loaded: YRFI=%.2f%% TOP1=%.2f%% BOT1=%.2f%% (as of %s)",
+                    100*_REGIME_RATES.get("rolling_30d_yrfi", 0),
+                    100*_REGIME_RATES.get("rolling_30d_top1", 0),
+                    100*_REGIME_RATES.get("rolling_30d_bot1", 0),
+                    _REGIME_RATES.get("as_of", "?"))
+
     return top, bot, meta
+
+
+def assess_health() -> dict:
+    """Risk-control gate (NEW in v5). Reads results.json and decides:
+      - If max drawdown >= DRAWDOWN_PAUSE_PCT: pause (no bets today)
+      - If max drawdown >= DRAWDOWN_HALVE_PCT: halve Kelly fraction
+      - Else: normal sizing
+    Also checks 14-day CLV health for an informational warning.
+
+    Returns dict with: { kelly_scale, paused, reason }
+    """
+    state = {"kelly_scale": 1.0, "paused": False, "reason": "healthy"}
+    results_file = ROOT / "results" / "results.json"
+    if not results_file.exists():
+        return state
+    try:
+        res = json.loads(results_file.read_text())
+    except Exception:
+        return state
+
+    cum = res.get("cumulative", {})
+    daily = res.get("daily", {})
+    bankroll_start = res.get("bankroll_start", 1000)
+    peak_profit = cum.get("peak_profit", 0)
+    max_dd = cum.get("max_drawdown", 0)
+    dd_from_start = max_dd / max(bankroll_start, 1)
+    dd_from_peak = max_dd / max(bankroll_start + peak_profit, 1)
+
+    # CLV health: avg CLV over last 14 days
+    from datetime import timedelta as _td
+    cutoff = (datetime.now(timezone.utc).date() - _td(days=CLV_LOOKBACK_DAYS)).isoformat()
+    recent_clvs = []
+    for d, day in daily.items():
+        if d < cutoff:
+            continue
+        for b in day.get("bets", []):
+            if b.get("clv") is not None:
+                recent_clvs.append(b["clv"])
+    avg_clv = sum(recent_clvs) / len(recent_clvs) if recent_clvs else None
+
+    # Decide action
+    if dd_from_peak >= DRAWDOWN_PAUSE_PCT:
+        state["paused"] = True
+        state["reason"] = f"drawdown_pause: -{100*dd_from_peak:.1f}% from peak"
+    elif dd_from_peak >= DRAWDOWN_HALVE_PCT:
+        state["kelly_scale"] = 0.5
+        state["reason"] = f"drawdown_halve: -{100*dd_from_peak:.1f}% from peak"
+    state["max_drawdown_pct"] = round(100 * dd_from_peak, 2)
+    state["avg_clv_14d"] = round(100 * avg_clv, 2) if avg_clv is not None else None
+    state["n_clv_samples"] = len(recent_clvs)
+    if avg_clv is not None and avg_clv < CLV_ALERT_THRESHOLD:
+        state["clv_warning"] = (
+            f"14-day avg CLV {100*avg_clv:+.2f}pp (< +0.5pp) — edge may be eroding"
+        )
+    return state
 
 
 def predict_game(features, top_model, bot_model, meta):
@@ -946,6 +1034,38 @@ def main():
 
     ET = ZoneInfo("US/Eastern")
     date_str = args.date or datetime.now(ET).strftime("%Y-%m-%d")
+
+    # ── v5 RISK CONTROL GATE ──
+    health = assess_health()
+    logger.info("Health: %s | max_dd=%s%% | clv14d=%s pp (n=%s) | kelly_scale=%s",
+                health["reason"],
+                health.get("max_drawdown_pct"),
+                health.get("avg_clv_14d"),
+                health.get("n_clv_samples"),
+                health["kelly_scale"])
+    if health.get("clv_warning"):
+        logger.warning(health["clv_warning"])
+    if health["paused"]:
+        logger.error("⛔ PAUSED: %s — emitting empty prediction file", health["reason"])
+        # Still write the file so the dashboard sees we ran
+        PREDICTIONS_DIR.mkdir(parents=True, exist_ok=True)
+        out_path = PREDICTIONS_DIR / f"{date_str}.json"
+        out_path.write_text(json.dumps({
+            "date": date_str,
+            "model": MODEL_VERSION,
+            "paused": True,
+            "pause_reason": health["reason"],
+            "health": health,
+            "games": [],
+            "bets": [],
+        }, indent=2))
+        return
+
+    # Apply drawdown brake to Kelly fraction
+    effective_kelly_fraction = KELLY_FRACTION * health["kelly_scale"]
+    if health["kelly_scale"] < 1.0:
+        logger.warning("Kelly fraction reduced from %.3f to %.3f due to %s",
+                       KELLY_FRACTION, effective_kelly_fraction, health["reason"])
 
     # Load everything
     top_model, bot_model, meta = load_models()
@@ -1091,8 +1211,8 @@ def main():
 
             edge_y = p_cal - odds_row["mkt_y_fair"]
             edge_n = (1 - p_cal) - odds_row["mkt_n_fair"]
-            kelly_y = kelly(p_cal, odds_row["yrfi_dec"])
-            kelly_n = kelly(1 - p_cal, odds_row["nrfi_dec"])
+            kelly_y = kelly(p_cal, odds_row["yrfi_dec"], fraction=effective_kelly_fraction)
+            kelly_n = kelly(1 - p_cal, odds_row["nrfi_dec"], fraction=effective_kelly_fraction)
 
             bet_side = None
             bet_edge = 0
@@ -1236,9 +1356,13 @@ def main():
 
     out_data = {
         "date": date_str,
-        "model": "v4-lgb-two-model",
-        "calibration_k": CALIBRATION_K,
+        "model": f"{MODEL_VERSION}-lgb-two-model",
+        "model_version": MODEL_VERSION,
+        "calibration_k": meta.get("calibration_k", CALIBRATION_K),
         "model_mean": model_mean,
+        "regime_rates": _REGIME_RATES,
+        "health": health,
+        "effective_kelly_fraction": effective_kelly_fraction,
         "bankroll": BANKROLL,
         "bankroll_current": round(args.bankroll, 2),
         "generated_at": datetime.now(timezone.utc).isoformat(),
