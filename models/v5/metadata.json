@@ -1,6 +1,6 @@
 {
   "version": "v5",
-  "trained_on": "2026-05-13T18:11:26.603499",
+  "trained_on": "2026-05-13T18:37:59.413038",
   "n_games": 7368,
   "n_holdout": 100,
   "year_range": [
@@ -127,7 +127,7 @@
   "top_mean_recent": 0.25191492804394694,
   "bot_mean_recent": 0.2719364750985164,
   "model_mean_recent": 0.4552329918175371,
-  "calibration_k": 0.3,
+  "calibration_k": 0.4,
   "calibration_anchor": "mkt_y_fair",
   "sample_weight_halflife_days": 365,
   "regime_rates": {
@@ -279,20 +279,20 @@
     ]
   ],
   "holdout_metrics": {
-    "brier": 0.24963552293305555,
-    "auc": 0.5391534391534392,
-    "k": 0.3,
+    "brier": 0.24934449277200627,
+    "auc": 0.5433862433862433,
+    "k": 0.4,
     "n_games": 87,
-    "pred_std": 0.04181249828108062,
-    "roi_pct_at_2": 0.5790875843089699,
-    "n_bets_at_2": 42,
-    "win_rate_at_2": 54.76190476190476,
-    "roi_pct_at_4": 11.230064794855101,
-    "n_bets_at_4": 10,
-    "win_rate_at_4": 60.0,
-    "roi_pct_at_6": 97.38873753974218,
-    "n_bets_at_6": 1,
-    "win_rate_at_6": 100.0
+    "pred_std": 0.04828145564909221,
+    "roi_pct_at_2": 4.646528902278886,
+    "n_bets_at_2": 62,
+    "win_rate_at_2": 56.45161290322581,
+    "roi_pct_at_4": 26.741176019582767,
+    "n_bets_at_4": 22,
+    "win_rate_at_4": 68.18181818181819,
+    "roi_pct_at_6": 33.136382589842434,
+    "n_bets_at_6": 7,
+    "win_rate_at_6": 71.42857142857143
   },
   "acceptance_passed": true
 }
