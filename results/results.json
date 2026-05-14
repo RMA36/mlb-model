@@ -1,6 +1,6 @@
 {
   "model": "v4-lgb-two-model",
-  "updated_at": "2026-05-13T10:09:24.912298+00:00",
+  "updated_at": "2026-05-14T10:01:50.003788+00:00",
   "bankroll_start": 1000,
   "daily": {
     "2026-03-26": {
@@ -11813,17 +11813,84 @@
       "pnl": -45.07,
       "wagered": 45.07,
       "roi_pct": -100.0
+    },
+    "2026-05-13": {
+      "bets": [
+        {
+          "game_pk": 824763,
+          "date": "2026-05-13",
+          "away_team": "PHI",
+          "home_team": "BOS",
+          "away_starter": "Andrew Painter",
+          "home_starter": "Sonny Gray",
+          "umpire": "Dan Bellino",
+          "p_top": 0.4433,
+          "p_bot": 0.3307,
+          "p_raw": 0.6274,
+          "p_cal": 0.5961,
+          "mkt_y_fair": 0.5177,
+          "mkt_n_fair": 0.4823,
+          "agreement": "YRFI",
+          "bet_side": "YRFI",
+          "bet_edge": 0.0784,
+          "bet_kelly": 0.0119,
+          "bet_odds": -124.0,
+          "open_odds": -126.5,
+          "bet_dec": 1.806,
+          "passes_filter": true,
+          "skip_reason": "",
+          "stake": 7.2,
+          "n_books": 4,
+          "best_odds": -115,
+          "best_book": "betmgm",
+          "best_dec": 1.87,
+          "mkt_y_impl": 0.5536,
+          "mkt_n_impl": 0.5157,
+          "forecast_weather": null,
+          "pick_factors": {
+            "away_fi_runs_per_start": 0.67,
+            "home_fi_runs_per_start": 0.37,
+            "away_fi_k_rate": 0.192,
+            "home_fi_k_rate": 0.295,
+            "away_recent_fi_runs": 1.33,
+            "home_recent_fi_runs": 0.33,
+            "away_avg_velo": 96.1,
+            "home_avg_velo": 92.5,
+            "away_platoon_k_rate": 0.195,
+            "home_platoon_k_rate": 0.26,
+            "away_lineup_weighted_score": 1.514,
+            "home_lineup_weighted_score": 1.326,
+            "away_platoon_lineup_woba": 0.347,
+            "home_platoon_lineup_woba": 0.324,
+            "umpire_strike_rate": 0.321,
+            "park_factor_runs": 110.0,
+            "elevation_ft": 20
+          },
+          "result": "L",
+          "away_1st_runs": 0,
+          "home_1st_runs": 0,
+          "total_1st_runs": 0,
+          "pnl": -7.2,
+          "dec_odds": 1.806
+        }
+      ],
+      "all_scored": true,
+      "wins": 0,
+      "losses": 1,
+      "pnl": -7.2,
+      "wagered": 7.2,
+      "roi_pct": -100.0
     }
   },
   "cumulative": {
-    "total_bets": 222,
+    "total_bets": 223,
     "wins": 112,
-    "losses": 110,
-    "win_rate_pct": 50.5,
-    "profit": -395.08,
-    "wagered": 6992.39,
+    "losses": 111,
+    "win_rate_pct": 50.2,
+    "profit": -402.28,
+    "wagered": 6999.59,
     "roi_pct": -5.7,
     "peak_profit": 150.11,
-    "max_drawdown": 545.19
+    "max_drawdown": 552.39
   }
 }
