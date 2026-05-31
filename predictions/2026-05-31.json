@@ -22,7 +22,7 @@
   "effective_kelly_fraction": 0.125,
   "bankroll": 1000.0,
   "bankroll_current": 575.99,
-  "generated_at": "2026-05-31T17:46:16.238763+00:00",
+  "generated_at": "2026-05-31T18:53:09.747106+00:00",
   "games": [
     {
       "game_pk": 824832,
@@ -584,6 +584,57 @@
         "park_factor_runs": 100.0,
         "elevation_ft": 0
       }
+    },
+    {
+      "game_pk": 823133,
+      "date": "2026-05-31",
+      "away_team": "ARI",
+      "home_team": "SEA",
+      "away_starter": "Merrill Kelly",
+      "home_starter": "Bryce Miller",
+      "umpire": "Nestor Ceja",
+      "p_top": 0.2451,
+      "p_bot": 0.3114,
+      "p_raw": 0.4802,
+      "p_cal": 0.4651,
+      "mkt_y_fair": 0.4592,
+      "mkt_n_fair": 0.5408,
+      "agreement": "MIXED",
+      "bet_side": "YRFI",
+      "bet_edge": 0.0059,
+      "bet_kelly": 0.0,
+      "bet_odds": 105.0,
+      "open_odds": 105.0,
+      "bet_dec": 2.05,
+      "passes_filter": false,
+      "skip_reason": "mixed agreement",
+      "stake": 0.0,
+      "n_books": 3,
+      "best_odds": 105,
+      "best_book": "betmgm",
+      "best_dec": 2.05,
+      "mkt_y_impl": 0.4878,
+      "mkt_n_impl": 0.5745,
+      "forecast_weather": null,
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.64,
+        "home_fi_runs_per_start": 0.37,
+        "away_fi_k_rate": 0.238,
+        "home_fi_k_rate": 0.267,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 1.0,
+        "away_avg_velo": 92.1,
+        "home_avg_velo": 95.0,
+        "away_platoon_k_rate": 0.227,
+        "home_platoon_k_rate": 0.23,
+        "away_lineup_weighted_score": 1.498,
+        "home_lineup_weighted_score": 1.448,
+        "away_platoon_lineup_woba": 0.34,
+        "home_platoon_lineup_woba": 0.335,
+        "umpire_strike_rate": 0.329,
+        "park_factor_runs": 94.0,
+        "elevation_ft": 15
+      }
     }
   ],
   "bets": [
@@ -742,7 +793,7 @@
     }
   ],
   "summary": {
-    "total_games": 11,
+    "total_games": 12,
     "total_bets": 3,
     "yrfi_bets": 2,
     "nrfi_bets": 1,
