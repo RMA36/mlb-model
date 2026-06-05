@@ -22,7 +22,7 @@
   "effective_kelly_fraction": 0.125,
   "bankroll": 1000.0,
   "bankroll_current": 576.21,
-  "generated_at": "2026-06-05T22:21:52.962086+00:00",
+  "generated_at": "2026-06-05T23:43:21.716271+00:00",
   "games": [
     {
       "game_pk": 824673,
@@ -737,6 +737,57 @@
         "park_factor_runs": 94.0,
         "elevation_ft": 15
       }
+    },
+    {
+      "game_pk": 823943,
+      "date": "2026-06-05",
+      "away_team": "LAA",
+      "home_team": "LAD",
+      "away_starter": "Reid Detmers",
+      "home_starter": "Roki Sasaki",
+      "umpire": "Jen Pawol",
+      "p_top": 0.2962,
+      "p_bot": 0.2874,
+      "p_raw": 0.4985,
+      "p_cal": 0.5049,
+      "mkt_y_fair": 0.4899,
+      "mkt_n_fair": 0.5101,
+      "agreement": "YRFI",
+      "bet_side": "YRFI",
+      "bet_edge": 0.015,
+      "bet_kelly": 0.0,
+      "bet_odds": -110.0,
+      "open_odds": -110.0,
+      "bet_dec": 1.909,
+      "passes_filter": false,
+      "skip_reason": "kelly < 1%",
+      "stake": 0.0,
+      "n_books": 3,
+      "best_odds": 100,
+      "best_book": "betmgm",
+      "best_dec": 2.0,
+      "mkt_y_impl": 0.5238,
+      "mkt_n_impl": 0.5455,
+      "forecast_weather": null,
+      "pick_factors": {
+        "away_fi_runs_per_start": 0.38,
+        "home_fi_runs_per_start": 0.5,
+        "away_fi_k_rate": 0.262,
+        "home_fi_k_rate": 0.164,
+        "away_recent_fi_runs": 0.0,
+        "home_recent_fi_runs": 0.0,
+        "away_avg_velo": 94.4,
+        "home_avg_velo": 96.4,
+        "away_platoon_k_rate": 0.256,
+        "home_platoon_k_rate": 0.187,
+        "away_lineup_weighted_score": 1.372,
+        "home_lineup_weighted_score": 1.664,
+        "away_platoon_lineup_woba": 0.311,
+        "home_platoon_lineup_woba": 0.373,
+        "umpire_strike_rate": 0.315,
+        "park_factor_runs": 100.0,
+        "elevation_ft": 0
+      }
     }
   ],
   "bets": [
@@ -946,7 +997,7 @@
     }
   ],
   "summary": {
-    "total_games": 14,
+    "total_games": 15,
     "total_bets": 4,
     "yrfi_bets": 4,
     "nrfi_bets": 0,
