@@ -1,7 +1,7 @@
 {
   "version": "v5",
-  "trained_on": "2026-06-07T14:24:00.234645",
-  "n_games": 7704,
+  "trained_on": "2026-06-14T14:30:00.861189",
+  "n_games": 7794,
   "n_holdout": 100,
   "year_range": [
     2023,
@@ -121,21 +121,21 @@
     "ump_consistency",
     "ump_games_count"
   ],
-  "model_mean": 0.4657800788955534,
-  "top_mean": 0.2519220353633644,
-  "bot_mean": 0.28616493233451673,
-  "top_mean_recent": 0.22182521483989176,
-  "bot_mean_recent": 0.2561643858030119,
-  "model_mean_recent": 0.42079287816318783,
-  "calibration_k": 0.7,
+  "model_mean": 0.4725473127569084,
+  "top_mean": 0.2582378329781616,
+  "bot_mean": 0.28896748340582246,
+  "top_mean_recent": 0.23896061829618526,
+  "bot_mean_recent": 0.27320783707842894,
+  "model_mean_recent": 0.4471480522462183,
+  "calibration_k": 0.5,
   "calibration_anchor": "mkt_y_fair",
   "sample_weight_halflife_days": 365,
   "regime_rates": {
-    "rolling_30d_yrfi": 0.5282555282555282,
-    "rolling_30d_top1": 0.2727272727272727,
-    "rolling_30d_bot1": 0.31695331695331697,
-    "as_of": "2026-05-30",
-    "n_games_in_window": 407
+    "rolling_30d_yrfi": 0.5187032418952618,
+    "rolling_30d_top1": 0.2718204488778055,
+    "rolling_30d_bot1": 0.2967581047381546,
+    "as_of": "2026-06-06",
+    "n_games_in_window": 401
   },
   "lgb_params": {
     "objective": "binary",
@@ -152,147 +152,147 @@
     "verbose": -1,
     "seed": 42
   },
-  "top1_best_iteration": 140,
-  "bot1_best_iteration": 110,
+  "top1_best_iteration": 80,
+  "bot1_best_iteration": 127,
   "top15_features_top1": [
     [
       "away_lineup_weighted_score",
-      938.3481032848358
+      703.4267582893372
     ],
     [
       "away_platoon_lineup_woba",
-      723.2788906097412
+      633.8476413488388
     ],
     [
       "away_platoon_lineup_obp",
-      432.88655960559845
-    ],
-    [
-      "ump_games_count",
-      364.9115204811096
+      310.1477391719818
     ],
     [
       "home_p_fi_k_rate_vs_L",
-      313.1817613840103
+      298.33950197696686
+    ],
+    [
+      "ump_games_count",
+      267.18784976005554
     ],
     [
       "home_p_avg_velo",
-      275.3539797067642
-    ],
-    [
-      "home_p_season_k_rate",
-      262.247429728508
-    ],
-    [
-      "ump_career_strike_rate",
-      248.84204947948456
-    ],
-    [
-      "env_rolling_30d_top1",
-      242.8864403963089
-    ],
-    [
-      "env_rolling_30d_bot1",
-      241.4248102903366
+      216.60665941238403
     ],
     [
       "home_p_fi_starts",
-      237.02589011192322
-    ],
-    [
-      "env_rolling_30d_yrfi",
-      206.74454975128174
+      192.75890028476715
     ],
     [
       "env_temp_min",
-      206.21507024765015
+      176.56791925430298
     ],
     [
-      "ump_consistency",
-      199.54481112957
+      "home_p_season_k_rate",
+      169.9273897409439
+    ],
+    [
+      "env_rolling_30d_bot1",
+      158.85942912101746
     ],
     [
       "home_p_obpa_vs_L",
-      199.38730907440186
+      154.2110197544098
+    ],
+    [
+      "ump_career_strike_rate",
+      152.67359006404877
+    ],
+    [
+      "away_lineup_pa_prob_4",
+      141.38190054893494
+    ],
+    [
+      "away_lineup_top3_obp",
+      134.78752076625824
+    ],
+    [
+      "home_p_fi_k_rate_vs_R",
+      133.18265056610107
     ]
   ],
   "top15_features_bot1": [
     [
       "home_lineup_weighted_score",
-      955.3937689065933
-    ],
-    [
-      "home_platoon_lineup_woba",
-      618.5455992221832
+      962.4437367916107
     ],
     [
       "home_platoon_lineup_obp",
-      580.196620464325
+      671.480349779129
+    ],
+    [
+      "home_platoon_lineup_woba",
+      644.4784305095673
     ],
     [
       "ump_games_count",
-      233.52437949180603
-    ],
-    [
-      "env_rolling_30d_top1",
-      210.91115963459015
-    ],
-    [
-      "ump_career_strike_rate",
-      197.12730967998505
+      283.5414595603943
     ],
     [
       "ump_consistency",
-      194.49077999591827
+      280.35245060920715
+    ],
+    [
+      "env_rolling_30d_top1",
+      242.2853800058365
     ],
     [
       "away_p_fi_k_rate_vs_R",
-      194.17701995372772
+      240.6057494878769
     ],
     [
-      "away_p_season_k_rate",
-      192.90734994411469
+      "away_p_fi_bb_rate",
+      233.11944949626923
     ],
     [
-      "away_p_whip_approx",
-      192.27047991752625
+      "ump_career_strike_rate",
+      232.2547104358673
     ],
     [
-      "away_p_fi_k_rate_vs_L",
-      186.01521980762482
+      "env_rolling_30d_yrfi",
+      206.54969084262848
     ],
     [
-      "home_lineup_pa_prob_6",
-      176.86656939983368
-    ],
-    [
-      "away_p_obpa_vs_R",
-      176.3350406885147
+      "away_p_hr_rate_vs_R",
+      192.97114038467407
     ],
     [
       "env_wind_mph",
-      166.21946966648102
+      192.73201060295105
+    ],
+    [
+      "away_p_hr_rate_vs_L",
+      189.74343967437744
+    ],
+    [
+      "away_p_obpa_vs_R",
+      188.7438098192215
     ],
     [
       "away_p_fi_hr_rate",
-      160.84934079647064
+      187.07074964046478
     ]
   ],
   "holdout_metrics": {
-    "brier": 0.24071389201721008,
-    "auc": 0.6413373860182371,
-    "k": 0.7,
-    "n_games": 89,
-    "pred_std": 0.07962284168620928,
-    "roi_pct_at_2": -3.340024057325698,
-    "n_bets_at_2": 68,
-    "win_rate_at_2": 52.94117647058823,
-    "roi_pct_at_4": 10.423636749603988,
-    "n_bets_at_4": 48,
-    "win_rate_at_4": 60.416666666666664,
-    "roi_pct_at_6": 14.890445014105971,
-    "n_bets_at_6": 32,
-    "win_rate_at_6": 62.5
+    "brier": 0.23192803860975408,
+    "auc": 0.700570835495589,
+    "k": 0.5,
+    "n_games": 88,
+    "pred_std": 0.06788651701366501,
+    "roi_pct_at_2": 24.646580484085007,
+    "n_bets_at_2": 56,
+    "win_rate_at_2": 67.85714285714286,
+    "roi_pct_at_4": 30.694808253361373,
+    "n_bets_at_4": 36,
+    "win_rate_at_4": 72.22222222222223,
+    "roi_pct_at_6": 29.601738422839883,
+    "n_bets_at_6": 18,
+    "win_rate_at_6": 72.22222222222223
   },
   "acceptance_passed": true
 }
